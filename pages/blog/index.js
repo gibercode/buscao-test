@@ -30,7 +30,6 @@ const Blog = ({ allPosts: { edges } }) => (
   </div>
 );
 
-
 export const getServerSideProps = async() => {
   const allPosts = await getAllPosts();
   return {
@@ -40,6 +39,4 @@ export const getServerSideProps = async() => {
   };
 }
 
-
 export default Blog
-
