@@ -53,15 +53,6 @@ export default function Post({ postData }) {
   );
 }
 
-// export const getStaticPaths = async() => {
-//   const allPosts = await getAllPostsWithSlug();
-
-//   return {
-//     paths: allPosts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
-//     fallback: true
-//   };
-// }
-
 export const getServerSideProps = async({ params }) => {
   const data = await getPost(params.slug);
 
