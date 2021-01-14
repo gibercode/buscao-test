@@ -36,8 +36,7 @@ export const getServerSideProps = async() => {
   return {
     props: {
       allPosts
-    },
-    revalidate: 1
+    }
   };
 }
 
