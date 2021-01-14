@@ -23,7 +23,8 @@ export default function Post({ postData }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{postData.title}</title>
+        {/* <title>{postData.title}</title> */}
+        <title>Setted</title>
         <link rel='icon' href='/favicon.ico'></link>
       </Head>
 
