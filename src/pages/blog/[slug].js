@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getAllPostsWithSlug, getPost } from '../../lib/api';
-import styles from '../../styles/Home.module.css';
-import blogStyles from '../../styles/Blog.module.css';
+import { getPost } from '../../lib/api';
+import styles from '../../../assets/styles/Home.module.css';
+import blogStyles from '../../../assets/styles/Blog.module.css';
 
 export default function Post({ postData }) {
   const router = useRouter();
