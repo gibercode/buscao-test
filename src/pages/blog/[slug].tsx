@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -53,7 +54,7 @@ export default function Post({ postData }) {
   );
 }
 
-export const getServerSideProps = async({ params }) => {
+export const getServerSideProps: GetServerSideProps = async({ params }) => {
   const data = await getPost(params.slug);
 
   return {

@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getAllPosts } from '../../lib/api';
@@ -30,7 +31,7 @@ const Blog = ({ allPosts: { edges } }) => (
   </div>
 );
 
-export const getServerSideProps = async() => {
+export const getServerSideProps: GetServerSideProps = async() => {
   const allPosts = await getAllPosts();
   return {
     props: {
