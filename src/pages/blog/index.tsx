@@ -2,8 +2,6 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getAllPosts } from '../../lib/api';
-import styles from '../../../assets/styles/Home.module.css';
-import blogStyles from '../../../assets/styles/Blog.module.css';
 import { useState } from 'react';
 
 const Blog = ({ allPosts: { nodes } }) => {
@@ -51,24 +49,24 @@ const Blog = ({ allPosts: { nodes } }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="">
       <Head>
         <title>Blog articles page</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={styles.main}>
+      <main className="">
         <label>Metodo de pago <input name="paymentMethods" onKeyUp={setFilterData} /></label>
         <label>pais<input name="pais" onKeyUp={setFilterData} /></label>
         <label>estado<input name="estado" onKeyUp={setFilterData} /></label>
         <label>nombre <input name="title" onKeyUp={setFilterData} /> </label>
         <button onClick={search}>Buscar</button>
-        <h1 className={styles.title}>Latest blog articles</h1>
+        <h1 className="">Latest blog articles</h1>
         <hr />
         <section>
           {data.map(node => (
-            <div className={blogStyles.listitem} key={node.id}>
-              <div className={blogStyles.listitem__content}>
+            <div className="" key={node.id}>
+              <div className="">
                 <h2>{node.title}</h2>
                 <Link href={`/blog/${node.slug}`}>
                   <a>Read More</a>
