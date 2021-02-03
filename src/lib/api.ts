@@ -3,24 +3,75 @@ import { fetchService } from '../utils/fetchService';
 export const getAllPosts = async() => {
   const data = await fetchService(
     `
-    query AllPosts {
-      posts(first: 20, where: { orderby: { field: DATE, order: DESC}}) {
-        edges {
-          node {
-            id
-            date
-            title
-            slug
-            tags {
-              nodes {
-                name
-                slug
-              }
+    query MyQuery {
+      posts {
+        nodes {
+          content(format: RENDERED)
+          title
+          id
+          categories {
+            nodes {
+              name
             }
+          }
+          comercio {
+            destacado
+            metodosDePago
+            pais
+            sitioWeb
+            sucursales {
+              deliveryPickup
+              direccion
+              estado
+              horario {
+                domingo {
+                  abierto
+                  apertura
+                  cierre
+                }
+                jueves {
+                  abierto
+                  apertura
+                  cierre
+                }
+                lunes {
+                  abierto
+                  apertura
+                  cierre
+                }
+                martes {
+                  abierto
+                  cierre
+                  apertura
+                }
+                miercoles {
+                  apertura
+                  abierto
+                  cierre
+                }
+                sabado {
+                  abierto
+                  apertura
+                  cierre
+                }
+                viernes {
+                  abierto
+                  apertura
+                  cierre
+                }
+              }
+              mapa {
+                longitude
+                latitude
+                streetAddress
+              }
+              nombre
+            }
+            tiposDePago
           }
         }
       }
-    }
+    }    
     `
   );
 
