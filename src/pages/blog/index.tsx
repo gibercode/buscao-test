@@ -5,7 +5,6 @@ import { getAllPosts } from '../../lib/api';
 import styles from '../../../assets/styles/Home.module.css';
 import blogStyles from '../../../assets/styles/Blog.module.css';
 import { useState } from 'react';
-import { debug } from 'console';
 
 const Blog = ({ allPosts: { nodes } }) => {
 
