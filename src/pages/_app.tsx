@@ -1,4 +1,4 @@
-import '../../public/styles/globals.css';
+import '../../public/styles/globals.scss';
 import initStore from '../store';
 import type { AppProps } from 'next/app';
 
