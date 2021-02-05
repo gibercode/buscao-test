@@ -3,49 +3,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { getAllPosts } from '../../lib/api';
 import { useState } from 'react';
+import { Filter } from '../../utils';
 
 const Blog = ({ allPosts: { nodes } }) => {
 
-  const [filter] = useState({
-    paymentMethods: '',
-    pais: '',
-    title: '',
-    estado: '',
-  });
-
-  const [data, setData] = useState(nodes);
-
-  const filterSearch = (obj) => {
-    let validation = true;
-    for (let key in filter) {
-      if (filter[key]) {
-        let validFilter = false;
-        if (obj[key]) validFilter = (obj[key] == filter[key])
-        if (obj['comercio'][key]) validFilter = (obj["comercio"][key] == filter[key])
-        if(obj['comercio']['sucursales'] && key == 'estado'){
-          for(let sucursal of obj['comercio']['sucursales']){
-            if(sucursal[key]){
-              validFilter = (sucursal[key] == filter[key])
-              if(validFilter) break;
-            }
-          }
-        }
-        validation = validation && validFilter;
-      }
-    }
-    return validation
-  }
-
-  const search = () => {
-    let inicio = performance.now();
-    console.log("inicio: 0");
-    let searchData = nodes.filter(filterSearch);
-    setData(searchData)
-    console.log("fin: " + (performance.now() - inicio));
-  }
+  const [data, setData] = useState(nodes)
 
   const setFilterData = (event) => {
-    filter[event.target.name] = event.target.value
+    setData(Filter(nodes, event.target.value, event.target.name))
   }
 
   return (
@@ -56,11 +21,9 @@ const Blog = ({ allPosts: { nodes } }) => {
       </Head>
 
       <main className="">
-        <label>Metodo de pago <input name="paymentMethods" onKeyUp={setFilterData} /></label>
-        <label>pais<input name="pais" onKeyUp={setFilterData} /></label>
+        <label>pais<input name="country" onKeyUp={setFilterData} /></label>
         <label>estado<input name="estado" onKeyUp={setFilterData} /></label>
         <label>nombre <input name="title" onKeyUp={setFilterData} /> </label>
-        <button onClick={search}>Buscar</button>
         <h1 className="">Latest blog articles</h1>
         <hr />
         <section>
