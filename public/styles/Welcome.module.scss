@@ -10,6 +10,7 @@
   background-size: 1600px 800px;
 }
 
+
 ._container {
   height: 90vh;
   width: 60%;
@@ -40,17 +41,92 @@
   font-family: $workSans;
 }
 
+._searchContainer{
+  background-color: $aquaHaze;
+  border-radius: 30px;
+  width: 40%;
+  height: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._searchContent{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 ._blackfloor{
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 10vh;
+  height: 10%;
 
   background-color: $tuna;
 }
-._coins{
 
+@keyframes MoveUpDownCoins {
+  from { transform: translateY(0px)}
+  to { transform:translateY(-20 px)}
+}
+
+@mixin floating ($transformY, $time) {
+  transform: translatey($transformY);
+  animation: MoveUpDownCoins $time alternate infinite;
+}
+
+._coins{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
+
+.coinposition:hover, .coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover, .coinposition6:hover, .coinposition7:hover, .coinposition8:hover, .coinposition9:hover  {
+  @include floating (-20px, 1s);
+}
+
+._coin{
+  width: 11.1%;
+}
+
+.coinposition{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition2{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition3{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition4{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition5{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition6{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition7{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition8{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+.coinposition9{
+  animation: MoveUpDownCoins 1s alternate infinite
+}
+
+
+
+
+
