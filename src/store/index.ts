@@ -1,36 +1,32 @@
-import { useMemo } from 'react'
 import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 import reducers from './reducers'
 
-let store
-
-const initStore = initialState => createStore(
-  reducers,
-  initialState,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-)
-
-export const initializeStore = preloadedState => {
-  let _store = store ?? initStore(preloadedState)
-
-  if (preloadedState && store) {
-    _store = initStore({
-      ...store.getState(),
-      ...preloadedState
-    })
-
-    store = undefined
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== 'production') {
+    const { composeWithDevTools } = require('redux-devtools-extension')
+    return composeWithDevTools(applyMiddleware(...middleware))
   }
 
-  if (typeof window === 'undefined') return _store
-  if (!store) store = _store
-
-  return _store
+  return applyMiddleware(...middleware)
 }
 
-export const useStore = (initialState) => {
-  const store = useMemo(() => initializeStore(initialState), [initialState])
-  return store
+const reducer = (state, action) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state,
+      ...action.payload
+    }
+
+    return nextState
+  }
+
+  return reducers(state, action)
 }
+
+const initStore = () => {
+  return createStore(reducer, bindMiddleware([thunkMiddleware]))
+}
+
+export const wrapper = createWrapper(initStore)

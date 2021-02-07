@@ -1,15 +1,21 @@
-import { TEST } from './action-types';
+import { AnyAction } from 'redux';
+import { TEST, TEST_ASYNC } from './action-types';
 
 const initialState = {
   title: 'Hello world'
 }
 
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
+const testReducer = (state = initialState, action: AnyAction) => {
+  switch (action.type) {
     case TEST:
-      return { title: payload }
-  
+    return {...state, ...action.payload}
+
+    case TEST_ASYNC:
+    return {...state, ...action.payload}
+
     default:
-      return state;
+    return state
   }
 }
+
+export default testReducer
