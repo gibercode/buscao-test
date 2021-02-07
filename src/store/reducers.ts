@@ -5,4 +5,4 @@ const reducers = combineReducers({
   test: testReducer
 })
 
-export default reducers;
+export default reducers

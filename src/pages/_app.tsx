@@ -1,9 +1,16 @@
-import '../../public/styles/globals.scss';
-import initStore from '../store';
-import type { AppProps } from 'next/app';
+import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
+import { useStore } from '../store'
+import '../../public/styles/globals.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const App = ({ Component, pageProps }: AppProps) => {
+  const store = useStore(pageProps.initialReduxState)
+
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
-export default initStore.withRedux(MyApp);
+export default App
