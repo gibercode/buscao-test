@@ -1,6 +1,6 @@
 import { GraphQlClient, normalized } from '../../utils';
 
-export const getCategories = async () => {
+export const categories = async () => {
   const query = `
     query MyQuery {
       categories {

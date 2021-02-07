@@ -8,7 +8,7 @@ export const changeState = param => {
 }
 
 export const changeStateAsync = () => dispatch => {
-  return dispatch(
+  dispatch(
     {
       type: TEST_ASYNC,
       payload: {
