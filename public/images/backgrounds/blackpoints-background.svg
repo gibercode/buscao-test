@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1366" height="566" viewBox="0 0 1366 566">
   <defs>
-    <clipPath id="clip-path">
+    <clipPath id="clipPath">
       <rect id="Rectángulo_1901" data-name="Rectángulo 1901" width="1366" height="566" transform="translate(0 1744)" fill="#34363d"/>
     </clipPath>
   </defs>
   <g id="Grupo_873" data-name="Grupo 873" transform="translate(973 -2944)">
     <g id="Grupo_872" data-name="Grupo 872" transform="translate(34 114)">
       <path id="Trazado_4883" data-name="Trazado 4883" d="M0,0H1366V566H0Z" transform="translate(-1007 2830)" fill="#34363d"/>
-      <g id="Enmascarar_grupo_9" data-name="Enmascarar grupo 9" transform="translate(-1007 1086)" opacity="0.53" clip-path="url(#clip-path)">
+      <g id="Enmascarar_grupo_9" data-name="Enmascarar grupo 9" transform="translate(-1007 1086)" opacity="0.53" clipPath="url(#clipPath)">
         <g id="Grupo_871" data-name="Grupo 871" transform="translate(-41.439 1735)" opacity="0.21">
           <g id="Grupo_870" data-name="Grupo 870" transform="translate(0 0)">
             <circle id="Elipse_4" data-name="Elipse 4" cx="3.898" cy="3.898" r="3.898" transform="translate(405.597 12.065)" fill="#7b7b7b"/>
