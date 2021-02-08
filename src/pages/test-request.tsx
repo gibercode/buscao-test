@@ -1,6 +1,12 @@
-import { getCategories } from '../graphql/querys'
+import React from 'react';
+import { NextPage } from 'next';
+import { useSelector } from 'react-redux';
+import { getCategories } from '../store/actions'
+import { wrapper } from '../store';
 
-const TestRequest = ({ categories }) => {
+const TestRequest: NextPage = () => {
+  const { categories } = useSelector(state => state.category);
+
   return (
     <div>
       {
@@ -12,9 +18,8 @@ const TestRequest = ({ categories }) => {
   )
 }
 
-export const getServerSideProps = async () => {
-  const categories = await getCategories()
-  return { props: { categories } }
-}
+export const getServerSideProps = wrapper.getServerSideProps(
+  ({ store }) => store.dispatch(getCategories())
+)
 
 export default TestRequest
