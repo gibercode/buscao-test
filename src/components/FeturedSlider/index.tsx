@@ -87,8 +87,8 @@ const Card = () => (
 
     <div className={styles._minicard}>
       <div>
-        <p className={styles._title}>Excelsior gama</p>
-        <p className={styles._text}>Supermercados, Alimentos, Charcuteria </p>
+        <span className={styles._title}>Excelsior gama</span><br />
+        <span className={styles._text}>Supermercados, Alimentos, Charcuteria </span>
       </div>
 
       <div className={styles._rightText}>

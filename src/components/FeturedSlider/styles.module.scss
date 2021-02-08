@@ -70,11 +70,10 @@
 }
 
 ._cardsParent {
-  width: calc(50% - 1rem);
+  width: calc(50% - 2rem);
 }
 
 ._card {
-  width: 100%;
   border: solid 2px $wedgewood;
   border-radius: 35px;
   display: flex;
@@ -89,7 +88,7 @@
   border-radius: 35px;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   align-items: center;
   box-sizing: border-box;
 }
@@ -102,7 +101,6 @@
 
 ._text {
   font-family: $workSans;
-  margin-top: 0rem;
   color: $chambray;
   font-size: 0.75rem;
 }
@@ -140,7 +138,7 @@
   color: $chambray;
   font-family: $workSans;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
+  padding: 0.1rem 1.5rem;
   box-sizing: border-box;
   border-radius: 35px;
   font-size: 0.9rem;
@@ -153,6 +151,7 @@
   font-size: 0.8rem;
   margin-left: 1rem;
   display: flex;
+  align-items: center;
 
   & p {
     margin-right: 0.2rem
