@@ -19,21 +19,31 @@ const Welcome = () => {
       </div>
       <div className={styles._searchContainer}>
         <div className={styles._searchContent}>
-          <div>
-          <select name='Ubicacion'>
-          <option>Caracas</option>
-          </select>
+        <div className={styles._radioContainer}>
+            <input type='radio'></input>
+          </div>
+          <div className={styles._selectsContainer}>
+            <p className={styles._searchTitle}>UBICACIÓN</p>
+            <select name='Ubicacion' className={styles._selects} >
+              <option>Merida</option>
+            </select>
+          </div>
+          <div className={styles._radioContainer}>
+            <input type='radio'></input>
+          </div>
+          <div className={styles._selectsContainer}>
+            <p className={styles._searchTitle}>CATEGORIAS</p>
+            <select name='Categorias' className={styles._selects} >
+              <option>Caracas</option>
+            </select>
           </div>
           <div>
-          <select name='Categorias'>
-          <option>Caracas</option>
-          </select>
-          </div>
-          <div>
-          <input placeholder='hola'></input>
+            <input placeholder='Que estás buscando' className={styles._input}></input>
 
           </div>
-
+          <div style={{width:'12%'}}>
+            <button className={styles._blueButtom}>Ir</button>
+          </div>
         </div>
 
       </div>
