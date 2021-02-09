@@ -43,7 +43,6 @@ const Blog = ({ allPosts: { nodes } }) => {
   );
 }
 
-
 export const getServerSideProps: GetServerSideProps = async () => {
   const allPosts = await getAllPosts();
   return {

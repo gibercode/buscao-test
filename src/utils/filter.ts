@@ -1,4 +1,3 @@
-
 const filterSelection = (node: any, select: string) => {
     switch (select) {
         case 'country':
