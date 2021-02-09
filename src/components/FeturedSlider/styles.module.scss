@@ -39,7 +39,7 @@
 ._slider {
   display: inline-flex;
   justify-content: center;
-  white-space: nowrap;
+  // white-space: nowrap;
 }
 
 ._itemOne {
@@ -71,26 +71,7 @@
 
 ._cardsParent {
   width: calc(50% - 2rem);
-}
-
-._card {
-  border: solid 2px $wedgewood;
-  border-radius: 35px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-}
-
-._minicard {
-  width: 100%;
-  background-color: $gallery;
-  border-radius: 35px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.6rem 1.5rem;
-  align-items: center;
-  box-sizing: border-box;
+  padding: 1rem;
 }
 
 ._title {
