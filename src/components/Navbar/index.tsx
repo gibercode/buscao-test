@@ -12,13 +12,15 @@ const Navbar = () => {
     <div className={styles._main}>
       <div className={styles._container}>
         <div className={styles._leftSection} >
-          <div>
+          <div className={styles._logo}>
             <img src='images/logos/logo.svg' />
           </div>
           <div className={styles._links}>
             <p className={styles._textLink}> Comercios </p>
             <div className={styles._btnParent}>
+              <a href='https://cryptobuyer.io' target='_blank'>
               <button className={styles._btnLink} > Cryptobuyer.io </button>
+              </a>
             </div>
           </div>
         </div>

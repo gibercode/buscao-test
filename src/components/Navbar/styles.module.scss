@@ -24,7 +24,7 @@
 
 ._textLink {
   font-family: $workSans;
-  color: $AquaHaze;
+  color: $aquaHaze;
   font-size: 1rem;
   display: table-cell;
   padding-left: 2rem;
@@ -39,7 +39,7 @@
 
 ._btnLink {
   font-family: $workSans;
-  background-color:$AquaHaze;
+  background-color:$aquaHaze;
   color: $chambray;
   padding: 0.6rem 1.5rem 0.6rem 1.5rem;
   cursor: pointer;
@@ -50,7 +50,7 @@
 
   &:hover {
     background-color: $chambray;
-    color: $AquaHaze;
+    color: $aquaHaze;
     transition: all 0.6s;
   }
 }
@@ -62,7 +62,7 @@
 }
 
 ._countriesSelect {
-  color: $AquaHaze;
+  color: $aquaHaze;
   font-family: $workSans;
   margin-right: 0.3rem;
   background-color: transparent;
@@ -73,4 +73,8 @@
   & option {
     color: $chambray;
   }
+}
+
+._logo {
+  cursor: pointer;
 }
