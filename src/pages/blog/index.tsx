@@ -1,40 +1,47 @@
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getAllPosts } from '../../lib/api';
-import { useState } from 'react';
-import { Filter } from '../../utils';
+import { wrapper } from '../../store';
+import { countryPost, getPosts, getStatePosts, getTitlePosts } from '../../store/actions';
+import { connect } from 'react-redux';
 
-const Blog = ({ allPosts: { nodes } }) => {
+const Blog = ({ dispatch, posts }) => {
 
-  const [data, setData] = useState(nodes)
-
-  const setFilterData = (event) => {
-    setData(Filter(nodes, event.target.value, event.target.name))
-  }
+  const { filterPosts } = posts
 
   return (
-    <div className="">
+    <div className="blogSpot">
       <Head>
         <title>Blog articles page</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className="">
-        <label>pais<input name="country" onKeyUp={setFilterData} /></label>
-        <label>estado<input name="estado" onKeyUp={setFilterData} /></label>
-        <label>nombre <input name="title" onKeyUp={setFilterData} /> </label>
+      <main className="mainSpot">
+        <label>Pais
+          <select name="country" onChange={(event) => dispatch(countryPost(event.target.value))} >
+            <option value="Venezuela">Venezuela</option>
+            <option value="Espana">Espana</option>
+            <option value="Colombia">Colombia</option>
+          </select>
+        </label>
+        <br />
+        <label>Estado
+          <select name="estado" onChange={(event) => dispatch(getStatePosts(event.target.value, event.target.name))} >
+            <option value="">Todos</option>
+            <option value="Aragua">Aragua</option>
+            <option value="Capital">Capital</option>
+            <option value="Zulia">Zulia</option>
+          </select>
+        </label>
+        <label>Nombre <input name="title" onKeyUp={(event) => dispatch(getTitlePosts(event.target.value, event.target.name))} /></label>
         <h1 className="">Latest blog articles</h1>
         <hr />
         <section>
-          {data.map(node => (
-            <div className="" key={node.id}>
-              <div className="">
-                <h2>{node.title}</h2>
-                <Link href={`/blog/${node.slug}`}>
-                  <a>Read More</a>
-                </Link>
-              </div>
+          {filterPosts.map(node => (
+            <div className="Posts" key={node.id}>
+              <h2>{node.title}</h2>
+              <Link href={`/blog/${node.slug}`}>
+                <a>Read More</a>
+              </Link>
             </div>
           ))}
         </section>
@@ -43,13 +50,10 @@ const Blog = ({ allPosts: { nodes } }) => {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const allPosts = await getAllPosts();
-  return {
-    props: {
-      allPosts
-    }
-  };
-}
+export const getServerSideProps = wrapper.getServerSideProps(
+  ({ store }) => store.dispatch(getPosts())
+)
 
-export default Blog
+export default connect((state) => ({
+  posts: state.posts,
+}))(Blog)

@@ -13,7 +13,7 @@ const filterSelection = (node: any, select: string) => {
     }
 }
 
-export const Filter = (nodes: Array<any>, filter, selection: string) => {
+export const Filter = async (nodes: Array<any>, filter, selection: string) => {
 
     const nodeFilter = (node) => {
         let validation = true;
