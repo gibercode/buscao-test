@@ -1,0 +1,110 @@
+@import '../../../public/styles/index.scss';
+
+@mixin text() {
+  font-family: $workSans;
+  color: $white;
+}
+
+@mixin input($borderColor)  {
+  padding: 0.6rem;
+  border: solid 1.5px $borderColor;
+  background-color:$chambray;
+  border-radius: 4px;
+  color: $white;
+  font-family: $workSans;
+  width: 70%;
+
+  &::placeholder {
+    color: $white;
+  }
+}
+
+._general {
+  background-color: $chambray;
+  width: 100%;
+  padding: 2rem;
+}
+
+._content {
+  display: flex;
+}
+
+._section {
+  width: 19%;
+
+  & p {
+    @include text;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  & ul {
+    list-style: none;
+    padding: 0px;
+  }
+
+  & li {
+    @include text;
+    font-size: 0.9rem;
+    margin: 0.3rem 0rem;
+  }
+
+}
+
+._suscription {
+  width: 23%;
+}
+
+._subscribe {
+  @include text;
+}
+
+._paragraph {
+  font-family: $workSans;
+  color: $tuna;
+  font-size: 0.9rem;
+}
+
+._input {
+  @include input($shark)
+}
+
+._inputError {
+  @include input($alizarin)
+}
+
+._subscribeBtn {
+  background: $white;
+  border: none;
+  padding: 0.78rem 1.3rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+  font-family: $workSans;
+  font-size: 0.65rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: $tuna;
+  transition: 0.6s;
+
+  &:hover {
+    background-color: $tuna;
+    color: $white;
+    transition: all 0.6s
+  }
+}
+
+._inputParent {
+  display: flex;
+}
+
+._lastSection {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  & p {
+    @include text;
+    font-size: 0.8rem;
+  }
+}
