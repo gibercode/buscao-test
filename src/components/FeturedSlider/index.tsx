@@ -13,8 +13,6 @@ const FeaturedSlider = () => {
   const [sliderWidth, setSliderWidth] = useState('150%');
   const [ page, setPage ] = useState(1);
 
-  console.log(featured);
-
   const nextOrPrevious = (param) => {
 
     let pagination = page;
@@ -66,9 +64,9 @@ const FeaturedSlider = () => {
             <div className={styles._itemOne} id="1" >
               <div className={styles._cards}>
                 {
-                  limitArray(0, 2).map(res => {
+                  limitArray(0, 2).map((res, index) => {
                     return (
-                      <div className={styles._cardsParent}>
+                      <div className={styles._cardsParent} key={index}>
                         <Card name={res.title} />
                       </div>
                     )
@@ -80,9 +78,9 @@ const FeaturedSlider = () => {
             <div className={styles._itemOne} id="2" >
               <div className={styles._cards}>
                 {
-                  limitArray(2, 4).map(res => {
+                  limitArray(2, 4).map( (res, index) => {
                     return (
-                      <div className={styles._cardsParent}>
+                      <div className={styles._cardsParent} key={index}>
                         <Card name={res.title} />
                       </div>
                     )

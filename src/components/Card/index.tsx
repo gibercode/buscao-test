@@ -19,7 +19,6 @@ const Card = ({name}: any) => {
             <p className={styles._statusText} >ABIERTO</p>
             <Clock color='#4A973C' />
           </div>
-
         </div>
       </div>
 
