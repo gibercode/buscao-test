@@ -5,7 +5,6 @@ const Card = ({name}: any) => {
   return (
     <div>
       <div className={styles._card}>
-
         <div className={styles._imageParent}>
           <img src='images/logos/excelsior-gama-logo.svg' width='40%'></img>
         </div>

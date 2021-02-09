@@ -13,6 +13,8 @@ const FeaturedSlider = () => {
   const [sliderWidth, setSliderWidth] = useState('150%');
   const [ page, setPage ] = useState(1);
 
+  console.log(featured);
+
   const nextOrPrevious = (param) => {
 
     let pagination = page;
