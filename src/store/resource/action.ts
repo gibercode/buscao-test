@@ -11,7 +11,9 @@ export const getResources = () => async dispatch => {
   const country = await _getCurrentLocation()
   const posts = await AllPosts()
   allResources['currentLocation'] = country
-  allResources['currentStates'] = _getStates(allResources.countries, country)
+
+  const states = _getStates(allResources.countries, country)
+  allResources['currentStates'] = states ? states : []
 
   const countryPosts = Filter(posts, country, 'country');
   const outstanding = Filter(countryPosts, true, 'outstanding');
@@ -51,5 +53,5 @@ const _getCurrentLocation = async () => {
 
 const _getStates = (countries, country) => {
   const states = countries.find(resource => resource.slug == country)
-  return states.statesField.states
+  return states?.statesField?.states
 }

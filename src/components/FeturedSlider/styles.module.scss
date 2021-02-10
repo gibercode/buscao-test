@@ -1,0 +1,148 @@
+@import '../../../public/styles/index.scss';
+
+@mixin arrow($direction) {
+  background-color: $geyser;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  @if $direction == 'left' {
+    margin-right: 2.5rem;
+  }
+  @else {
+    margin-left: 2.5rem;
+  }
+}
+
+._itemsParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0rem;
+}
+
+._itemsChild {
+  width: 70%;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+
+}
+
+._slider {
+  display: inline-flex;
+  justify-content: center;
+  // white-space: nowrap;
+}
+
+._itemOne {
+  width: 100%;
+  align-self: center;
+  scroll-behavior: smooth;
+}
+
+._itemTwo {
+  width: 100%;
+  margin-top: 500;
+  scroll-behavior: smooth;
+}
+
+._itemThree {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+._arrow {
+  cursor: pointer;
+}
+
+._cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+._cardsParent {
+  width: calc(50% - 2rem);
+  padding: 1rem;
+}
+
+._title {
+  font-family: $workSans;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+._text {
+  font-family: $workSans;
+  color: $chambray;
+  font-size: 0.75rem;
+}
+
+._imageParent {
+  padding: 1rem 1rem 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+}
+
+._statusText {
+  color: $statusOpen;
+  font-family: $workSans;
+  font-weight: 500;
+  margin-right: 0.4rem;
+  font-size: 0.85rem;
+}
+
+._rightText {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._infoParent {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+._call {
+  background-color: $geyser;
+  color: $chambray;
+  font-family: $workSans;
+  font-weight: 600;
+  padding: 0.1rem 1.5rem;
+  box-sizing: border-box;
+  border-radius: 35px;
+  font-size: 0.9rem;
+}
+
+._location {
+  font-family: $workSans;
+  color: $gray;
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+
+  & p {
+    margin-right: 0.2rem
+  }
+}
+
+._leftArrow {
+  @include arrow('left');
+}
+
+._rightArrow {
+  @include arrow('right');
+}
