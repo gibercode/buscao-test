@@ -8,7 +8,7 @@ const initialState = {
   filterPosts: [],
 }
 
-const posts = (state = initialState, { type, payload }: AnyAction) => {
+const post = (state = initialState, { type, payload }: AnyAction) => {
   switch(type) {
     case GET_POSTS:
       return { ...state, ...payload }
@@ -21,4 +21,4 @@ const posts = (state = initialState, { type, payload }: AnyAction) => {
   }
 }
 
-export default posts
+export default post

@@ -7,7 +7,7 @@ const initialState = {
   states: []
 }
 
-const selects = (state = initialState, { type, payload }: AnyAction) => {
+const select = (state = initialState, { type, payload }: AnyAction) => {
   switch(type) {
     case GET_SELECT:
       return { ...state, ...payload }
@@ -16,4 +16,4 @@ const selects = (state = initialState, { type, payload }: AnyAction) => {
   }
 }
 
-export default selects
+export default select

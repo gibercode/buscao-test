@@ -1,14 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { wrapper } from '../../store';
-import { countryPost, getPosts, getSelect, getStatePosts, getTitlePosts } from '../../store/actions';
-import { connect } from 'react-redux';
+import { getPosts, getSelect } from '../../store/actions';
+import { useSelector } from 'react-redux';
 import { Search } from '../../components';
+import { NextPage } from 'next';
 
-const Blog = ({ dispatch, posts }) => {
+const Blog: NextPage = () => {
 
-  const { filterPosts } = posts
-
+  //const { filterPosts } = useSelector(state => state.post)
+  const select = useSelector(state => state.select)
+  const { countries } = select
   return (
     <div className="blogSpot">
       <Head>
@@ -18,24 +20,22 @@ const Blog = ({ dispatch, posts }) => {
 
       <main className="mainSpot">
         <label>Pais
-          <select name="country" onChange={(event) => dispatch(countryPost(event.target.value))} >
-            <option value="Venezuela">Venezuela</option>
-            <option value="Espana">Espana</option>
-            <option value="Colombia">Colombia</option>
+          <select name="country" >
+            {countries.map((country, index) => (<option value={country.slug} key={index}>{country.name}</option>))}
           </select>
         </label>
-        <Search />
+        <Search selects={select} />
         <h1 className="">Latest blog articles</h1>
         <hr />
         <section>
-          {filterPosts.map(node => (
+          {/*filterPosts.map(node => (
             <div className="Posts" key={node.id}>
               <h2>{node.title}</h2>
               <Link href={`/blog/${node.slug}`}>
                 <a>Read More</a>
               </Link>
             </div>
-          ))}
+          ))*/}
         </section>
       </main>
     </div>
@@ -43,9 +43,7 @@ const Blog = ({ dispatch, posts }) => {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => { store.dispatch(getPosts()); store.dispatch(getSelect()) }
+  ({ store }) => store.dispatch(getSelect())
 )
 
-export default connect((state) => ({
-  posts: state.posts,
-}))(Blog)
+export default Blog

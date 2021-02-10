@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import category from './category/reducer'
 import location from './location/reducer'
-import posts from './posts/reducer'
-import selects from './selects/reducer'
+import post from './post/reducer'
+import select from './select/reducer'
 
 const reducers = combineReducers({
   category,
   location,
-  posts,
-  selects
+  post,
+  select
 })
 
 export default reducers

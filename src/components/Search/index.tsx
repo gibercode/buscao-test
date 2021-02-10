@@ -1,9 +1,7 @@
-import { connect } from 'react-redux';
-import { wrapper } from '../../store';
-import { getSelect, getStatePosts } from '../../store/actions';
+import { getStatePosts } from '../../store/actions';
 import styles from './styles.module.scss'
 
-const Search = ({ dispatch, selects }) => {
+const Search = ({ selects }) => {
 
     const { categories, states } = selects;
 
@@ -15,7 +13,7 @@ const Search = ({ dispatch, selects }) => {
                 </div>
                 <div className={styles._select}>
                     <label htmlFor="state">Ubicacion</label>
-                    <select name="state" onChange={(event) => dispatch(getStatePosts(event.target.value))} >
+                    <select name="state">
                         <option value="">Todos</option>
                         {states.map((state) => (<option value={state.slug}>{state.name}</option>))}
                     </select>
@@ -41,6 +39,4 @@ const Search = ({ dispatch, selects }) => {
     )
 }
 
-export default connect((state) => ({
-    selects: state.selects,
-}))(Search);
+export default Search;

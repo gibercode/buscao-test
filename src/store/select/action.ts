@@ -4,7 +4,5 @@ import { actionObject } from '../../utils'
 
 export const getSelect = () => async dispatch => {
   const result = await selects()
-  console.log(result);
-  
   dispatch(actionObject(GET_SELECT, result))
 }
