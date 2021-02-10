@@ -1,5 +1,4 @@
-import { GET_POSTS, UPDATE_POSTS } from './action_types'
-import { AllPosts } from '../../graphql'
+import { UPDATE_POSTS } from './action_types'
 import { actionObject, Filter } from '../../utils'
 
 const _filterSelection = (posts, filter, select) => {
