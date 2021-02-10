@@ -8,27 +8,31 @@ import { useSelector } from 'react-redux';
 const FeaturedSlider = () => {
 
   const { featured } = useSelector(state => state.featured);
-  const [sliderWidth, setSliderWidth] = useState('150%');
+  const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 
   let countOne = 0;
   let countTwo = 2;
-  let index = 0;
+
+  useEffect(() => {
+    calculateWidth();
+  }, [])
 
   const nextOrPrevious = (param) => {
 
     let pagination = page;
 
     if (param == 'left' && page >= 1) pagination = pagination - 1;
-    if (param == 'right' && page <= 2) pagination = pagination + 1;
+    if (param == 'right' && page <= pagesArray()) pagination = pagination + 1;
 
-    const getElement = document.getElementById(pagination.toString())
+    const getElement = document.getElementById(pagination.toString());
 
     if (getElement) {
       getElement.scrollIntoView({
         behavior: 'smooth',
       });
     }
+
     setPage(pagination);
   }
 
@@ -50,11 +54,6 @@ const FeaturedSlider = () => {
     setSliderWidth(`${width}%`);
   }
 
-  useEffect(() => {
-    calculateWidth();
-    // pagesArray();
-  }, [])
-
   const pagesArray = () => {
     const length = featured.length / 2;
     const stringLength = length.toString();
@@ -67,7 +66,6 @@ const FeaturedSlider = () => {
     return length;
   }
 
-  const array = [1, 2]
   return (
     <>
       <div className={styles._itemsParent}>
@@ -78,9 +76,11 @@ const FeaturedSlider = () => {
           <div className={styles._slider} style={{ width: sliderWidth }}>
 
             {
-              array.map((item, index) => {
+              Array(pagesArray()).fill(1).map((item, index) => {
+                const page = index + 1;
+
                 return (
-                  <div className={styles._itemOne} id={item.toString()} key={index}>
+                  <div className={styles._itemOne} id={page.toString()} key={index}>
                     <div className={styles._cards}>
                       {
                         limitArray(countOne, countTwo).map((item, index) => {
@@ -88,7 +88,8 @@ const FeaturedSlider = () => {
                             countOne = countOne + 2;
                             countTwo = countTwo + 2;
                           }
-                          // res.commerce.subsidiary ? console.log(res.commerce.subsidiary[0].address) : null
+
+                          item.commerce.subsidiary ? console.log(item.commerce.subsidiary[0].address) : null
                           return (
                             <div className={styles._cardsParent} key={index}>
                               <Card name={item.title} />
