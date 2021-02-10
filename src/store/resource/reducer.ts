@@ -4,6 +4,7 @@ import { CHANGE_RESOURCES, GET_RESOURCES } from './action-types'
 const initialState = {
   currentLocation: '',
   categories: [],
+  posts: [],
   countries: [],
   currentStates: []
 }
