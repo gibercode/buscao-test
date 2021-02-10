@@ -1,11 +1,16 @@
 import Head from 'next/head';
 import styles from '../../public/styles/Welcome.module.scss';
 import Link from 'next/link';
+import { Navbar } from '../components'
 
 const Welcome = () => {
 
   return (
+    <div>
+
+
     <div className={styles._main}>
+      <Navbar />
       <div className={styles._container}>
         <div className={styles._centerContainer}>
           <div className={styles._titleContainer}>
@@ -19,7 +24,7 @@ const Welcome = () => {
       </div>
       <div className={styles._searchContainer}>
         <div className={styles._searchContent}>
-        <div className={styles._radioContainer}>
+          <div className={styles._radioContainer}>
             <input type='radio'></input>
           </div>
           <div className={styles._selectsContainer}>
@@ -37,45 +42,49 @@ const Welcome = () => {
               <option>Caracas</option>
             </select>
           </div>
-          <div>
+          <div className={styles._inputContainer}>
             <input placeholder='Que estás buscando' className={styles._input}></input>
 
           </div>
-          <div style={{width:'12%'}}>
+          <div className={styles._buttonContainer}>
             <button className={styles._blueButtom}>Ir</button>
           </div>
         </div>
 
       </div>
 
-      <div className={styles._blackfloor}>
-        <div className={styles._coins}>
-          <div className={styles._coin}>
-            <img className={styles.coinposition} src='../../images/lying-coins/lying-xpt.svg' width='100%'></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition2} src='../../images/lying-coins/lying-usdt.svg' width='100%' ></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition3} src='../../images/lying-coins/lying-lite.svg' width='100%'  ></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition4} src='../../images/lying-coins/lying-ether.svg' width='100%'></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition5} src='../../images/lying-coins/lying-dash.svg' width='100%'></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition6} src='../../images/lying-coins/lying-dai.svg' width='100%' ></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition7} src='../../images/lying-coins/lying-busd.svg' width='100%' ></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition8} src='../../images/lying-coins/lying-btc.svg' width='100%' ></img>
-          </div>
-          <div className={styles._coin}>
-            <img className={styles.coinposition9} src='../../images/lying-coins/lying-bnb.svg' width='100%'></img>
+
+       </div>
+       <div>
+        <div className={styles._blackfloor}>
+          <div className={styles._coins}>
+            <div className={styles._coin}>
+              <img className={styles.coinposition} src='../../images/lying-coins/lying-xpt.svg' width='100%'></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition2} src='../../images/lying-coins/lying-usdt.svg' width='100%' ></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition3} src='../../images/lying-coins/lying-lite.svg' width='100%'  ></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition4} src='../../images/lying-coins/lying-ether.svg' width='100%'></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition5} src='../../images/lying-coins/lying-dash.svg' width='100%'></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition6} src='../../images/lying-coins/lying-dai.svg' width='100%' ></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition7} src='../../images/lying-coins/lying-busd.svg' width='100%' ></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition8} src='../../images/lying-coins/lying-btc.svg' width='100%' ></img>
+            </div>
+            <div className={styles._coin}>
+              <img className={styles.coinposition9} src='../../images/lying-coins/lying-bnb.svg' width='100%'></img>
+            </div>
           </div>
         </div>
       </div>

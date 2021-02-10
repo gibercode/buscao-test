@@ -1,7 +1,9 @@
 ._container {
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   background-image: url('../../public/images/backgrounds/banner.jpg');
   background-size: cover;
-  background-position: center top;
+ /*  background-position: center top; */
+  background-repeat: no-repeat;
+  background-size: 1600px 800px;
 };

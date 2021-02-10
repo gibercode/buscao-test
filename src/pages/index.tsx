@@ -8,9 +8,10 @@ import Welcome from '../components/welcome';
 
 const Home = () => {
   return (
-    <div className={styles._container}>
-      <Navbar />
+    <div >
+ {/* <Navbar /> */}
       <Welcome />
+
     </div>
   )
 }

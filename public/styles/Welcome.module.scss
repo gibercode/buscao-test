@@ -1,18 +1,20 @@
 @import '../styles/colors.scss';
 @import '../styles/fonts.scss';
 
-._main{
+ ._main{
+  height: 90vh;
   width: 100%;
-  height: 100vh;
   background-image: url('../images/backgrounds/desktop.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-size: 1600px 800px;
+  display:'flex';
+  flex-direction:'column';
+  position: relative
 }
 
 
 ._container {
-  height: 90vh;
+  height: 75vh;
   width: 60%;
   display: flex;
   justify-content: center;
@@ -45,17 +47,19 @@
   background-color: $aquaHaze;
   border-radius: 30px;
   width: 50%;
-  height: 8%;
+  min-height: 8%;
   margin-left: auto;
   margin-right: auto;
   display:flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  transform: translate(50%);
 }
 
 ._searchContent{
   display:flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%
 }
@@ -94,14 +98,14 @@
   border-radius: 30px;
   color: $aquaHaze;
   height: 4%;
-  width: 100%;
-  border:0;
-  padding: 6px;
+  width: 60%;
+  border: 0;
+  padding: 10%;
 }
 
 ._radioContainer{
   width: 4%;
-  margin-left: 20px;
+  margin-left: 2%;
 }
 
 ._selectsContainer{
@@ -110,10 +114,23 @@
   border-right:1px solid $nepal
 }
 
+._inputContainer{
+  width:20%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+._buttonContainer{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  min-width: 20%;
+}
+
 ._blackfloor{
   width: 100%;
-  height: 10%;
-
+  height: 10vh;
+  position: relative;
   background-color: $tuna;
 }
 
@@ -131,6 +148,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  bottom: -30px;
 }
 
 .coinposition:hover, .coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover, .coinposition6:hover, .coinposition7:hover, .coinposition8:hover, .coinposition9:hover  {
