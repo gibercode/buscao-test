@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 
 const Search = ({ selects }) => {
 
-    const { categories, states } = selects;
+    // const { categories, states } = selects;
 
     return (
         <div className={styles._searchContent}>
@@ -15,7 +15,7 @@ const Search = ({ selects }) => {
                     <label htmlFor="state">Ubicacion</label>
                     <select name="state">
                         <option value="">Todos</option>
-                        {states.map((state) => (<option value={state.slug}>{state.name}</option>))}
+                        {/* {states.map((state) => (<option value={state.slug}>{state.name}</option>))} */}
                     </select>
                 </div>
             </div>
@@ -27,7 +27,7 @@ const Search = ({ selects }) => {
                     <label htmlFor="category">Categorias</label>
                     <select name="category" >
                         <option value="">Todos</option>
-                        {categories.map((category) => (<option value={category.slug}>{category.name}</option>))}
+                        {/* {categories.map((category) => (<option value={category.slug}>{category.name}</option>))} */}
                     </select>
                 </div>
             </div>
