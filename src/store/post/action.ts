@@ -1,26 +1,41 @@
-import { GET_POSTS, FILTER_POSTS, COUNTRY_POSTS } from './action_types'
+import { GET_POSTS, UPDATE_POSTS } from './action_types'
 import { AllPosts } from '../../graphql'
 import { actionObject, Filter } from '../../utils'
 
-export const getPosts = () => async dispatch => {
-  const result = await AllPosts()
-  dispatch(actionObject(GET_POSTS, { posts: result }))
+const _filterSelection = (posts, filter, select) => {
+  switch (select) {
+    case 'state':
+      let statePosts = Filter(posts.countryPosts, filter, select)
+      return {
+        statePosts: statePosts,
+        categoryPosts: statePosts,
+        filterPosts: statePosts
+      }
+    case 'categories':
+      let categoryPosts = Filter(posts.statePosts, filter, select)
+      return {
+        categoryPosts: categoryPosts,
+        filterPosts: categoryPosts
+      }
+    case 'title':
+      let result = Filter(posts.categoryPosts, filter, select)
+      return {
+        filterPosts: result
+      }
+    default:
+      break;
+  }
 }
 
-export const countryPost = (country: string) => async (dispatch, getState) => {
-  const { posts } = getState();
-  const result = await Filter(posts.posts, country, 'country');
-  dispatch(actionObject(COUNTRY_POSTS, { countryPosts: result, filterPosts: result }))
+export const countryPost = (country: string) => (dispatch, getState) => {
+  const { post } = getState();
+  const result = Filter(post?.posts, country, 'country');
+  const outstanding = Filter(result, true, 'outstanding');
+  dispatch(actionObject(UPDATE_POSTS, { countryPosts: result, filterPosts: result, outstandingPosts: outstanding }))
 }
 
-export const getStatePosts = (filter: string) => async (dispatch, getState) => {
-  const { posts } = getState();
-  const result = await Filter(posts.countryPosts, filter, 'estado');
-  dispatch(actionObject(FILTER_POSTS, { statePosts: result, filterPosts: result }))
-}
-
-export const getTitlePosts = (filter: string) => async (dispatch, getState) => {
-  const { posts } = getState();
-  const result = await Filter(posts.statePosts, filter, 'title');
-  dispatch(actionObject(FILTER_POSTS, { filterPosts: result }))
+export const filterPosts = (filter: string, type) => (dispatch, getState) => {
+  const { post } = getState();
+  const result = _filterSelection(post, filter, type);
+  dispatch(actionObject(UPDATE_POSTS, result))
 }

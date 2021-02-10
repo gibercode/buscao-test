@@ -4,71 +4,77 @@ export const AllPosts = async () => {
     const query = `query MyQuery {
       posts {
         nodes {
-          content(format: RENDERED)
-          title
           id
+          title
           categories {
             nodes {
+              id
               name
+              slug
             }
           }
-          comercio {
-            destacado
-            metodosDePago
-            pais{
-              slug
+          commerce {
+            country {
+              id
               name
+              slug
             }
-            sitioWeb
-            sucursales {
+            outstanding
+            paymentmethods
+            paymenttypes
+            subsidiary {
+              address
               deliveryPickup
-              direccion
-              estado
-              horario {
-                domingo {
-                  abierto
-                  apertura
-                  cierre
-                }
-                jueves {
-                  abierto
-                  apertura
-                  cierre
-                }
-                lunes {
-                  abierto
-                  apertura
-                  cierre
-                }
-                martes {
-                  abierto
-                  cierre
-                  apertura
-                }
-                miercoles {
-                  apertura
-                  abierto
-                  cierre
-                }
-                sabado {
-                  abierto
-                  apertura
-                  cierre
-                }
-                viernes {
-                  abierto
-                  apertura
-                  cierre
-                }
-              }
-              mapa {
-                longitude
+              name
+              map {
                 latitude
+                longitude
                 streetAddress
               }
-              nombre
+              schedule {
+                friday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                monday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                saturday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                sunday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                thursday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                tuesday {
+                  abierto
+                  apertura
+                  cierre
+                }
+                wednesday {
+                  abierto
+                  apertura
+                  cierre
+                }
+              }
+              state {
+                id
+                name
+                slug
+              }
             }
-            tiposDePago
+            website
           }
         }
       }

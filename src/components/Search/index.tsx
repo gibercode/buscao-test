@@ -1,9 +1,33 @@
-import { getStatePosts } from '../../store/actions';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { filterPosts } from '../../store/actions';
 import styles from './styles.module.scss'
 
-const Search = ({ selects }) => {
+const Search = () => {
+    const dispatch = useDispatch()
+    const { categories, currentStates } = useSelector(state => state.resource);
+    const [filter, setFilter] = useState(
+        {
+            category: '',
+            title: ''
+        }
+    );
 
-    // const { categories, states } = selects;
+    const changeState = (event) => {
+        dispatch(filterPosts(event.target.value, 'state'))
+        setFilter({ ...filter, ...{ category: '', title: '' } })
+    }
+
+    const changeCategory = (event) => {
+        dispatch(filterPosts(event.target.value, 'categories'))
+        setFilter({ ...filter, ...{ category: event.target.value, title: '' } })
+    }
+
+    const changeTitle = (event) => {
+        dispatch(filterPosts(event.target.value, 'title'))
+        setFilter({ ...filter, ...{ title: event.target.value } })
+    }
+
 
     return (
         <div className={styles._searchContent}>
@@ -13,9 +37,9 @@ const Search = ({ selects }) => {
                 </div>
                 <div className={styles._select}>
                     <label htmlFor="state">Ubicacion</label>
-                    <select name="state">
+                    <select name="state" onChange={changeState}>
                         <option value="">Todos</option>
-                        {/* {states.map((state) => (<option value={state.slug}>{state.name}</option>))} */}
+                        {currentStates.map((state, index) => (<option value={state.slug} key={index}>{state.name}</option>))}
                     </select>
                 </div>
             </div>
@@ -25,14 +49,14 @@ const Search = ({ selects }) => {
                 </div>
                 <div className={styles._select}>
                     <label htmlFor="category">Categorias</label>
-                    <select name="category" >
+                    <select name="category" value={filter.category} onChange={changeCategory} >
                         <option value="">Todos</option>
-                        {/* {categories.map((category) => (<option value={category.slug}>{category.name}</option>))} */}
+                        {categories.map((category, index) => (<option value={category.slug} key={index}>{category.name}</option>))}
                     </select>
                 </div>
             </div>
             <div className={styles._inputContainer}>
-                <input placeholder="Que estas buscando" />
+                <input placeholder="Que estas buscando" value={filter.title} onChange={changeTitle} />
                 <button className={styles._goButton}>Ir</button>
             </div>
         </div>
