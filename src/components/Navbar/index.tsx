@@ -1,13 +1,15 @@
-import styles from './styles.module.scss';
-import { World } from '../../../public/images/icons';
-
-const countries = [
-  { name: 'Venezuela', value: 'VE' },
-  { name: 'Colombia', value: 'CO' },
-  { name: 'Argentina', value: 'AR' }
-];
+import { useSelector, useDispatch } from 'react-redux'
+import { changeResources } from '../../store/actions'
+import { World } from '../../../public/images/icons'
+import styles from './styles.module.scss'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const resource = useSelector(state => state.resource)
+  const { currentLocation, countries } = resource
+
+  const changeCountry = (event) => dispatch(changeResources(event.target.value))
+
   return (
     <div className={styles._main}>
       <div className={styles._container}>
@@ -27,10 +29,10 @@ const Navbar = () => {
 
         <div className={styles._rightSection} >
           <div className={styles._rightText}>
-            <select name="countries" className={styles._countriesSelect} >
+            <select name="countries" className={styles._countriesSelect} defaultValue={currentLocation} onChange={changeCountry}>
               {
                 countries.map((country, index) => {
-                  return <option value={country.value} key={index}> {country.name} </option>
+                  return <option value={country.slug} key={index}>{country.name}</option>
                 })
               }
             </select>
@@ -42,4 +44,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar;
+export default Navbar
