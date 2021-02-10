@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { wrapper } from '../../store';
-import { countryPost, getPosts, getSelect, getStatePosts, getTitlePosts } from '../../store/actions';
+import { countryPost, getPosts, getStatePosts, getTitlePosts } from '../../store/actions';
 import { connect } from 'react-redux';
 import { Search } from '../../components';
 
@@ -43,7 +43,7 @@ const Blog = ({ dispatch, posts }) => {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => { store.dispatch(getPosts()); store.dispatch(getSelect()) }
+  ({ store }) => { store.dispatch(getPosts()); }
 )
 
 export default connect((state) => ({

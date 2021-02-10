@@ -1,4 +1,4 @@
-import { GraphQlClient, normalized } from '../../utils';
+import { GraphQlClient, normalizedArray } from '../../utils';
 
 export const AllPosts = async () => {
     const query = `query MyQuery {
@@ -72,8 +72,8 @@ export const AllPosts = async () => {
           }
         }
       }
-    }    
+    }
     `
     const data: any = await GraphQlClient(query)
-    return normalized(data?.posts?.nodes)
+    return normalizedArray(data?.posts?.nodes)
 }
