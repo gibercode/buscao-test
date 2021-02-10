@@ -1,0 +1,86 @@
+@import '../../../public/styles/index.scss';
+
+._card {
+  border: solid 2px $wedgewood;
+  border-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+._minicard {
+  width: 100%;
+  background-color: $gallery;
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+._title {
+  font-family: $workSans;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+._text {
+  font-family: $workSans;
+  color: $chambray;
+  font-size: 0.75rem;
+}
+
+._imageParent {
+  padding: 1rem 1rem 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+}
+
+._statusText {
+  color: $statusOpen;
+  font-family: $workSans;
+  font-weight: 500;
+  margin-right: 0.4rem;
+  font-size: 0.85rem;
+}
+
+._rightText {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._infoParent {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+._call {
+  background-color: $geyser;
+  color: $chambray;
+  font-family: $workSans;
+  font-weight: 600;
+  padding: 0.9rem 1.5rem;
+  box-sizing: border-box;
+  border-radius: 35px;
+  font-size: 0.9rem;
+}
+
+._location {
+  font-family: $workSans;
+  color: $gray;
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+
+  & p {
+    margin-right: 0.2rem
+  }
+}
