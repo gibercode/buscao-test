@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { wrapper } from '../../store';
-import { countryPost, getPosts, getStatePosts, getTitlePosts } from '../../store/actions';
+import { countryPost, getPosts, getSelect, getStatePosts, getTitlePosts } from '../../store/actions';
 import { connect } from 'react-redux';
+import { Search } from '../../components';
 
 const Blog = ({ dispatch, posts }) => {
 
@@ -23,16 +24,7 @@ const Blog = ({ dispatch, posts }) => {
             <option value="Colombia">Colombia</option>
           </select>
         </label>
-        <br />
-        <label>Estado
-          <select name="estado" onChange={(event) => dispatch(getStatePosts(event.target.value, event.target.name))} >
-            <option value="">Todos</option>
-            <option value="Aragua">Aragua</option>
-            <option value="Capital">Capital</option>
-            <option value="Zulia">Zulia</option>
-          </select>
-        </label>
-        <label>Nombre <input name="title" onKeyUp={(event) => dispatch(getTitlePosts(event.target.value, event.target.name))} /></label>
+        <Search />
         <h1 className="">Latest blog articles</h1>
         <hr />
         <section>
@@ -51,7 +43,7 @@ const Blog = ({ dispatch, posts }) => {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getPosts())
+  ({ store }) => { store.dispatch(getPosts()); store.dispatch(getSelect()) }
 )
 
 export default connect((state) => ({

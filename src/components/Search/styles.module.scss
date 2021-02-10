@@ -1,0 +1,102 @@
+@import "../../../public/styles/index.scss";
+
+._searchContent {
+    display: flex;
+    width: fit-content;
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    padding-right: 0.5rem;
+    background: $aquaHaze;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+._selectContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+    &::after {
+        width: 2px;
+        height: 50px;
+        background: $chambray;
+        content: " ";
+        border-radius: 50px;
+    }
+}
+
+._point {
+    width: 12px;
+    height: 12px;
+    background: $chambray;
+    border-radius: 100%;
+}
+
+._pointContent {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    border: 1px solid $chambray;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+._select {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 3rem;
+    label {
+        font-family: $workSans;
+        color: $chambray;
+        font-size: 1.1rem;
+    }
+    select {
+        background: none;
+        border: none;
+        font-family: $workSans;
+        color: $nepal;
+        font-weight: 500;
+        font-size: 0.9rem;
+        appearance: none;
+        width: 100%;
+    }
+}
+
+._inputContainer {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    input {
+        background: none;
+        border: none;
+        font-family: $workSans;
+        color: $nepal;
+        font-weight: 500;
+        font-size: 1rem;
+        appearance: none;
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid black;
+        padding-bottom: 0.5rem;
+        margin-right: 1rem;
+        &::placeholder{
+            color: $nepal;
+        }
+    }
+}
+
+._goButton {
+    height: 100%;
+    width: 8rem;
+    border-radius: 36px;
+    border: none;
+    color: $aquaHaze;
+    background: $chambray;
+    font-size: 1rem;
+}

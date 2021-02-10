@@ -1,9 +1,9 @@
 const filterSelection = (node: any, select: string) => {
     switch (select) {
         case 'country':
-            return node['comercio']['pais']
+            return node['comercio']['pais']['slug']
         case 'category':
-            return node['categories']['nodes']['name']
+            return node['categories']['nodes']['slug']
         case 'estado':
             return node['comercio']['sucursales']
         case 'title':
