@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import styles from './styles.module.scss';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
-import { getCategories } from '../../store/actions'
-import { wrapper } from '../../store';
 
 const FeaturedSlider = () => {
 
@@ -152,10 +150,6 @@ const FeaturedSlider = () => {
     </>
   )
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getCategories())
-)
 
 export default FeaturedSlider;
 

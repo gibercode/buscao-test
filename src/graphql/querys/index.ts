@@ -1,20 +1,5 @@
-<<<<<<< HEAD
-import { GraphQlClient, normalized } from '../../utils';
-
-export const categories = async () => {
-  const query = `
-    query MyQuery {
-      categories {
-        nodes {
-          name
-          slug
-        }
-      }
-    }
-  `
-  const data: any = await GraphQlClient(query)
-  return normalized(data?.categories?.nodes)
-}
+export { default as resources } from './resources'
+import { GraphQlClient, normalizedArray } from '../../utils';
 
 export const featuredShops = async () => {
   const query = `
@@ -78,8 +63,5 @@ export const featuredShops = async () => {
   }
   `
   const data: any = await GraphQlClient(query)
-  return normalized(data?.posts?.nodes)
+  return normalizedArray(data?.posts?.nodes)
 }
-=======
-export { default as resources } from './resources'
->>>>>>> c7fb7722678e6e16f569074e6eeea2ed2f1fef1b
