@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import category from './category/reducer'
-import location from './location/reducer'
+import resource from './resource/reducer'
 
 const reducers = combineReducers({
-  category,
-  location
+  resource
 })
 
 export default reducers
