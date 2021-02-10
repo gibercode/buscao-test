@@ -28,8 +28,8 @@ const _filterSelection = (posts, filter, select) => {
 }
 
 export const countryPost = (country: string) => (dispatch, getState) => {
-  const { post } = getState();
-  const result = Filter(post?.posts, country, 'country');
+  const { resource: { posts } } = getState();
+  const result = Filter(posts, country, 'country');
   const outstanding = Filter(result, true, 'outstanding');
   dispatch(actionObject(UPDATE_POSTS, { countryPosts: result, filterPosts: result, outstandingPosts: outstanding }))
 }

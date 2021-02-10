@@ -2,29 +2,26 @@ import { CHANGE_RESOURCES, GET_RESOURCES } from './action-types'
 import { actionObject, Filter } from '../../utils'
 import { resources } from '../../graphql/querys'
 import axios from 'axios'
-import { AllPosts } from '../../graphql'
 import { GET_POSTS, UPDATE_POSTS } from '../post/action_types'
 import { countryPost } from '../post/action'
 
 export const getResources = () => async dispatch => {
   const allResources = await resources()
   const country = await _getCurrentLocation()
-  const posts = await AllPosts()
   allResources['currentLocation'] = country
 
   const states = _getStates(allResources.countries, country)
   allResources['currentStates'] = states ? states : []
 
-  const countryPosts = Filter(posts, country, 'country');
+  const countryPosts = Filter(allResources['posts'], country, 'country');
   const outstanding = Filter(countryPosts, true, 'outstanding');
 
   dispatch(actionObject(GET_RESOURCES, allResources))
-  dispatch(actionObject(GET_POSTS, { posts: posts }))
   dispatch(actionObject(UPDATE_POSTS, { countryPosts: countryPosts, filterPosts: countryPosts, outstandingPosts: outstanding }))
 }
 
 export const changeResources = (country) => (dispatch, getState) => {
-  const { resource: { countries }, post: { posts } } = getState()
+  const { resource: { countries, posts } } = getState()
   const states = _getStates(countries, country)
 
   const resources = {
