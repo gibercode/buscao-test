@@ -2,8 +2,7 @@ import { CHANGE_RESOURCES, GET_RESOURCES } from './action-types'
 import { actionObject, Filter } from '../../utils'
 import { resources } from '../../graphql/querys'
 import axios from 'axios'
-import { GET_POSTS, UPDATE_POSTS } from '../post/action_types'
-import { countryPost } from '../post/action'
+import { UPDATE_POSTS } from '../post/action_types'
 
 export const getResources = () => async dispatch => {
   const allResources = await resources()

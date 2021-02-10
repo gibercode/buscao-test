@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { UPDATE_POSTS, GET_POSTS } from './action_types'
+import { UPDATE_POSTS } from './action_types'
 
 const initialState = {
   countryPosts: [],
