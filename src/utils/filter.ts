@@ -1,4 +1,4 @@
-const filterSelection = (node: any, select: string) => {
+const _filterSelection = (node: any, select: string) => {
     switch (select) {
         case 'country':
             return node['comercio']['pais']['slug']
@@ -18,7 +18,7 @@ export const Filter = async (nodes: Array<any>, filter, selection: string) => {
     const nodeFilter = (node) => {
         let validation = true;
         let validFilter = false;
-        let select = filterSelection(node, selection);
+        let select = _filterSelection(node, selection);
         if (Array.isArray(select)) {
             validFilter = select.some((data) => data[selection].includes(filter))
             return validation && validFilter
