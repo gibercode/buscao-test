@@ -11,18 +11,21 @@ const FeaturedSlider = () => {
 
   const { featured } = useSelector(state => state.featured);
   const [sliderWidth, setSliderWidth] = useState('150%');
-  const [ page, setPage ] = useState(1);
+  const [page, setPage] = useState(1);
+
+  let countOne = 0;
+  let countTwo = 2;
 
   const nextOrPrevious = (param) => {
 
     let pagination = page;
 
-    if(param == 'left' && page >= 1) pagination = pagination - 1;
-    if(param == 'right' && page <= 2 ) pagination = pagination + 1;
+    if (param == 'left' && page >= 1) pagination = pagination - 1;
+    if (param == 'right' && page <= 2) pagination = pagination + 1;
 
     const getElement = document.getElementById(pagination.toString())
 
-    if(getElement) {
+    if (getElement) {
       getElement.scrollIntoView({
         behavior: 'smooth',
       });
@@ -36,10 +39,10 @@ const FeaturedSlider = () => {
   }
 
   const calculateWidth = () => {
-    const width = featured.length / 2 ;
+    const width = featured.length / 2;
     const stringWidth = width.toString();
 
-    if(stringWidth.includes('.')) {
+    if (stringWidth.includes('.')) {
       const newWidth = (width + 0.5) * 100;
       setSliderWidth(`${newWidth}%`);
       return;
@@ -52,6 +55,8 @@ const FeaturedSlider = () => {
     calculateWidth();
   }, [])
 
+  const array = [1, 2];
+
   return (
     <>
       <div className={styles._itemsParent}>
@@ -61,10 +66,37 @@ const FeaturedSlider = () => {
         <div className={styles._itemsChild}>
           <div className={styles._slider} style={{ width: sliderWidth }}>
 
-            <div className={styles._itemOne} id="1" >
+            {
+              array.map(res => {
+                return (
+                  <div className={styles._itemOne} id={res.toString()} >
+                    <div className={styles._cards}>
+                      {
+                        limitArray(countOne, countTwo).map((res, index) => {
+                          if (index > 0) {
+                            countOne = countOne + 2;
+                            countTwo = countTwo + 2;
+                          }
+                          // res.commerce.subsidiary ? console.log(res.commerce.subsidiary[0].address) : null
+                          return (
+                            <div className={styles._cardsParent} key={index}>
+                              <Card name={res.title} />
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                  </div>
+                )
+              })
+            }
+
+
+            {/* <div className={styles._itemOne} id="1" >
               <div className={styles._cards}>
                 {
                   limitArray(0, 2).map((res, index) => {
+                    res.commerce.subsidiary  ? console.log(res.commerce.subsidiary[0].address) : null
                     return (
                       <div className={styles._cardsParent} key={index}>
                         <Card name={res.title} />
@@ -87,7 +119,7 @@ const FeaturedSlider = () => {
                   })
                 }
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>
