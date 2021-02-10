@@ -1,1 +1,1 @@
-export * from './test/action';
+export * from './resource/action'

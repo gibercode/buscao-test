@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import testReducer from './test/reducer';
+import { combineReducers } from 'redux'
+import resource from './resource/reducer'
 
 const reducers = combineReducers({
-  test: testReducer
+  resource
 })
 
-export default reducers;
+export default reducers
