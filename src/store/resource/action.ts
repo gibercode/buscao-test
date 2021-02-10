@@ -38,5 +38,5 @@ const _getCurrentLocation = async () => {
 
 const _getStates = (countries, country) => {
   const states = countries.find(resource => resource.slug == country)
-  return states.statesField.states
+  return states?.statesField?.states
 }
