@@ -13,6 +13,7 @@ const FeaturedSlider = () => {
 
   let countOne = 0;
   let countTwo = 2;
+  let index = 0;
 
   const nextOrPrevious = (param) => {
 
@@ -51,10 +52,22 @@ const FeaturedSlider = () => {
 
   useEffect(() => {
     calculateWidth();
+    // pagesArray();
   }, [])
 
-  const array = [1, 2];
+  const pagesArray = () => {
+    const length = featured.length / 2;
+    const stringLength = length.toString();
 
+    if (stringLength.includes('.')) {
+      const result = length + 0.5;
+      return result;
+    }
+
+    return length;
+  }
+
+  const array = [1, 2]
   return (
     <>
       <div className={styles._itemsParent}>
@@ -65,12 +78,12 @@ const FeaturedSlider = () => {
           <div className={styles._slider} style={{ width: sliderWidth }}>
 
             {
-              array.map(res => {
+              array.map((item, index) => {
                 return (
-                  <div className={styles._itemOne} id={res.toString()} >
+                  <div className={styles._itemOne} id={item.toString()} key={index}>
                     <div className={styles._cards}>
                       {
-                        limitArray(countOne, countTwo).map((res, index) => {
+                        limitArray(countOne, countTwo).map((item, index) => {
                           if (index > 0) {
                             countOne = countOne + 2;
                             countTwo = countTwo + 2;
@@ -78,7 +91,7 @@ const FeaturedSlider = () => {
                           // res.commerce.subsidiary ? console.log(res.commerce.subsidiary[0].address) : null
                           return (
                             <div className={styles._cardsParent} key={index}>
-                              <Card name={res.title} />
+                              <Card name={item.title} />
                             </div>
                           )
                         })
