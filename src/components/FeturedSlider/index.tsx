@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 
 const FeaturedSlider = () => {
 
-  const { featured } = useSelector(state => state.featured);
+  const { posts } = useSelector(state => state.resource);
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
+
+  console.log(posts);
 
   let countOne = 0;
   let countTwo = 2;
@@ -28,7 +30,7 @@ const FeaturedSlider = () => {
     const getElement = document.getElementById(pagination.toString());
 
     if (getElement) {
-      getElement.scrollIntoView({
+        getElement.scrollIntoView({
         behavior: 'smooth',
       });
     }
@@ -37,12 +39,12 @@ const FeaturedSlider = () => {
   }
 
   const limitArray = (first, second) => {
-    const newArray = featured.slice(first, second);
+    const newArray = posts.slice(first, second);
     return newArray;
   }
 
   const calculateWidth = () => {
-    const width = featured.length / 2;
+    const width = posts.length / 2;
     const stringWidth = width.toString();
 
     if (stringWidth.includes('.')) {
@@ -55,7 +57,7 @@ const FeaturedSlider = () => {
   }
 
   const pagesArray = () => {
-    const length = featured.length / 2;
+    const length = posts.length / 2;
     const stringLength = length.toString();
 
     if (stringLength.includes('.')) {
@@ -89,10 +91,18 @@ const FeaturedSlider = () => {
                             countTwo = countTwo + 2;
                           }
 
-                          item.commerce.subsidiary ? console.log(item.commerce.subsidiary[0].address) : null
+                          const { commerce } = item;
+
+                          console.log(item?.commerce?.subsidiary[0]);
                           return (
                             <div className={styles._cardsParent} key={index}>
-                              <Card name={item.title} />
+                              <Card
+                                name={item.title}
+                                address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+                                url={commerce?.image}
+                                description={commerce?.description}
+                                phone={item?.commerce?.subsidiary[0]?.phoneNumber }
+                              />
                             </div>
                           )
                         })

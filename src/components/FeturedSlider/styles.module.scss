@@ -46,6 +46,7 @@
   width: 100%;
   align-self: center;
   scroll-behavior: smooth;
+  // background-color: blue;
 }
 
 ._itemTwo {
@@ -70,7 +71,7 @@
 }
 
 ._cardsParent {
-  width: calc(50% - 2rem);
+  width: calc(50% - 0.2rem);
   padding: 1rem;
 }
 
@@ -87,7 +88,7 @@
 }
 
 ._imageParent {
-  padding: 1rem 1rem 0.5rem 1.5rem;
+  padding: 1rem 1rem 3rem 1.5rem;
   margin-top: 0.5rem;
   box-sizing: border-box;
 }

@@ -1,6 +1,6 @@
 import { FeaturedSlider } from '../components';
-import { wrapper } from '../store'
-import { getFeatured } from '../store/actions'
+import { wrapper } from '../store';
+import { getResources } from '../store/actions';
 
 const Page = () => {
   return(
@@ -9,7 +9,7 @@ const Page = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getFeatured())
+  ({ store }) => store.dispatch(getResources())
 )
 
 export default Page;

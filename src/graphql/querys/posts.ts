@@ -9,10 +9,13 @@ const posts = `
           name
           slug
         }
+        image
+        description
         outstanding
         paymentmethods
         paymenttypes
         subsidiary {
+          phoneNumber
           address
           deliveryPickup
           name
