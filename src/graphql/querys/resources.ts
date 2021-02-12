@@ -1,7 +1,8 @@
-import { GraphQlClient, normalizedArray } from '../../utils';
+import { GraphQlClient, normalized, normalizedArray } from '../../utils';
 import categoryQuery from './categories'
 import countriesQuery from './countries'
 import postsQuery from './posts'
+import homePageQuery from './homePage'
 
 const resources = async () => {
   const query = `
@@ -9,6 +10,7 @@ const resources = async () => {
       ${categoryQuery}
       ${countriesQuery}
       ${postsQuery}
+      ${homePageQuery}
     }
   `
 
@@ -17,7 +19,8 @@ const resources = async () => {
   const resources = {
     categories:  normalizedArray(data?.categories?.nodes),
     countries: normalizedArray(data?.countries?.nodes),
-    posts: normalizedArray(data?.posts?.nodes)
+    posts: normalizedArray(data?.posts?.nodes),
+    homePage: normalized(data?.page)
   }
 
   return resources
