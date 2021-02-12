@@ -1,17 +1,17 @@
 @import '../../../public/styles/index.scss';
 
 @mixin text() {
-  font-family: $workSans;
+  font-family: $helveticaNowText;
   color: $white;
 }
 
 @mixin input($borderColor)  {
   padding: 0.6rem;
   border: solid 1.5px $borderColor;
-  background-color:$chambray;
+  background-color:$blueRibbon;
   border-radius: 4px;
   color: $white;
-  font-family: $workSans;
+  font-family: $helveticaNowText;
   width: 70%;
 
   &::placeholder {
@@ -20,7 +20,7 @@
 }
 
 ._general {
-  background-color: $chambray;
+  background-color: $blueRibbon;
   width: 100%;
   padding: 2rem;
 }
@@ -60,17 +60,17 @@
 }
 
 ._paragraph {
-  font-family: $workSans;
-  color: $tuna;
+  font-family: $helveticaNowText;
+  color: $mineShaft;
   font-size: 0.9rem;
 }
 
 ._input {
-  @include input($shark)
+  @include input($mineShaft)
 }
 
 ._inputError {
-  @include input($alizarin)
+  @include input($alizarinCrimson)
 }
 
 ._subscribeBtn {
@@ -79,15 +79,15 @@
   padding: 0.78rem 1.3rem;
   border-radius: 4px;
   margin-left: 1rem;
-  font-family: $workSans;
+  font-family: $helveticaNowText;
   font-size: 0.65rem;
   font-weight: bold;
   cursor: pointer;
-  color: $tuna;
+  color: $mineShaft;
   transition: 0.6s;
 
   &:hover {
-    background-color: $tuna;
+    background-color: $mineShaft;
     color: $white;
     transition: all 0.6s
   }

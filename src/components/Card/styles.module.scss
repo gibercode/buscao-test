@@ -1,7 +1,7 @@
 @import '../../../public/styles/index.scss';
 
 ._card {
-  border: solid 2px $wedgewood;
+  border: solid 2px $blueRibbon;
   border-radius: 35px;
   display: flex;
   flex-direction: column;
@@ -21,14 +21,14 @@
 }
 
 ._title {
-  font-family: $workSans;
+  font-family: $helveticaNowText;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 ._text {
-  font-family: $workSans;
-  color: $chambray;
+  font-family: $helveticaNowText;
+  color: $blueRibbon;
   font-size: 0.75rem;
 }
 
@@ -41,8 +41,8 @@
 }
 
 ._statusText {
-  color: $statusOpen;
-  font-family: $workSans;
+  color: $apple;
+  font-family: $helveticaNowText;
   font-weight: 500;
   margin-right: 0.4rem;
   font-size: 0.85rem;
@@ -73,9 +73,9 @@
 }
 
 ._call {
-  background-color: $geyser;
-  color: $chambray;
-  font-family: $workSans;
+  background-color: $mineShaft;
+  color: $blueRibbon;
+  font-family: $helveticaNowText;
   font-weight: 600;
   padding: 0.9rem 1.5rem;
   box-sizing: border-box;
@@ -84,7 +84,7 @@
 }
 
 ._location {
-  font-family: $workSans;
+  font-family: $helveticaNowText;
   color: $gray;
   font-weight: 500;
   font-size: 0.8rem;
