@@ -1,7 +1,7 @@
 @import '../../../public/styles/index.scss';
 
  ._main{
-  height: 90vh;
+  height: 80vh;
   width: 100%;
   background-image: url('../../../public/images/backgrounds/first-section.png');
   background-size: cover;
@@ -54,13 +54,14 @@
   align-items: center;
   position: absolute;
   transform: translate(50%);
+  z-index: 2;
 }
 
 ._searchContent{
   display:flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%
+  width: 100%;
 }
 
 ._searchTitle{
@@ -128,9 +129,12 @@
 
 ._blackfloor{
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   position: relative;
   background-color: $mineShaft;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
 }
 
 @keyframes MoveUpDownCoins {
@@ -148,7 +152,7 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  bottom: -30px;
+  bottom: -40px;
 }
 
 .coinposition:hover, .coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover, .coinposition6:hover, .coinposition7:hover, .coinposition8:hover, .coinposition9:hover  {
@@ -156,7 +160,7 @@
 }
 
 ._coin{
-  width: 11.1%;
+  width: 20%;
 }
 
 .coinposition{
