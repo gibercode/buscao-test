@@ -48,6 +48,16 @@
   font-size: 0.85rem;
 }
 
+._closedText {
+  color: $statusClosed;
+  font-family: $workSans;
+  font-weight: 500;
+  margin-right: 0.4rem;
+  font-size: 0.85rem;
+}
+
+
+
 ._rightText {
   display: flex;
   align-items: center;

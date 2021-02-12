@@ -3,5 +3,6 @@ export type CardProps = {
   address: string,
   url: string
   description: string
-  phone: string
+  phone: string,
+  status: boolean
 }

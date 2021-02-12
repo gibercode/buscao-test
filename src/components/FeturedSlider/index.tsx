@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
+import { time } from 'console';
+
+const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const FeaturedSlider = () => {
 
   const { posts } = useSelector(state => state.resource);
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
-
-  console.log(posts);
 
   let countOne = 0;
   let countTwo = 2;
@@ -21,7 +22,6 @@ const FeaturedSlider = () => {
   }, [])
 
   const nextOrPrevious = (param) => {
-
     let pagination = page;
 
     if (param == 'left' && page >= 1) pagination = pagination - 1;
@@ -30,7 +30,7 @@ const FeaturedSlider = () => {
     const getElement = document.getElementById(pagination.toString());
 
     if (getElement) {
-        getElement.scrollIntoView({
+      getElement.scrollIntoView({
         behavior: 'smooth',
       });
     }
@@ -40,8 +40,77 @@ const FeaturedSlider = () => {
 
   const limitArray = (first, second) => {
     const newArray = posts.slice(first, second);
+    compareHours(newArray)
     return newArray;
   }
+
+
+  const compareHours = (array) => {
+
+    const time = new Date();
+    const currentDay = new Date().getDay()
+    const currentTime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+    const day = days[currentDay];
+
+    const hourClose = array[0].commerce.subsidiary[0].schedule[day].cierre;
+    const openHour = array[0].commerce.subsidiary[0].schedule[day].apertura;
+
+    const hourClosed = processHour(hourClose);
+    const minutesClosed = processMinutes(hourClose);
+    const meridiemClosed = processMeridiem(hourClose);
+
+    //OPEN
+    const hourOpen = processHour(openHour);
+    const minutesOpen = processMinutes(openHour);
+    const meridiemOpen = processMeridiem(openHour);
+
+    //CURRENT
+    const currentHour = processHour(currentTime);
+    const currentMinutes = processMinutes(currentTime);
+    const currentMeridiem = processMeridiem(currentTime);
+
+    //OPEN
+    if(hourOpen > currentHour && minutesOpen > currentMinutes) {
+      if(meridiemOpen == currentMeridiem) array[0].commerce.subsidiary[0].schedule[day].abierto = true;
+    }
+
+    //Close
+    if(hourClosed < currentHour && minutesClosed < currentMinutes) {
+      if(meridiemClosed == currentMeridiem) array[0].commerce.subsidiary[0].schedule[day].abierto = false;
+    }
+  }
+
+  const processHour = (time) => {
+    let newHour;
+
+    if(time) {
+      newHour = time.split(':')[0];
+      return parseInt(newHour);
+    }
+  }
+
+  const processMinutes = (time) => {
+    let newMinutes;
+
+    if(time) {
+      const minutes = newMinutes = time.split(':')[1];
+      const minutesSplit = minutes.split(' ')[0];
+      newMinutes = minutesSplit;
+
+      return Number(newMinutes);
+    }
+  }
+
+  const processMeridiem = (time) => {
+     let meridiem;
+
+     if(time){
+      meridiem = time.split(' ')[1];
+      return meridiem.toUpperCase();
+     }
+  }
+
 
   const calculateWidth = () => {
     const width = posts.length / 2;
@@ -93,7 +162,6 @@ const FeaturedSlider = () => {
 
                           const { commerce } = item;
 
-                          console.log(item?.commerce?.subsidiary[0]);
                           return (
                             <div className={styles._cardsParent} key={index}>
                               <Card
@@ -101,7 +169,8 @@ const FeaturedSlider = () => {
                                 address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
                                 url={commerce?.image}
                                 description={commerce?.description}
-                                phone={item?.commerce?.subsidiary[0]?.phoneNumber }
+                                phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+                                status={commerce.subsidiary[0].schedule.abierto}
                               />
                             </div>
                           )
@@ -113,64 +182,12 @@ const FeaturedSlider = () => {
               })
             }
 
-
-            {/* <div className={styles._itemOne} id="1" >
-              <div className={styles._cards}>
-                {
-                  limitArray(0, 2).map((res, index) => {
-                    res.commerce.subsidiary  ? console.log(res.commerce.subsidiary[0].address) : null
-                    return (
-                      <div className={styles._cardsParent} key={index}>
-                        <Card name={res.title} />
-                      </div>
-                    )
-                  })
-                }
-              </div>
-            </div>
-
-            <div className={styles._itemOne} id="2" >
-              <div className={styles._cards}>
-                {
-                  limitArray(2, 4).map( (res, index) => {
-                    return (
-                      <div className={styles._cardsParent} key={index}>
-                        <Card name={res.title} />
-                      </div>
-                    )
-                  })
-                }
-              </div>
-            </div> */}
-
           </div>
         </div>
         <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
           <ArrowRight color='#3D549E' />
         </div>
       </div>
-
-      {/* <div className={styles._card}>
-
-        <div className={styles._imageParent}>
-          <img src='images/logos/excelsior-gama-logo.svg' width="40%"></img>
-        </div>
-
-        <div className={styles._minicard}>
-          <div>
-            <p className={styles._title}>Excelsior gama</p>
-            <p className={styles._text}>Supermercados, Alimentos, Charcuteria </p>
-          </div>
-
-          <div className={styles._rightText}>
-            <p className={styles._statusText} >ABIERTO</p>
-            <Clock  color='#4A973C'/>
-          </div>
-
-        </div>
-      </div> */}
-
-
     </>
   )
 };
