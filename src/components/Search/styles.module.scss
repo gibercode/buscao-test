@@ -21,7 +21,7 @@
     &::after {
         width: 2px;
         height: 50px;
-        background: $chambray;
+        background: $blueRibbon;
         content: " ";
         border-radius: 50px;
     }
@@ -30,7 +30,7 @@
 ._point {
     width: 12px;
     height: 12px;
-    background: $chambray;
+    background: $blueRibbon;
     border-radius: 100%;
 }
 
@@ -38,7 +38,7 @@
     width: 24px;
     height: 24px;
     border-radius: 100%;
-    border: 1px solid $chambray;
+    border: 1px solid $blueRibbon;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -52,14 +52,14 @@
     align-items: flex-start;
     padding-right: 3rem;
     label {
-        font-family: $workSans;
-        color: $chambray;
+        font-family: $helveticaNowText;
+        color: $blueRibbon;
         font-size: 1.1rem;
     }
     select {
         background: none;
         border: none;
-        font-family: $workSans;
+        font-family: $helveticaNowText;
         color: $nepal;
         font-weight: 500;
         font-size: 0.9rem;
@@ -75,7 +75,7 @@
     input {
         background: none;
         border: none;
-        font-family: $workSans;
+        font-family: $helveticaNowText;
         color: $nepal;
         font-weight: 500;
         font-size: 1rem;
@@ -97,6 +97,6 @@
     border-radius: 36px;
     border: none;
     color: $aquaHaze;
-    background: $chambray;
+    background: $blueRibbon;
     font-size: 1rem;
 }

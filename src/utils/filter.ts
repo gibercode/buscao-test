@@ -1,4 +1,4 @@
-const _filterSelection = (node: any, select: string) => {
+const _valueSelection = (node: any, select: string) => {
     switch (select) {
         case 'country':
             return node['commerce']['country']['slug']
@@ -20,7 +20,7 @@ export const Filter = (nodes: Array<any>, filter, selection: string) => {
     const nodeFilter = (node) => {
         let validation = true;
         let validFilter = false;
-        let select = _filterSelection(node, selection);
+        let select = _valueSelection(node, selection);
         if (Array.isArray(select)) {
             validFilter = select.some((data) => {
                 if(data[selection]) return data[selection]['slug'].includes(filter)
