@@ -24,8 +24,7 @@ const Search = () => {
     }
 
     const changeTitle = (event) => {
-        dispatch(filterPosts(event.target.value, 'title'))
-        setFilter({ ...filter, ...{ title: event.target.value } })
+        dispatch(filterPosts(filter.title, 'title'))
     }
 
 
@@ -56,7 +55,7 @@ const Search = () => {
                 </div>
             </div>
             <div className={styles._inputContainer}>
-                <input placeholder='Que estas buscando' value={filter.title} />
+                <input placeholder='Que estas buscando' value={filter.title} onChange={(event) => setFilter({ ...filter, ...{ title: event.target.value } })} />
                 <button className={styles._goButton} onClick={changeTitle}>Ir</button>
             </div>
         </div>
