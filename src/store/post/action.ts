@@ -2,22 +2,27 @@ import { UPDATE_POSTS } from './action_types'
 import { actionObject, Filter } from '../../utils'
 
 const _filterSelection = (posts, filter, select) => {
+  const post = {
+    'state': posts.countryPosts,
+    'categories': posts.statePosts,
+    'title': posts.categoryPosts
+  }
+
+  const result = Filter(post[select], filter, select)
+
   switch (select) {
     case 'state':
-      let statePosts = Filter(posts.countryPosts, filter, select)
       return {
-        statePosts: statePosts,
-        categoryPosts: statePosts,
-        filterPosts: statePosts
+        statePosts: result,
+        categoryPosts: result,
+        filterPosts: result
       }
     case 'categories':
-      let categoryPosts = Filter(posts.statePosts, filter, select)
       return {
-        categoryPosts: categoryPosts,
-        filterPosts: categoryPosts
+        categoryPosts: result,
+        filterPosts: result
       }
     case 'title':
-      let result = Filter(posts.categoryPosts, filter, select)
       return {
         filterPosts: result
       }

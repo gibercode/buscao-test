@@ -11,7 +11,7 @@ const Blog: NextPage = () => {
   const { filterPosts } = useSelector(state => state.post)
 
   return (
-    <div className="blogSpot">
+    <div className='blogSpot'>
       <Head>
         <title>Blog articles page</title>
         <link rel='icon' href='/favicon.ico' />
@@ -19,11 +19,11 @@ const Blog: NextPage = () => {
       <main className={styles.mainSpot}>
         <Navbar />
         <Search />
-        <h1 className="">Latest blog articles</h1>
+        <h1 className=''>Latest blog articles</h1>
         <hr />
         <section>
           {filterPosts.map(node => (
-            <div className="Posts" key={node.id}>
+            <div className='Posts' key={node.id}>
               <h2>{node.title}</h2>
             </div>
           ))}
