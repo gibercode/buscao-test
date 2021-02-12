@@ -1,6 +1,4 @@
-import Head from 'next/head'
 import styles from '../../public/styles/Home.module.scss'
-import Link from 'next/link'
 import { Navbar } from '../components'
 import { wrapper } from '../store'
 import { getResources } from '../store/actions'

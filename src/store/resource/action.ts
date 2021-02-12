@@ -7,7 +7,9 @@ export const getResources = () => async dispatch => {
   const allResources = await resources()
   const country = await _getCurrentLocation()
   allResources['currentLocation'] = country
-  allResources['currentStates'] = _getStates(allResources.countries, country)
+
+  const states = _getStates(allResources.countries, country)
+  allResources['currentStates'] = states ? states : []
 
   dispatch(actionObject(GET_RESOURCES, allResources))
 }
