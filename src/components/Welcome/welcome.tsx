@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import styles from '../../public/styles/Welcome.module.scss';
+import styles from './styles.module.scss'
 import Link from 'next/link';
-import { Navbar } from '../components'
+import { Navbar } from '..'
 
 const Welcome = () => {
 
@@ -58,12 +58,10 @@ const Welcome = () => {
        <div>
         <div className={styles._blackfloor}>
           <div className={styles._coins}>
-            <div className={styles._coin}>
-              <img className={styles.coinposition} src='../../images/lying-coins/lying-xpt.svg' width='100%'></img>
+          <div className={styles._coin}>
+              <img className={styles.coinposition8} src='../../images/lying-coins/lying-btc.svg' width='100%' ></img>
             </div>
-            <div className={styles._coin}>
-              <img className={styles.coinposition2} src='../../images/lying-coins/lying-usdt.svg' width='100%' ></img>
-            </div>
+
             <div className={styles._coin}>
               <img className={styles.coinposition3} src='../../images/lying-coins/lying-lite.svg' width='100%'  ></img>
             </div>
@@ -71,20 +69,9 @@ const Welcome = () => {
               <img className={styles.coinposition4} src='../../images/lying-coins/lying-ether.svg' width='100%'></img>
             </div>
             <div className={styles._coin}>
-              <img className={styles.coinposition5} src='../../images/lying-coins/lying-dash.svg' width='100%'></img>
+              <img className={styles.coinposition} src='../../images/lying-coins/lying-xpt.svg' width='100%'></img>
             </div>
-            <div className={styles._coin}>
-              <img className={styles.coinposition6} src='../../images/lying-coins/lying-dai.svg' width='100%' ></img>
-            </div>
-            <div className={styles._coin}>
-              <img className={styles.coinposition7} src='../../images/lying-coins/lying-busd.svg' width='100%' ></img>
-            </div>
-            <div className={styles._coin}>
-              <img className={styles.coinposition8} src='../../images/lying-coins/lying-btc.svg' width='100%' ></img>
-            </div>
-            <div className={styles._coin}>
-              <img className={styles.coinposition9} src='../../images/lying-coins/lying-bnb.svg' width='100%'></img>
-            </div>
+
           </div>
         </div>
       </div>
