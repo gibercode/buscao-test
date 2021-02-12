@@ -56,8 +56,8 @@ const Search = () => {
                 </div>
             </div>
             <div className={styles._inputContainer}>
-                <input placeholder='Que estas buscando' value={filter.title} onChange={changeTitle} />
-                <button className={styles._goButton}>Ir</button>
+                <input placeholder='Que estas buscando' value={filter.title} />
+                <button className={styles._goButton} onClick={changeTitle}>Ir</button>
             </div>
         </div>
     )
