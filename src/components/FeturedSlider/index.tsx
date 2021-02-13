@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
-import { time } from 'console';
+import moment from 'moment';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
@@ -40,51 +40,33 @@ const FeaturedSlider = () => {
 
   const limitArray = (first, second) => {
     const newArray = posts.slice(first, second);
-    compareHours(newArray)
+    compareHours(newArray);
     return newArray;
   }
 
-
   const compareHours = (array) => {
 
-    const time = new Date();
-    const currentDay = new Date().getDay()
-    const currentTime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    console.log(array[0]);
 
+
+    const currentDay = new Date().getDay()
+    const currentHour = new Date().getHours();
+    const currentMinutes = new Date().getMinutes();
     const day = days[currentDay];
 
-    const hourClose = array[0].commerce.subsidiary[0].schedule[day].cierre;
-    const openHour = array[0].commerce.subsidiary[0].schedule[day].apertura;
 
-    const hourClosed = processHour(hourClose);
-    const minutesClosed = processMinutes(hourClose);
-    const meridiemClosed = processMeridiem(hourClose);
-
-    //OPEN
-    const hourOpen = processHour(openHour);
-    const minutesOpen = processMinutes(openHour);
-    const meridiemOpen = processMeridiem(openHour);
-
-    //CURRENT
-    const currentHour = processHour(currentTime);
-    const currentMinutes = processMinutes(currentTime);
-    const currentMeridiem = processMeridiem(currentTime);
-
-    //OPEN
-    if(hourOpen > currentHour && minutesOpen > currentMinutes) {
-      if(meridiemOpen == currentMeridiem) array[0].commerce.subsidiary[0].schedule[day].abierto = true;
-    }
-
-    //Close
-    if(hourClosed < currentHour && minutesClosed < currentMinutes) {
-      if(meridiemClosed == currentMeridiem) array[0].commerce.subsidiary[0].schedule[day].abierto = false;
-    }
+   if(array[0] != undefined && array[1] != undefined) {
+    checkOpen(array, day, currentHour, currentMinutes, 0);
+    checkOpen(array, day, currentHour, currentMinutes, 1);
+    checkClosed(array, day, currentHour, currentMinutes, 0);
+    checkClosed(array, day, currentHour, currentMinutes, 1);
+   }
   }
 
   const processHour = (time) => {
     let newHour;
 
-    if(time) {
+    if (time) {
       newHour = time.split(':')[0];
       return parseInt(newHour);
     }
@@ -93,24 +75,45 @@ const FeaturedSlider = () => {
   const processMinutes = (time) => {
     let newMinutes;
 
-    if(time) {
-      const minutes = newMinutes = time.split(':')[1];
-      const minutesSplit = minutes.split(' ')[0];
-      newMinutes = minutesSplit;
-
+    if (time) {
+      newMinutes = time.split(':')[1];
       return Number(newMinutes);
     }
   }
 
-  const processMeridiem = (time) => {
-     let meridiem;
+  const checkClosed = (array, day, currentHour, currentMinutes, index) => {
 
-     if(time){
-      meridiem = time.split(' ')[1];
-      return meridiem.toUpperCase();
-     }
+
+    const hourClose = array[index].commerce.subsidiary[0].schedule[day].cierre;
+    const hourClosed = processHour(hourClose);
+    const minutesClosed = processMinutes(hourClose);
+
+    if (minutesClosed == 0) {
+      if (hourClosed <= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
+    }
+
+    if (minutesClosed > 0) {
+      if (currentMinutes > minutesClosed && hourClosed <= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
+    }
+
+    array[index].commerce.subsidiary[0].schedule[day].abierto = true
   }
 
+  const checkOpen = (array, day, currentHour, currentMinutes, index) => {
+    const openHour = array[index].commerce.subsidiary[0].schedule[day].apertura;
+    const hourOpen = processHour(openHour);
+    const minutesOpen = processMinutes(openHour);
+
+    if (minutesOpen == 0) {
+      if (hourOpen >= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
+    }
+
+    if (minutesOpen > 0) {
+      if (currentMinutes < minutesOpen) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
+    }
+
+    array[index].commerce.subsidiary[0].schedule[day].abierto = true
+  }
 
   const calculateWidth = () => {
     const width = posts.length / 2;
@@ -170,7 +173,7 @@ const FeaturedSlider = () => {
                                 url={commerce?.image}
                                 description={commerce?.description}
                                 phone={item?.commerce?.subsidiary[0]?.phoneNumber}
-                                status={commerce.subsidiary[0].schedule.abierto}
+                                status={commerce.subsidiary[0].schedule.friday.abierto}
                               />
                             </div>
                           )
