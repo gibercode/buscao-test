@@ -30,13 +30,12 @@ const makeStore: any = ({ isServer }) => {
 
   const persistConfig = {
     key: 'buscaoRoot',
-    whitelist: ['resource'],
     storage
   }
 
   const persistedReducer = persistReducer(persistConfig, reducer)
   const store = createStoreHook(persistedReducer)
-  store['__persistor'] = persistStore(store)
+  store['__persistor'] = persistStore(store, { manualPersist: true })
 
   return store
 }
