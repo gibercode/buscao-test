@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { wrapper } from '../../store';
 import { getResources } from '../../store/actions';
 import { useSelector } from 'react-redux';
-import { Navbar, Search } from '../../components';
+import { Card, Currency, Navbar, Search } from '../../components';
 import { NextPage } from 'next';
 import styles from './styles.module.scss';
 
@@ -18,14 +18,16 @@ const Blog: NextPage = () => {
       </Head>
       <main className={styles.mainSpot}>
         <Navbar />
-        <Search />
+        <Currency>
+          <Search />
+        </Currency>
         <h1 className=''>Latest blog articles</h1>
         <hr />
         <section>
           {filterPosts.map(node => (
-            <div className='Posts' key={node.id}>
-              <h2>{node.title}</h2>
-            </div>
+            <Currency>
+              <Card name={node.title} />
+            </Currency>
           ))}
         </section>
       </main>
