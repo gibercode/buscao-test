@@ -1,0 +1,44 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+
+*:focus {
+  outline: none;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a:hover,
+a:focus,
+a:active {
+  text-decoration: underline;
+}
+
+
+p {
+  margin: 0;
+  // margin-block-start: 0em !important;
+  // margin-block-end: 0em !important;
+}
+
+@font-face {
+  font-family: "Helvetica-Now-Text";
+  src: url('../fonts/HelveticaNowText-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Helvetica-Now-Text-Bold";
+  src: url('../fonts/HelveticaNowText-Bold.ttf');
+}
+

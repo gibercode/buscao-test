@@ -1,8 +1,12 @@
-import { combineReducers } from 'redux';
-import testReducer from './test/reducer';
+import { combineReducers } from 'redux'
+import resource from './resource/reducer'
+import post from './post/reducer'
+import page from './page/reducer'
 
 const reducers = combineReducers({
-  test: testReducer
+  resource,
+  post,
+  page
 })
 
-export default reducers;
+export default reducers

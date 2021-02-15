@@ -1,43 +1,40 @@
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-import { getAllPosts } from '../../lib/api';
-import styles from '../../../assets/styles/Home.module.css';
-import blogStyles from '../../../assets/styles/Blog.module.css';
+import { wrapper } from '../../store';
+import { getResources } from '../../store/actions';
+import { useSelector } from 'react-redux';
+import { Navbar, Search } from '../../components';
+import { NextPage } from 'next';
+import styles from './styles.module.scss';
 
-const Blog = ({ allPosts: { edges } }) => (
-  <div className={styles.container}>
-    <Head>
-      <title>Blog articles page</title>
-      <link rel='icon' href='/favicon.ico' />
-    </Head>
+const Blog: NextPage = () => {
 
-    <main className={styles.main}>
-      <h1 className={styles.title}>Latest blog articles</h1>
-      <hr />
-      <section>
-        {edges.map(({ node }) => (
-          <div className={blogStyles.listitem} key={node.id}>
-            <div className={blogStyles.listitem__content}>
+  const { filterPosts } = useSelector(state => state.post)
+
+  return (
+    <div className='blogSpot'>
+      <Head>
+        <title>Blog articles page</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <main className={styles.mainSpot}>
+        <Navbar />
+        <Search />
+        <h1 className=''>Latest blog articles</h1>
+        <hr />
+        <section>
+          {filterPosts.map(node => (
+            <div className='Posts' key={node.id}>
               <h2>{node.title}</h2>
-              <Link href={`/blog/${node.slug}`}>
-                <a>Read more</a>
-              </Link>
             </div>
-          </div>
-        ))}
-      </section>
-    </main>
-  </div>
-);
-
-export const getServerSideProps: GetServerSideProps = async() => {
-  const allPosts = await getAllPosts();
-  return {
-    props: {
-      allPosts
-    }
-  };
+          ))}
+        </section>
+      </main>
+    </div>
+  );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  ({ store }) => store.dispatch(getResources())
+)
 
 export default Blog
