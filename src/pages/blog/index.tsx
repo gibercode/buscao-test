@@ -18,12 +18,10 @@ const Blog: NextPage = () => {
       </Head>
       <main className={styles.mainSpot}>
         <Navbar />
-        <Currency>
-          <Search />
-        </Currency>
+        <Search />
         <h1 className=''>Latest blog articles</h1>
         <hr />
-        <section>
+        <section style={{display: 'flex', flexWrap:"wrap", justifyContent:"space-around"}}>
           {filterPosts.map(node => (
             <Currency>
               <Card name={node.title} />
