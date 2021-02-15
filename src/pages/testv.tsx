@@ -49,7 +49,7 @@ const Testv = () => {
           })
         }
       </div>
-      <Pagination items={posts} perPage={perPage} changePage={setPage}/>
+      <Pagination currentPage={page} items={posts} perPage={perPage} changePage={setPage}/>
     </>
   )
 }

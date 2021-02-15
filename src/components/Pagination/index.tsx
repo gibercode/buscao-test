@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
 import { useState } from 'react'
 import styles from './styles.module.scss'
+import { ArrowLeft, ArrowRight } from '../../../public/images/icons'
 
-const Pagination = ({ items, perPage, changePage }) => {
+const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0', activeColor = '#000' }) => {
   const [firstPage, setFirstPage] = useState(1)
 
   const totalItems = items.length
@@ -30,15 +31,29 @@ const Pagination = ({ items, perPage, changePage }) => {
   }
 
   return (
-    <ul className={styles._pagination}>
-      <li><span onClick={() => firstOrLastPage(1)}>«</span></li>
+    <div className={styles._container}>
+      <ArrowLeft
+        color={color}
+        // onClick={() => firstOrLastPage(totalPages)}
+      />
       {
-        pageNumbers.map(pageNumber => (
-          <li key={pageNumber} onClick={() => determinatePages(pageNumber)}><span>{pageNumber}</span></li>
+        pageNumbers.map((pageNumber, index) => (
+          <div key={index} className={styles._numberContainer}>
+            <span
+              className={styles._number}
+              style={{ color: pageNumber == currentPage ? activeColor : color }}
+              onClick={() => determinatePages(pageNumber)}
+            >
+              {pageNumber}
+            </span>
+          </div>
         ))
       }
-      <li><span onClick={() => firstOrLastPage(totalPages)}>»</span></li>
-    </ul>
+      <ArrowRight
+        color={color}
+        // onClick={() => firstOrLastPage(totalPages)}
+      />
+    </div>
   )
 }
 

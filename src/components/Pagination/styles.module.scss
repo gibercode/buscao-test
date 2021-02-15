@@ -1,16 +1,17 @@
-ul._pagination {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
+@import '../../../public/styles';
+
+._container {
+  display: flex;
+  align-items: center;
 }
 
-ul._pagination li {
-  display: inline;
+._numberContainer {
+  padding: 0 22px;
 }
 
-ul._pagination li span {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
+._number {
+  font-size: 16px;
+  font-family: $helveticaNowTextBold;
+  font-weight: 200;
+  cursor: pointer;
 }
