@@ -32,10 +32,9 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
 
   return (
     <div className={styles._container}>
-      <ArrowLeft
-        color={color}
-        // onClick={() => firstOrLastPage(totalPages)}
-      />
+      <div className={styles._arrowContainer}>
+        <ArrowLeft color={color} />
+      </div>
       {
         pageNumbers.map((pageNumber, index) => (
           <div key={index} className={styles._numberContainer}>
@@ -49,10 +48,9 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
           </div>
         ))
       }
-      <ArrowRight
-        color={color}
-        // onClick={() => firstOrLastPage(totalPages)}
-      />
+      <div className={styles._arrowContainer}>
+        <ArrowRight color={color} />
+      </div>
     </div>
   )
 }

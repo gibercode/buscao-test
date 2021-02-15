@@ -1,17 +1,27 @@
 @import '../../../public/styles';
 
+@mixin separation {
+  padding: 0 20px;
+}
+
 ._container {
   display: flex;
   align-items: center;
 }
 
 ._numberContainer {
-  padding: 0 22px;
+  @include separation;
 }
 
 ._number {
   font-size: 16px;
   font-family: $helveticaNowTextBold;
   font-weight: 200;
+  cursor: pointer;
+}
+
+._arrowContainer {
+  display: flex;
+  @include separation;
   cursor: pointer;
 }

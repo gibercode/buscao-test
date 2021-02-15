@@ -33,7 +33,7 @@ const posts = [
   { title: 'Local A' },
 ]
 
-const perPage = 6
+const perPage = 2
 
 const Testv = () => {
   const [page, setPage] = useState(1)
