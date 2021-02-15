@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { filterPosts } from '../../store/actions';
+import { Checkbox, DropDown } from '../../../public/images/icons'
 import styles from './styles.module.scss'
 
 const Search = () => {
     const dispatch = useDispatch()
+    const [checkedOne, setCheckedOne]: any = useState(false)
+    const [checkedTwo, setCheckedTwo]: any = useState(false)
     const { categories, currentStates } = useSelector(state => state.resource);
     const [filter, setFilter] = useState(
         {
@@ -16,6 +19,13 @@ const Search = () => {
     const changeState = (event) => {
         dispatch(filterPosts(event.target.value, 'state'))
         setFilter({ ...filter, ...{ category: '', title: '' } })
+    }
+
+    const checkStateOne = () => {
+      setCheckedOne(!checkedOne)
+    }
+    const checkStateTwo = () =>{
+      setCheckedTwo(!checkedTwo)
     }
 
     const changeCategory = (event) => {
@@ -31,11 +41,14 @@ const Search = () => {
     return (
         <div className={styles._searchContent}>
             <div className={styles._selectContainer}>
-                <div className={styles._pointContent}>
-                    <div className={styles._point}></div>
-                </div>
+            <div className={styles._radioContainer} onClick={checkStateOne}>
+              <Checkbox color={checkedOne ? '#1652F0' : '#93959A'} />
+            </div>
                 <div className={styles._select}>
-                    <label htmlFor='state'>Ubicacion</label>
+                  <label style={{display: 'flex'}}>
+                    <label  htmlFor='state'>UBICACION</label>
+                   <div className={styles._dropdown}> <DropDown /> </div>
+                    </label>
                     <select name='state' onChange={changeState}>
                         <option value=''>Todos</option>
                         {currentStates.map((state, index) => (<option value={state.slug} key={index}>{state.name}</option>))}
@@ -43,11 +56,14 @@ const Search = () => {
                 </div>
             </div>
             <div className={styles._selectContainer}>
-                <div className={styles._pointContent}>
-                    <div className={styles._point}></div>
-                </div>
+            <div className={styles._radioContainer} onClick={checkStateTwo}>
+            <Checkbox color={checkedTwo ? '#1652F0' : '#93959A'} />
+            </div>
                 <div className={styles._select}>
-                    <label htmlFor='category'>Categorias</label>
+                <label style={{display: 'flex'}}>
+                    <label htmlFor='category'>CATEGORIAS</label>
+                    <div className={styles._dropdown}> <DropDown /> </div>
+                    </label>
                     <select name='category' value={filter.category} onChange={changeCategory} >
                         <option value=''>Todos</option>
                         {categories.map((category, index) => (<option value={category.slug} key={index}>{category.name}</option>))}

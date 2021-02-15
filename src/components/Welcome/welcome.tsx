@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from './styles.module.scss'
 import Link from 'next/link';
-import { Navbar } from '..'
+import { Navbar, Search } from '..'
 
 const Welcome = () => {
 
@@ -19,8 +19,11 @@ const Welcome = () => {
             </div>
           </div>
         </div>
+        <div >
+         <Search />
+        </div>
 
-        <div className={styles._searchContainer}>
+     {/*    <div className={styles._searchContainer}>
           <div className={styles._searchContent}>
             <div className={styles._radioContainer}>
               <input type='radio'></input>
@@ -47,10 +50,10 @@ const Welcome = () => {
               <button className={styles._blueButtom}>Ir</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
-      <div>
+    {/*   <div>
         <div className={styles._blackfloor}>
           <div className={styles._coins}>
             <div className={styles._coin}>
@@ -68,7 +71,7 @@ const Welcome = () => {
 
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
 
   )

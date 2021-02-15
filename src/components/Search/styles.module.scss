@@ -11,38 +11,30 @@
     align-items: center;
     justify-content: space-between;
     height: 70px;
+    z-index: 2;
 }
 
 ._selectContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 1rem;
+    padding-right: 1.3rem;
     &::after {
         width: 2px;
-        height: 50px;
+        height: 35px;
         background: $blueRibbon;
         content: " ";
         border-radius: 50px;
     }
 }
 
-._point {
-    width: 12px;
-    height: 12px;
-    background: $blueRibbon;
-    border-radius: 100%;
+
+._radioContainer {
+  width: 20px;
+  height: 20px;
 }
 
-._pointContent {
-    width: 24px;
-    height: 24px;
-    border-radius: 100%;
-    border: 1px solid $blueRibbon;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+
 
 ._select {
     display: flex;
@@ -52,9 +44,10 @@
     align-items: flex-start;
     padding-right: 3rem;
     label {
-        font-family: $helveticaNowText;
-        color: $blueRibbon;
-        font-size: 1.1rem;
+      color: $blueRibbon;
+      font-weight: 600;
+      font-family: $helveticaNowText;
+      font-size: 1rem;
     }
     select {
         background: none;
@@ -67,6 +60,13 @@
         width: 100%;
     }
 }
+
+._dropdown{
+  width:10px;
+  margin-left: 10px;
+}
+
+
 
 ._inputContainer {
     display: flex;
@@ -82,7 +82,7 @@
         appearance: none;
         width: 100%;
         height: auto;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $nepal;
         padding-bottom: 0.5rem;
         margin-right: 1rem;
         &::placeholder{
@@ -99,4 +99,5 @@
     color: $aquaHaze;
     background: $blueRibbon;
     font-size: 1rem;
+    font-family: $helveticaNowText;
 }
