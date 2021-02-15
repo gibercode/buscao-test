@@ -1,1 +1,1 @@
-export { AllPosts } from './querys/posts'
+export * from './querys'

@@ -25,13 +25,19 @@ const Pagination = ({ items, perPage, changePage }) => {
     setLastPage(lastPage + operator)
   }
 
+  const firstOrLastPage = (page: number) => {
+
+  }
+
   return (
-    <ul>
+    <ul className={styles._pagination}>
+      <li><span onClick={() => firstOrLastPage(1)}>«</span></li>
       {
         pageNumbers.map(pageNumber => (
-          <li key={pageNumber} onClick={() => determinatePages(pageNumber)}>{pageNumber}</li>
+          <li key={pageNumber} onClick={() => determinatePages(pageNumber)}><span>{pageNumber}</span></li>
         ))
       }
+      <li><span onClick={() => firstOrLastPage(totalPages)}>»</span></li>
     </ul>
   )
 }
