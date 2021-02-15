@@ -27,12 +27,24 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
   }
 
   const firstOrLastPage = (page: number) => {
+    if(page == 1) {
+      setFirstPage(page)
+      setLastPage(totalPages > 5 ? 5 : totalPages)
+      return changePage(page)
+    }
 
+    setFirstPage(totalPages > 5 ? (totalPages - 4) : 1)
+    setLastPage(page)
+
+    changePage(page)
   }
 
   return (
     <div className={styles._container}>
-      <div className={styles._arrowContainer}>
+      <div
+        className={styles._arrowContainer}
+        onClick={() => firstOrLastPage(1)}
+      >
         <ArrowLeft color={color} />
       </div>
       {
@@ -48,7 +60,10 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
           </div>
         ))
       }
-      <div className={styles._arrowContainer}>
+      <div
+        className={styles._arrowContainer}
+        onClick={() => firstOrLastPage(totalPages)}
+      >
         <ArrowRight color={color} />
       </div>
     </div>
