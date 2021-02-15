@@ -1,11 +1,16 @@
 import { CHANGE_RESOURCES, GET_RESOURCES } from './action-types'
 import { actionObject, Filter } from '../../utils'
+import { GET_HOME_PAGE } from '../page/action-types'
 import { resources } from '../../graphql/querys'
 import axios from 'axios'
 import { UPDATE_POSTS } from '../post/action_types'
 
-export const getResources = () => async dispatch => {
+export const getResources: any = () => async dispatch => {
   const allResources = await resources()
+
+  dispatch(actionObject(GET_HOME_PAGE, { homePage: allResources.homePage }))
+  delete allResources['homePage']
+
   const country = await _getCurrentLocation()
   allResources['currentLocation'] = country
 
