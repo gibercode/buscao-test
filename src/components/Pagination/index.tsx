@@ -35,7 +35,6 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
 
     setFirstPage(totalPages > 5 ? (totalPages - 4) : 1)
     setLastPage(page)
-
     changePage(page)
   }
 
@@ -45,7 +44,8 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
         className={styles._arrowContainer}
         onClick={() => firstOrLastPage(1)}
       >
-        <ArrowLeft color={color} />
+        {/* <ArrowLeft color={color} /> */}
+        {'<<'}
       </div>
       {
         pageNumbers.map((pageNumber, index) => (
@@ -64,7 +64,8 @@ const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0'
         className={styles._arrowContainer}
         onClick={() => firstOrLastPage(totalPages)}
       >
-        <ArrowRight color={color} />
+        {/* <ArrowRight color={color} /> */}
+        {'>>'}
       </div>
     </div>
   )
