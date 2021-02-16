@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
 import { useState } from 'react'
 import styles from './styles.module.scss'
+import { ArrowLeft, ArrowRight } from '../../../public/images/icons'
 
-const Pagination = ({ items, perPage, changePage }) => {
+const Pagination = ({ items, perPage, changePage, currentPage, color = '#1652F0', activeColor = '#000' }) => {
   const [firstPage, setFirstPage] = useState(1)
 
   const totalItems = items.length
@@ -26,19 +27,47 @@ const Pagination = ({ items, perPage, changePage }) => {
   }
 
   const firstOrLastPage = (page: number) => {
+    if(page == 1) {
+      setFirstPage(page)
+      setLastPage(totalPages > 5 ? 5 : totalPages)
+      return changePage(page)
+    }
 
+    setFirstPage(totalPages > 5 ? (totalPages - 4) : 1)
+    setLastPage(page)
+    changePage(page)
   }
 
   return (
-    <ul className={styles._pagination}>
-      <li><span onClick={() => firstOrLastPage(1)}>«</span></li>
+    <div className={styles._container}>
+      <div
+        className={styles._arrowContainer}
+        onClick={() => firstOrLastPage(1)}
+      >
+        {/* <ArrowLeft color={color} /> */}
+        {'<<'}
+      </div>
       {
-        pageNumbers.map(pageNumber => (
-          <li key={pageNumber} onClick={() => determinatePages(pageNumber)}><span>{pageNumber}</span></li>
+        pageNumbers.map((pageNumber, index) => (
+          <div key={index} className={styles._numberContainer}>
+            <span
+              className={styles._number}
+              style={{ color: pageNumber == currentPage ? activeColor : color }}
+              onClick={() => determinatePages(pageNumber)}
+            >
+              {pageNumber}
+            </span>
+          </div>
         ))
       }
-      <li><span onClick={() => firstOrLastPage(totalPages)}>»</span></li>
-    </ul>
+      <div
+        className={styles._arrowContainer}
+        onClick={() => firstOrLastPage(totalPages)}
+      >
+        {/* <ArrowRight color={color} /> */}
+        {'>>'}
+      </div>
+    </div>
   )
 }
 
