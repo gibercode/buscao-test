@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
@@ -46,21 +45,17 @@ const FeaturedSlider = () => {
 
   const compareHours = (array) => {
 
-    console.log(array[0]);
-
-
     const currentDay = new Date().getDay()
     const currentHour = new Date().getHours();
     const currentMinutes = new Date().getMinutes();
     const day = days[currentDay];
 
-
-   if(array[0] != undefined && array[1] != undefined) {
-    checkOpen(array, day, currentHour, currentMinutes, 0);
-    checkOpen(array, day, currentHour, currentMinutes, 1);
-    checkClosed(array, day, currentHour, currentMinutes, 0);
-    checkClosed(array, day, currentHour, currentMinutes, 1);
-   }
+    if (array[0] != undefined && array[1] != undefined) {
+      checkOpen(array, day, currentHour, currentMinutes, 0);
+      checkOpen(array, day, currentHour, currentMinutes, 1);
+      checkClosed(array, day, currentHour, currentMinutes, 0);
+      checkClosed(array, day, currentHour, currentMinutes, 1);
+    }
   }
 
   const processHour = (time) => {
@@ -82,7 +77,6 @@ const FeaturedSlider = () => {
   }
 
   const checkClosed = (array, day, currentHour, currentMinutes, index) => {
-
 
     const hourClose = array[index].commerce.subsidiary[0].schedule[day].cierre;
     const hourClosed = processHour(hourClose);
@@ -144,7 +138,7 @@ const FeaturedSlider = () => {
     <>
       <div className={styles._itemsParent}>
         <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
-          <ArrowLeft color='#3D549E' />
+          <ArrowLeft color='#FFFFFF' />
         </div>
         <div className={styles._itemsChild}>
           <div className={styles._slider} style={{ width: sliderWidth }}>
@@ -188,7 +182,7 @@ const FeaturedSlider = () => {
           </div>
         </div>
         <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
-          <ArrowRight color='#3D549E' />
+          <ArrowRight color='#FFFFFF' />
         </div>
       </div>
     </>

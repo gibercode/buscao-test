@@ -22,13 +22,14 @@
 
 ._title {
   font-family: $helveticaNowText;
+  color: $tuna;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 ._text {
   font-family: $helveticaNowText;
-  color: $blueRibbon;
+  color: $tundora;
   font-size: 0.75rem;
 }
 
@@ -56,8 +57,6 @@
   font-size: 0.85rem;
 }
 
-
-
 ._rightText {
   display: flex;
   align-items: center;
@@ -73,14 +72,14 @@
 }
 
 ._call {
-  background-color: $mineShaft;
-  color: $blueRibbon;
+  background-color: $blueRibbon;
   font-family: $helveticaNowText;
   font-weight: 600;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.3rem;
   box-sizing: border-box;
-  border-radius: 35px;
+  border-radius: 5px;
   font-size: 0.9rem;
+  color: $white;
 }
 
 ._location {
