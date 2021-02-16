@@ -3,6 +3,13 @@ const posts = `
     nodes {
       id
       title
+      categories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
       commerce {
         country {
           id
