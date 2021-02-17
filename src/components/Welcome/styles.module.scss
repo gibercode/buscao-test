@@ -211,6 +211,97 @@
 }
 
 
+@include responsive(xxxl) {
+
+._coin1{
+  width: 30%;
+  position: absolute;
+  left:30px;
+  background-color:'red'
+}
+
+
+._coin2{
+  width: 30%;
+  position: absolute;
+  left:280px
+}
+
+._coin3{
+  width: 30%;
+  position: absolute;
+  left:530px
+}
+
+._coin4{
+  width: 30%;
+  position: absolute;
+  left:780px
+}
+
+}
+
+@include responsive(xxl) {
+
+._coin1{
+  width: 25%;
+  position: absolute;
+  left:30px;
+  background-color:'red'
+}
+
+
+._coin2{
+  width: 25%;
+  position: absolute;
+  left:250px
+}
+
+._coin3{
+  width: 25%;
+  position: absolute;
+  left: 470px
+}
+
+._coin4{
+  width: 25%;
+  position: absolute;
+  left:690px
+}
+
+}
+
+@include responsive(xl) {
+
+._coin1{
+  width: 25%;
+  position: absolute;
+  left:30px;
+  background-color:'red'
+}
+
+
+._coin2{
+  width: 25%;
+  position: absolute;
+  left:220px
+}
+
+._coin3{
+  width: 25%;
+  position: absolute;
+  left: 410px
+}
+
+._coin4{
+  width: 25%;
+  position: absolute;
+  left:600px
+}
+
+}
+
+
 
 
 
