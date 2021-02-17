@@ -22,7 +22,7 @@
     &::after {
         width: 2px;
         height: 35px;
-        background: $blueRibbon;
+        background: $nepal;
         content: " ";
         border-radius: 50px;
     }
@@ -100,4 +100,5 @@
     background: $blueRibbon;
     font-size: 1rem;
     font-family: $helveticaNowText;
+    cursor: pointer;
 }

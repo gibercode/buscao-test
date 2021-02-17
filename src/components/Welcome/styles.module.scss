@@ -54,12 +54,19 @@
   display:flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  transform: translate(50%, -60px);
-  z-index: 2;
+
+
+
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+._searchBuild{
+  z-index: 2;
+  transform: translateX(37%);
+  position: absolute;
+  bottom: -40px;
 }
 
 
@@ -134,7 +141,6 @@
 ._blackfloor{
   width: 100%;
   height: 15vh;
-  position: relative;
   background-color: $mineShaft;
   display: flex;
   justify-content: center;
@@ -155,20 +161,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 70%;
+  bottom: 20px;
   position: absolute;
-  bottom: -40px;
 }
 
-.coinposition:hover, .coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover, .coinposition6:hover, .coinposition7:hover, .coinposition8:hover, .coinposition9:hover  {
+.coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover {
   @include floating (-20px, 1s);
 }
 
-._coin{
-  width: 20%;
+._coin1{
+  width: 30%;
+  position: absolute;
+  left:30px
 }
 
-.coinposition{
-  animation: MoveUpDownCoins 1s alternate infinite
+
+._coin2{
+  width: 30%;
+  position: absolute;
+  left:230px
+}
+
+._coin3{
+  width: 30%;
+  position: absolute;
+  left:430px
+}
+
+._coin4{
+  width: 30%;
+  position: absolute;
+  left:630px
+}
+.coinposition1{
+  animation: MoveUpDownCoins 1s alternate infinite;
 }
 
 .coinposition2{
@@ -180,26 +207,6 @@
 }
 
 .coinposition4{
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition5{
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition6{
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition7{
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition8{
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition9{
   animation: MoveUpDownCoins 1s alternate infinite
 }
 
