@@ -4,15 +4,16 @@
   overflow-y: hidden;
   scrollbar-width: none;
   position: relative;
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 ._sliderChild {
   width: 300%;
   // overflow: hidden;
-  display: inline-flex;
+  display: flex;
   position: relative;
 }
 
@@ -39,4 +40,9 @@
 ._steps {
   display: flex;
   flex-direction: row;
+}
+
+._container {
+  margin: 0px;
+  padding: 0px;
 }
