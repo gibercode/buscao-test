@@ -1,9 +1,22 @@
-import '../../public/styles/globals.scss';
-import initStore from '../store';
-import type { AppProps } from 'next/app';
+import { FC, useEffect } from 'react'
+import { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import { useStore } from 'react-redux'
+import { wrapper } from '../store'
+import '../../public/styles/globals.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const store = useStore()
+  const router = useRouter()
+
+  useEffect(() => {
+    if(router.route == '/') localStorage.clear()
+    store.__persistor.persist()
+  }, [])
+
+  return (
+    <Component {...pageProps} />
+  )
 }
 
-export default initStore.withRedux(MyApp);
+export default wrapper.withRedux(WrappedApp)

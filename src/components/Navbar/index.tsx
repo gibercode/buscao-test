@@ -1,43 +1,58 @@
-import styles from './styles.module.scss';
-import { World } from '../../../public/images/icons';
+import { useSelector, useDispatch } from 'react-redux'
+import { changeResources } from '../../store/actions'
+import { World } from '../../../public/images/icons'
+import styles from './styles.module.scss'
 
-const countries = [
-  { name: 'Venezuela', value: 'VE' },
-  { name: 'Colombia', value: 'CO' },
-  { name: 'Argentina', value: 'AR' }
-];
+const Navbar = ({ background = '#1652F0' }: any) => {
+  const dispatch = useDispatch()
+  const resource = useSelector(state => state.resource)
+  const { currentLocation, countries } = resource
 
-const Navbar = () => {
+  const changeCountry = (event) => dispatch(changeResources(event.target.value))
+
   return (
-    <div className={styles._main}>
-      <div className={styles._container}>
-        <div className={styles._leftSection} >
-          <div>
-            <img src='images/logos/logo.svg' />
+    <>
+      <div className='_main' >
+        <div className={styles._container}>
+          <div className={styles._leftSection} >
+            <div className={styles._logo}>
+              <img src='images/logos/logo.svg' />
+            </div>
+            <div className={styles._links}>
+              <p className={styles._textLink}> Comercios </p>
+              <p className={styles._textLink}> Nosotros </p>
+              <div className={styles._btnParent}>
+                <a href='https://cryptobuyer.io' target='_blank'>
+                  <button className={styles._btnLink} > Cryptobuyer.io </button>
+                </a>
+              </div>
+            </div>
           </div>
-          <div className={styles._links}>
-            <p className={styles._textLink}> Comercios </p>
-            <div className={styles._btnParent}>
-              <button className={styles._btnLink} > Cryptobuyer.io </button>
+          <div className={styles._rightSection} >
+            <div className={styles._rightText}>
+              <select name="countries" className={styles._countriesSelect} defaultValue={currentLocation} onChange={changeCountry}>
+                {
+                  countries.map((country, index) => {
+                    return <option value={country.slug} key={index}>{country.name}</option>
+                  })
+                }
+              </select>
+              <div>
+                <World color='#EFF4F6' />
+              </div>
             </div>
           </div>
         </div>
-
-        <div className={styles._rightSection} >
-          <div className={styles._rightText}>
-            <select name="countries" className={styles._countriesSelect} >
-              {
-                countries.map((country, index) => {
-                  return <option value={country.value} key={index}> {country.name} </option>
-                })
-              }
-            </select>
-            <World color='#EFF4F6' />
-          </div>
-        </div>
       </div>
-    </div>
+
+      <style jsx>{`
+      ._main {
+        background-color: ${background};
+        padding: 1.4rem 0px;
+      }
+    `}</style>
+    </>
   )
 }
 
-export default Navbar;
+export default Navbar
