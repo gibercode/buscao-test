@@ -1,11 +1,6 @@
 @import '../../../public/styles/index.scss';
 
-._main {
-  width: 100%;
-}
-
 ._container {
-  padding-top: 1.8rem;
   width: 80%;
   margin: auto;
   display: flex;
@@ -14,6 +9,7 @@
 
 ._links {
   display: flex;
+  align-items: center;
 }
 
 ._leftSection {
@@ -23,12 +19,11 @@
 }
 
 ._textLink {
-  font-family: $helveticaNowText;
+  font-family: $helveticaNowTextBold;
   color: $aquaHaze;
-  font-size: 1rem;
+  font-size: 0.9rem;
   display: table-cell;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 3.8rem;
   cursor: pointer;
 }
 
@@ -38,18 +33,19 @@
 }
 
 ._btnLink {
-  font-family: $helveticaNowText;
+  font-family: $helveticaNowTextBold;
   background-color:$aquaHaze;
-  color: $blueRibbon;
-  padding: 0.6rem 1.5rem 0.6rem 1.5rem;
+  color: $mineShaft;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   cursor: pointer;
-  border-radius: 25px;
-  border: none;
-  font-weight: 600;
+  border-radius: 5px;
+  border: 2px solid $aquaHaze;
   transition: 0.6s;
+  margin-left: 3.8rem;
+  font-size: 0.8rem;
 
   &:hover {
-    background-color: $blueRibbon;
+    background: $blueRibbon;
     color: $aquaHaze;
     transition: all 0.6s;
   }
@@ -63,15 +59,16 @@
 
 ._countriesSelect {
   color: $aquaHaze;
-  font-family: $helveticaNowText;
+  font-family: $helveticaNowTextBold;
   margin-right: 0.3rem;
   background-color: transparent;
   border: none;
   font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
 
   & option {
-    color: $blueRibbon;
+    color: $mineShaft;
   }
 }
 
