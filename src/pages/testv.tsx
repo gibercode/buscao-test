@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import { Pagination } from '../components'
-import { paginate } from '../utils'
+import { Result } from '../components'
 
 const posts = [
   { title: 'Local A' },
@@ -30,27 +28,12 @@ const posts = [
   { title: 'Local A' },
   { title: 'Local A' },
   { title: 'Local A' },
-  { title: 'Local A' },
+  // { title: 'Local A' },
 ]
 
-const perPage = 15
-
 const Testv = () => {
-  const [page, setPage] = useState(1)
-
   return (
-    <>
-      <div>
-        {
-          paginate(posts, page, perPage).map((post, index) => {
-            return (
-              <div key={index}>{post.title}</div>
-            )
-          })
-        }
-      </div>
-      <Pagination items={posts} perPage={perPage} changePage={setPage}/>
-    </>
+    <Result posts={posts} />
   )
 }
 

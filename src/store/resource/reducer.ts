@@ -6,7 +6,8 @@ const initialState = {
   categories: [],
   posts: [],
   countries: [],
-  currentStates: []
+  currentStates: [],
+  currencies: []
 }
 
 const resourceReducer = (state = initialState, { type, payload }: AnyAction) => {
