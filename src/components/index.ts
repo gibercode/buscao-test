@@ -1,4 +1,5 @@
 export { default as Navbar } from './Navbar';
+export { default as Slider } from './Slider';
 export { default as Search } from './Search';
 export { default as FeaturedSlider } from './FeturedSlider'
 export { default as Card } from './Card'
