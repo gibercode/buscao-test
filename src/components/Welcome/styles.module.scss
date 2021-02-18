@@ -1,7 +1,7 @@
 @import '../../../public/styles/index.scss';
 
  ._main{
-  height: 80vh;
+  height: 85vh;
   width: 100%;
   /* background-image: url('../../../public/images/backgrounds/first-section.png'); */
   background-size: cover;
@@ -162,11 +162,11 @@
   justify-content: space-between;
   align-items: center;
   width: 70%;
-  bottom: 20px;
+  bottom: 0;
   position: absolute;
 }
 
-.coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition5:hover {
+.coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition1:hover {
   @include floating (-20px, 1s);
 }
 
