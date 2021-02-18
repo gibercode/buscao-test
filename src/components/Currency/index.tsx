@@ -1,21 +1,21 @@
 import { useSelector } from 'react-redux'
 import styles from './styles.module.scss'
 
-const Currency = ({ children }) => {
+const Currency = ({ children = null, currenciesData = null }) => {
 
-    const { currencies } = useSelector(state => state.resource);
+    const { currencies } = (currenciesData && currenciesData.length) ? currenciesData : useSelector(state => state.resource);
 
     return (
         <div className={styles._currenciesContent}>
-            <div className={styles._currenciesCard}>
+            <div className={(children) ? styles._currenciesCard : styles._currenciesCard + ' ' + styles._visible}>
                 {(currencies) ? currencies.map((currency, index) => (
-                    <div key={index} className={styles._tooltip}>
+                    <div key={index} className={(children) ? styles._tooltip :styles._coinBox}>
                         <img src={currency.currencyData.icon.mediaItemUrl} />
-                        <div className={styles._tooltiptext}>{currency.name}</div>
+                        {(children) ? <div className={styles._tooltiptext}>{currency.name}</div> : <p>{currency.name}</p>}
                     </div>
                 )) : null}
             </div>
-            {children}
+            {(children) ? children : null}
         </div>
     )
 }

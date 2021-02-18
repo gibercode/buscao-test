@@ -21,6 +21,12 @@ posts {
         id
         name
         slug
+        currencyData {
+          icon{
+            mediaItemUrl
+            mediaType
+          }
+        }
       }
       subsidiary {
         address
