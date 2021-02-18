@@ -5,11 +5,12 @@ import postsQuery from './posts'
 import homePageQuery from './homePage'
 
 const resources = async () => {
+  // ${postsQuery}
   const query = `
     query Resources {
       ${categoryQuery}
       ${countriesQuery}
-      ${postsQuery}
+
       ${homePageQuery}
     }
   `
