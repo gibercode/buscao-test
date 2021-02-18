@@ -35,7 +35,7 @@ export const countryPost = (country: string) => (dispatch, getState) => {
   const { resource: { posts } } = getState();
   const result = Filter(posts, country, 'country');
   const outstanding = Filter(result, true, 'outstanding');
-  dispatch(actionObject(UPDATE_POSTS, { countryPosts: result, filterPosts: result, outstandingPosts: outstanding }))
+  dispatch(actionObject(UPDATE_POSTS, { countryPosts: result, statePosts: result, categoryPosts: result, filterPosts: result, outstandingPosts: outstanding }))
 }
 
 export const filterPosts = (filter: string, type) => (dispatch, getState) => {
