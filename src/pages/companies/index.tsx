@@ -3,7 +3,7 @@ import { getResources } from '../../store/actions';
 import { useSelector } from 'react-redux';
 import { Navbar, Search, Card } from '../../components';
 import { NextPage } from 'next';
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
 const myFunc =
 {
@@ -221,32 +221,33 @@ const companies: NextPage = () => {
   let day = day_week_arr[0].toLowerCase();
 
   return (
-    <div className='blogSpot'>
+    <div>
       <main>
         <Navbar />
-        <section style={{padding: '3% 5%', margin: '0 2%', display: 'flex', justifyContent: 'space-between'}}>
-          <div style={{width: '50%'}}>
-            <div>
-              <Card />
-              <img src={myFunc.data.post.commerce.image} />
-            </div>
+        <section className={styles._moreInfoContainer}>
+          <div className={styles._leftInfo}>
+            <Card
+              name={myFunc.data.post.title}
+              url={myFunc.data.post.commerce.image}
+              description={myFunc.data.post.commerce.description}
+            />
           </div>
-          <div>MAPA</div>
+          <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve" width="400" height="400"></iframe>
+          </div>
         </section>
 
-        <section>
+        <section className={styles._searchContainer}>
           <Search />
         </section>
 
-        <section style={{backgroundColor: '#353535', padding: '5% 5% 0 5%'}}>
-          <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <section className={styles._cardsContainer}>
+          <div className={styles._cards}>
             {myFunc.data.post.commerce.subsidiary.map(node => (
-              <div style={{backgroundColor: '#EBEBEB', cursor: 'pointer', margin: '0 2% 3%', height: 'max-content', padding: '1.5% 6% 1.5% 1.5%', borderRadius: '15px', width: '29%'}} key={node.name}>
-                <p style={{textTransform: 'capitalize'}}> {title} - {node.name}</p>
+              <div className={styles._cardContent} key={node.name}>
+                <p className={styles._text}> {title} - {node.name}</p>
                 <p>{node.phoneNumber}</p>
-                {
-                  <p>{node.schedule[day].apertura} / {node.schedule[day].cierre}</p>
-                }
+                <p>{node.schedule[day].apertura} / {node.schedule[day].cierre}</p>
               </div>
             ))}
           </div>
