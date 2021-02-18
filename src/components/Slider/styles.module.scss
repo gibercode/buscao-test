@@ -31,7 +31,6 @@
   width: 100%;
   position: absolute;
   bottom: 3rem;
-  background-color: red;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -55,4 +54,34 @@
   margin: 0px;
   padding: 0px;
   width: 100%;
+}
+
+._divImage {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 80vh;
+  padding: 0px 10%;
+}
+
+._textParent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+._textChild {
+  width: 100%;
+}
+
+._wpContent {
+  & * {
+    font-family: $helveticaNowText;
+  }
+
+  & p {
+    font-size: 1.3rem;
+  }
 }

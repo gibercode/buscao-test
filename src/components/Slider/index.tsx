@@ -1,14 +1,12 @@
 
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-
-const images = [
-  { path: 'http://admin-buscao.thecodeworkers.com/wp-content/uploads/2021/02/pay-background.png', id: 'first' },
-  { path: 'images/backgrounds/blackpoints-background.svg', id: 'second' },
-  { path: 'images/backgrounds/blackpoints-background.svg', id: 'third' }
-];
+import { useSelector } from 'react-redux';
 
 const Slider = () => {
+
+  const { homePage } = useSelector(state => state.page);
+  const { home } = homePage;
 
   const [currentImage, setCurrentImage] = useState(0);
   const [up, setUp] = useState(true);
@@ -20,7 +18,7 @@ const Slider = () => {
   }, [currentImage])
 
   const sliding = () => {
-    const getElement = document.getElementById(images[currentImage].id);
+    const getElement = document.getElementById(home.slideshow[currentImage].image.id);
 
     if (getElement) {
       getElement.scrollIntoView({
@@ -40,7 +38,7 @@ const Slider = () => {
   }
 
   const checkStep = (step) => {
-    if (currentImage === step) return styles._currentCircle;
+    if (currentImage == step) return styles._currentCircle;
     return styles._circle;
   }
 
@@ -48,10 +46,16 @@ const Slider = () => {
     <div className={styles._sliderParent}>
       <div className={styles._sliderChild}>
         {
-          images.map((image, index) => {
+         home?.slideshow.slice(0, 3).map((item, index) => {
             return (
-              <div className={styles._container} key={index}>
-                <img src={image.path} width='100%' id={image.id} />
+              <div className={styles._container} key={index} id={item.image.id}>
+                <div style={{backgroundImage: `url(${item.image.sourceUrl})`}} className={styles._divImage}>
+                  <div className={styles._textParent}>
+                    <div className={styles._textChild}>
+                      <div dangerouslySetInnerHTML={{__html: item?.text}} className={styles._wpContent}/>
+                    </div>
+                  </div>
+                </div>
               </div>
             )
           })
