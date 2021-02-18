@@ -22,7 +22,9 @@ const Footer = () => (
 
       <div className={styles._logos}>
         <div className={styles._logo}>
-          <img src='images/logos/tcw-logo.svg' />
+          <a href='https://www.thecodeworkers.com' target='_blank'>
+            <img src='images/logos/tcw-logo.svg' />
+          </a>
         </div>
 
         <div>
