@@ -32,6 +32,7 @@ const home = `
           mediaType
           sourceUrl
         }
+        text
       }
     }
   }
