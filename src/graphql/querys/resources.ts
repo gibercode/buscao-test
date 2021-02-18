@@ -6,12 +6,11 @@ import homePageQuery from './homePage'
 import currencies from './currencies';
 
 const resources = async () => {
-  // ${postsQuery}
   const query = `
     query Resources {
       ${categoryQuery}
       ${countriesQuery}
-
+      ${postsQuery}
       ${homePageQuery}
       ${currencies}
     }
