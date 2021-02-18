@@ -33,8 +33,15 @@
   margin: 0 2%;
   display: flex;
   justify-content: space-between;
+
+  iframe {
+    border: initial;
+    border-radius: 15px;
+    width: 400px;
+    height: 400px;
+  }
 }
 
 ._leftInfo {
-  width: 40%;
+  width: 50%;
 }

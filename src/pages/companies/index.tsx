@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Navbar, Search, Card } from '../../components';
 import { NextPage } from 'next';
 import styles from './styles.module.scss';
+import resources from '../../graphql/querys/resources'
 
 const myFunc =
 {
@@ -209,16 +210,21 @@ const myFunc =
   }
 }
 
+async function lol() {
+  const allResources = await resources();
+  console.log(allResources);
+
+}
+
 const companies: NextPage = () => {
 
-  const { filterPosts } = useSelector(state => state.post)
   let title = myFunc.data.post.title
-
   const options = { weekday: 'long' };
   let date = new Date()
   let day_week = date.toLocaleDateString(undefined, options)
   let day_week_arr = day_week.split(',');
   let day = day_week_arr[0].toLowerCase();
+  console.log(lol())
 
   return (
     <div>
@@ -233,7 +239,8 @@ const companies: NextPage = () => {
             />
           </div>
           <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve" width="400" height="400"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve">
+            </iframe>
           </div>
         </section>
 
