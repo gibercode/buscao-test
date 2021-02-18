@@ -1,0 +1,11 @@
+@import '../../../public/styles/index.scss';
+
+._content {
+  & * {
+    font-family: $helveticaNowText;
+  }
+
+  & p {
+    font-size: 20px;
+  }
+}
