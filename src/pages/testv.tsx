@@ -1,4 +1,5 @@
-import { Result } from '../components'
+import { Result, Banner } from '../components'
+import { useSelector } from 'react-redux'
 
 const posts = [
   { title: 'Local A' },
@@ -32,8 +33,11 @@ const posts = [
 ]
 
 const Testv = () => {
+  const homePage = useSelector(state => state?.page?.homePage?.home)
+
   return (
-    <Result posts={posts} />
+    // <Result posts={posts} />
+    <Banner section={homePage?.secundaryBanner} />
   )
 }
 

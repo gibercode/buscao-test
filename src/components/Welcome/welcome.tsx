@@ -19,13 +19,13 @@ const Welcome = () => {
             </div>
           </div>
           <div className={styles._searchBuild} >
-         <Search />
-        </div>
+            <Search />
+          </div>
         </div>
 
       </div>
 
-     <div>
+      <div>
         <div className={styles._blackfloor}>
           <div className={styles._coins}>
             <div className={styles._coin1}>
