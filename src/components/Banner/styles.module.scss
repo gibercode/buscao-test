@@ -1,0 +1,21 @@
+@import '../../../public/styles/index.scss';
+
+._content {
+  width: 70%;
+
+  & * {
+    font-family: $helveticaNowText;
+  }
+
+  & p {
+    font-size: 20px;
+  }
+}
+
+._textContainer {
+  display: flex;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
