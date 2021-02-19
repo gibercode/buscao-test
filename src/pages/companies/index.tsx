@@ -1,10 +1,12 @@
 import { wrapper } from '../../store';
 import { getResources } from '../../store/actions';
 import { useSelector } from 'react-redux';
-import { Navbar, Search, Card } from '../../components';
+import { Navbar, Search, Card, Currency } from '../../components';
 import { NextPage } from 'next';
 import styles from './styles.module.scss';
-import resources from '../../graphql/querys/resources'
+import { useEffect, useState } from 'react';
+
+import { resources } from '../../graphql/querys'
 
 const myFunc =
 {
@@ -210,21 +212,39 @@ const myFunc =
   }
 }
 
-async function lol() {
-  const allResources = await resources();
-  console.log(allResources);
-
+interface Props {
+  id?: string;
 }
 
-const companies: NextPage = () => {
+// async function lol() {
+//   const allResources = await resources()
+//   console.log(allResources);
+// }
 
-  let title = myFunc.data.post.title
+const findDay = () => {
   const options = { weekday: 'long' };
   let date = new Date()
   let day_week = date.toLocaleDateString(undefined, options)
   let day_week_arr = day_week.split(',');
   let day = day_week_arr[0].toLowerCase();
-  console.log(lol())
+  return day;
+}
+
+const companies: NextPage<Props> = ({id = 'cG9zdDoyNjM='}) => {
+
+  const { filterPosts } = useSelector(state => state.post)
+
+  const resource = useSelector(state => state.post)
+  const day = findDay()
+  const title = myFunc.data.post.title;
+
+  const [company, setCompany] = useState<any>();
+
+  useEffect(() => {
+    var result: any = resource.filterPosts.find(element => element['id'] == 'cG9zdDoyNjM=')
+    console.log(result)
+    setCompany(result)
+  }, [])
 
   return (
     <div>
@@ -233,10 +253,17 @@ const companies: NextPage = () => {
         <section className={styles._moreInfoContainer}>
           <div className={styles._leftInfo}>
             <Card
-              name={myFunc.data.post.title}
-              url={myFunc.data.post.commerce.image}
-              description={myFunc.data.post.commerce.description}
+              name={company ? company['title'] : []}
+              url={company ? company['commerce'].image : []}
+              description={company ? company['commerce'].description : []}
             />
+            {/* <Currency currenciesData={ {currencies: company['commerce'].paymentmethods} } /> */}
+            <section style={{ display: 'flex', flexWrap: "wrap", justifyContent: "space-around" }}>
+              {company.map((node, index) => (
+                <Currency key={index} currenciesData={{ currencies: node.commerce.paymentmethods }}>
+                </Currency>
+              ))}
+            </section>
           </div>
           <div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve">
@@ -254,7 +281,10 @@ const companies: NextPage = () => {
               <div className={styles._cardContent} key={node.name}>
                 <p className={styles._text}> {title} - {node.name}</p>
                 <p>{node.phoneNumber}</p>
-                <p>{node.schedule[day].apertura} / {node.schedule[day].cierre}</p>
+                {
+                  node.schedule[day] ?
+                  <p>{node.schedule[day].apertura} / {node.schedule[day].cierre}</p> : <p></p>
+                }
               </div>
             ))}
           </div>

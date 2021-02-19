@@ -82,7 +82,7 @@ posts {
         }
       }
       website
-    }   
+    }
   }
 }
 `

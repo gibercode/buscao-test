@@ -9,6 +9,7 @@ import styles from './styles.module.scss';
 const Blog: NextPage = () => {
 
   const { filterPosts } = useSelector(state => state.post)
+  console.log(filterPosts)
 
   return (
     <div className='blogSpot'>
