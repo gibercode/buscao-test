@@ -4,41 +4,57 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
+import { paginate } from '../../utils';
+
+const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const FeaturedSlider = () => {
 
-  const { featured } = useSelector(state => state.featured);
-  const [sliderWidth, setSliderWidth] = useState('150%');
+  const { posts } = useSelector(state => state.resource);
+  const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 
-  let countOne = 0;
-  let countTwo = 2;
-  let index = 0;
+  useEffect(() => {
+    calculateWidth();
+  }, [])
 
   const nextOrPrevious = (param) => {
-
     let pagination = page;
 
     if (param == 'left' && page >= 1) pagination = pagination - 1;
-    if (param == 'right' && page <= 2) pagination = pagination + 1;
+    if (param == 'right' && page <= pagesArray()) pagination = pagination + 1;
 
-    const getElement = document.getElementById(pagination.toString())
+    const getElement = document.getElementById(pagination.toString());
 
     if (getElement) {
       getElement.scrollIntoView({
         behavior: 'smooth',
       });
     }
+
     setPage(pagination);
   }
 
-  const limitArray = (first, second) => {
-    const newArray = featured.slice(first, second);
-    return newArray;
+  const processHour = (time) => {
+    let newHour;
+
+    if (time) {
+      newHour = time.split(':')[0];
+      return parseInt(newHour);
+    }
+  }
+
+  const processMinutes = (time) => {
+    let newMinutes;
+
+    if (time) {
+      newMinutes = time.split(':')[1];
+      return Number(newMinutes);
+    }
   }
 
   const calculateWidth = () => {
-    const width = featured.length / 2;
+    const width = posts.length / 2;
     const stringWidth = width.toString();
 
     if (stringWidth.includes('.')) {
@@ -50,48 +66,80 @@ const FeaturedSlider = () => {
     setSliderWidth(`${width}%`);
   }
 
-  useEffect(() => {
-    calculateWidth();
-    // pagesArray();
-  }, [])
-
   const pagesArray = () => {
-    const length = featured.length / 2;
-    const stringLength = length.toString();
+    const length = posts.length / 2;
+    const lengthRounded = Math.round(length);
 
-    if (stringLength.includes('.')) {
-      const result = length + 0.5;
-      return result;
-    }
-
-    return length;
+    return lengthRounded;
   }
 
-  const array = [1, 2]
   return (
     <>
       <div className={styles._itemsParent}>
         <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
-          <ArrowLeft color='#3D549E' />
+          <ArrowLeft color='#FFFFFF' />
         </div>
         <div className={styles._itemsChild}>
           <div className={styles._slider} style={{ width: sliderWidth }}>
 
             {
-              array.map((item, index) => {
+              Array(pagesArray()).fill(1).map((res, index) => {
+                const page = index + 1;
+
                 return (
-                  <div className={styles._itemOne} id={item.toString()} key={index}>
+                  <div className={styles._itemOne} id={page.toString()} key={index}>
                     <div className={styles._cards}>
+
                       {
-                        limitArray(countOne, countTwo).map((item, index) => {
-                          if (index > 0) {
-                            countOne = countOne + 2;
-                            countTwo = countTwo + 2;
+                        paginate(posts, page, 2).map((item, index) => {
+                          const { commerce } = item
+
+                          const chechSchedule = () => {
+                            const day = new Date().getDay();
+                            const actualDay = days[day];
+                            const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
+                            const hourClosed = processHour(hourClose);
+                            const minutesClosed = processMinutes(hourClose);
+                            const currentHour = new Date().getHours();
+                            const currentMinutes = new Date().getMinutes();
+
+                            if (minutesClosed == 0) {
+                              if (hourClosed <= currentHour) return false;
+                            }
+
+                            if (minutesClosed > 0) {
+                              if (currentMinutes > minutesClosed && hourClosed <= currentHour) return false;
+                            }
+
+                            return checkOpen(currentHour, currentMinutes, actualDay) ? true : false;
                           }
-                          // res.commerce.subsidiary ? console.log(res.commerce.subsidiary[0].address) : null
+
+                          const checkOpen = (currentHour, currentMinutes, actualDay) => {
+                            const openHour = commerce.subsidiary[0].schedule[actualDay].apertura;
+                            const hourOpen = processHour(openHour);
+                            const minutesOpen = processMinutes(openHour);
+
+                            if (minutesOpen == 0) {
+                              if (hourOpen >= currentHour) return false
+
+                              if (minutesOpen > 0) {
+                                if (currentMinutes < minutesOpen) return false;
+                              }
+
+                              return true;
+                            }
+                          }
+
                           return (
                             <div className={styles._cardsParent} key={index}>
-                              <Card name={item.title} />
+                              <Card
+                                name={item.title}
+                                address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+                                url={commerce?.image}
+                                description={commerce?.description}
+                                phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+                                status={chechSchedule()}
+                              />
                             </div>
                           )
                         })
@@ -102,64 +150,12 @@ const FeaturedSlider = () => {
               })
             }
 
-
-            {/* <div className={styles._itemOne} id="1" >
-              <div className={styles._cards}>
-                {
-                  limitArray(0, 2).map((res, index) => {
-                    res.commerce.subsidiary  ? console.log(res.commerce.subsidiary[0].address) : null
-                    return (
-                      <div className={styles._cardsParent} key={index}>
-                        <Card name={res.title} />
-                      </div>
-                    )
-                  })
-                }
-              </div>
-            </div>
-
-            <div className={styles._itemOne} id="2" >
-              <div className={styles._cards}>
-                {
-                  limitArray(2, 4).map( (res, index) => {
-                    return (
-                      <div className={styles._cardsParent} key={index}>
-                        <Card name={res.title} />
-                      </div>
-                    )
-                  })
-                }
-              </div>
-            </div> */}
-
           </div>
         </div>
         <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
-          <ArrowRight color='#3D549E' />
+          <ArrowRight color='#FFFFFF' />
         </div>
       </div>
-
-      {/* <div className={styles._card}>
-
-        <div className={styles._imageParent}>
-          <img src='images/logos/excelsior-gama-logo.svg' width="40%"></img>
-        </div>
-
-        <div className={styles._minicard}>
-          <div>
-            <p className={styles._title}>Excelsior gama</p>
-            <p className={styles._text}>Supermercados, Alimentos, Charcuteria </p>
-          </div>
-
-          <div className={styles._rightText}>
-            <p className={styles._statusText} >ABIERTO</p>
-            <Clock  color='#4A973C'/>
-          </div>
-
-        </div>
-      </div> */}
-
-
     </>
   )
 };
@@ -377,3 +373,40 @@ export default FeaturedSlider;
 // ._rightArrow {
 //   @include arrow('right');
 // }
+
+
+
+
+      // Array(pagesArray()).fill(1).map((item, index) => {
+              //   const page = index + 1;
+
+              //   return (
+              //     <div className={styles._itemOne} id={page.toString()} key={index}>
+              //       <div className={styles._cards}>
+              //         {
+              //           limitArray(countOne, countTwo, index).map((item, index) => {
+              //             if (index > 0) {
+              //               countOne = countOne + 2;
+              //               countTwo = countTwo + 2;
+              //             }
+
+              //             const { commerce } = item;
+
+              //             return (
+              //               <div className={styles._cardsParent} key={index}>
+              //                 <Card
+              //                   name={item.title}
+              //                   address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+              //                   url={commerce?.image}
+              //                   description={commerce?.description}
+              //                   phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+              //                   status={commerce.subsidiary[0].schedule.thursday.abierto}
+              //                 />
+              //               </div>
+              //             )
+              //           })
+              //         }
+              //       </div>
+              //     </div>
+              //   )
+              // })
