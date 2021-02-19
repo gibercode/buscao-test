@@ -1,14 +1,13 @@
 import Head from 'next/head';
 import styles from './styles.module.scss'
 import Link from 'next/link';
-import { Navbar, Search } from '..'
+import { Search } from '..'
 
 const Welcome = () => {
 
   return (
-    <div >
+    <div>
       <div className={styles._main}>
-        <Navbar />
         <div className={styles._container}>
           <div className={styles._centerContainer}>
             <div className={styles._titleContainer}>
@@ -22,7 +21,6 @@ const Welcome = () => {
             <Search />
           </div>
         </div>
-
       </div>
 
       <div>
@@ -40,12 +38,10 @@ const Welcome = () => {
             <div className={styles._coin4}>
               <img className={styles.coinposition4} src='../../images/lying-coins/lying-xpt.svg' width='100%'></img>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-
   )
 }
 
