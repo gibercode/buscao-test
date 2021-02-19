@@ -22,24 +22,35 @@
 
 ._title {
   font-family: $helveticaNowText;
+  color: $tuna;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 ._text {
   font-family: $helveticaNowText;
-  color: $blueRibbon;
+  color: $tundora;
   font-size: 0.75rem;
 }
 
 ._imageParent {
-  padding: 1rem 1rem 0.5rem 1.5rem;
+  padding: 1rem 1rem 0rem 1.5rem;
   margin-top: 0.5rem;
   box-sizing: border-box;
+  margin-bottom: 0.5rem;
+  height: 6rem;
 }
 
 ._statusText {
   color: $apple;
+  font-family: $helveticaNowText;
+  font-weight: 500;
+  margin-right: 0.4rem;
+  font-size: 0.85rem;
+}
+
+._closedText {
+  color: $alizarinCrimson;
   font-family: $helveticaNowText;
   font-weight: 500;
   margin-right: 0.4rem;
@@ -61,14 +72,14 @@
 }
 
 ._call {
-  background-color: $mineShaft;
-  color: $blueRibbon;
+  background-color: $blueRibbon;
   font-family: $helveticaNowText;
   font-weight: 600;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.3rem;
   box-sizing: border-box;
-  border-radius: 35px;
+  border-radius: 5px;
   font-size: 0.9rem;
+  color: $white;
 }
 
 ._location {
