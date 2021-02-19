@@ -12,6 +12,7 @@ posts {
       }
     }
     commerce {
+      image
       country {
         id
         name

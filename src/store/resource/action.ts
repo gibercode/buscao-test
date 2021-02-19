@@ -8,8 +8,6 @@ import { UPDATE_POSTS } from '../post/action_types'
 export const getResources: any = () => async dispatch => {
   const allResources = await resources()
 
-  console.log(allResources);
-
   dispatch(actionObject(GET_HOME_PAGE, { homePage: allResources.homePage }))
   delete allResources['homePage']
 

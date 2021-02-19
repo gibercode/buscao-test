@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { useSelector } from 'react-redux';
+import { paginate } from '../../utils';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
@@ -12,9 +13,6 @@ const FeaturedSlider = () => {
   const { posts } = useSelector(state => state.resource);
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
-
-  let countOne = 0;
-  let countTwo = 2;
 
   useEffect(() => {
     calculateWidth();
@@ -37,27 +35,6 @@ const FeaturedSlider = () => {
     setPage(pagination);
   }
 
-  const limitArray = (first, second) => {
-    const newArray = posts.slice(first, second);
-    compareHours(newArray);
-    return newArray;
-  }
-
-  const compareHours = (array) => {
-
-    const currentDay = new Date().getDay()
-    const currentHour = new Date().getHours();
-    const currentMinutes = new Date().getMinutes();
-    const day = days[currentDay];
-
-    if (array[0] != undefined && array[1] != undefined) {
-      checkOpen(array, day, currentHour, currentMinutes, 0);
-      checkOpen(array, day, currentHour, currentMinutes, 1);
-      checkClosed(array, day, currentHour, currentMinutes, 0);
-      checkClosed(array, day, currentHour, currentMinutes, 1);
-    }
-  }
-
   const processHour = (time) => {
     let newHour;
 
@@ -76,39 +53,6 @@ const FeaturedSlider = () => {
     }
   }
 
-  const checkClosed = (array, day, currentHour, currentMinutes, index) => {
-
-    const hourClose = array[index].commerce.subsidiary[0].schedule[day].cierre;
-    const hourClosed = processHour(hourClose);
-    const minutesClosed = processMinutes(hourClose);
-
-    if (minutesClosed == 0) {
-      if (hourClosed <= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
-    }
-
-    if (minutesClosed > 0) {
-      if (currentMinutes > minutesClosed && hourClosed <= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
-    }
-
-    array[index].commerce.subsidiary[0].schedule[day].abierto = true
-  }
-
-  const checkOpen = (array, day, currentHour, currentMinutes, index) => {
-    const openHour = array[index].commerce.subsidiary[0].schedule[day].apertura;
-    const hourOpen = processHour(openHour);
-    const minutesOpen = processMinutes(openHour);
-
-    if (minutesOpen == 0) {
-      if (hourOpen >= currentHour) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
-    }
-
-    if (minutesOpen > 0) {
-      if (currentMinutes < minutesOpen) return array[index].commerce.subsidiary[0].schedule[day].abierto = false;
-    }
-
-    array[index].commerce.subsidiary[0].schedule[day].abierto = true
-  }
-
   const calculateWidth = () => {
     const width = posts.length / 2;
     const stringWidth = width.toString();
@@ -124,14 +68,9 @@ const FeaturedSlider = () => {
 
   const pagesArray = () => {
     const length = posts.length / 2;
-    const stringLength = length.toString();
+    const lengthRounded = Math.round(length);
 
-    if (stringLength.includes('.')) {
-      const result = length + 0.5;
-      return result;
-    }
-
-    return length;
+    return lengthRounded;
   }
 
   return (
@@ -144,20 +83,52 @@ const FeaturedSlider = () => {
           <div className={styles._slider} style={{ width: sliderWidth }}>
 
             {
-              Array(pagesArray()).fill(1).map((item, index) => {
+              Array(pagesArray()).fill(1).map((res, index) => {
                 const page = index + 1;
 
                 return (
                   <div className={styles._itemOne} id={page.toString()} key={index}>
                     <div className={styles._cards}>
+
                       {
-                        limitArray(countOne, countTwo).map((item, index) => {
-                          if (index > 0) {
-                            countOne = countOne + 2;
-                            countTwo = countTwo + 2;
+                        paginate(posts, page, 2).map((item, index) => {
+                          const { commerce } = item
+
+                          const chechSchedule = () => {
+                            const day = new Date().getDay();
+                            const actualDay = days[day];
+                            const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
+                            const hourClosed = processHour(hourClose);
+                            const minutesClosed = processMinutes(hourClose);
+                            const currentHour = new Date().getHours();
+                            const currentMinutes = new Date().getMinutes();
+
+                            if (minutesClosed == 0) {
+                              if (hourClosed <= currentHour) return false;
+                            }
+
+                            if (minutesClosed > 0) {
+                              if (currentMinutes > minutesClosed && hourClosed <= currentHour) return false;
+                            }
+
+                            return checkOpen(currentHour, currentMinutes, actualDay) ? true : false;
                           }
 
-                          const { commerce } = item;
+                          const checkOpen = (currentHour, currentMinutes, actualDay) => {
+                            const openHour = commerce.subsidiary[0].schedule[actualDay].apertura;
+                            const hourOpen = processHour(openHour);
+                            const minutesOpen = processMinutes(openHour);
+
+                            if (minutesOpen == 0) {
+                              if (hourOpen >= currentHour) return false
+
+                              if (minutesOpen > 0) {
+                                if (currentMinutes < minutesOpen) return false;
+                              }
+
+                              return true;
+                            }
+                          }
 
                           return (
                             <div className={styles._cardsParent} key={index}>
@@ -167,7 +138,7 @@ const FeaturedSlider = () => {
                                 url={commerce?.image}
                                 description={commerce?.description}
                                 phone={item?.commerce?.subsidiary[0]?.phoneNumber}
-                                status={commerce.subsidiary[0].schedule.friday.abierto}
+                                status={chechSchedule()}
                               />
                             </div>
                           )
@@ -402,3 +373,40 @@ export default FeaturedSlider;
 // ._rightArrow {
 //   @include arrow('right');
 // }
+
+
+
+
+      // Array(pagesArray()).fill(1).map((item, index) => {
+              //   const page = index + 1;
+
+              //   return (
+              //     <div className={styles._itemOne} id={page.toString()} key={index}>
+              //       <div className={styles._cards}>
+              //         {
+              //           limitArray(countOne, countTwo, index).map((item, index) => {
+              //             if (index > 0) {
+              //               countOne = countOne + 2;
+              //               countTwo = countTwo + 2;
+              //             }
+
+              //             const { commerce } = item;
+
+              //             return (
+              //               <div className={styles._cardsParent} key={index}>
+              //                 <Card
+              //                   name={item.title}
+              //                   address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+              //                   url={commerce?.image}
+              //                   description={commerce?.description}
+              //                   phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+              //                   status={commerce.subsidiary[0].schedule.thursday.abierto}
+              //                 />
+              //               </div>
+              //             )
+              //           })
+              //         }
+              //       </div>
+              //     </div>
+              //   )
+              // })
