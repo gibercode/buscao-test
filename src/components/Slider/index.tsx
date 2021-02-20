@@ -1,12 +1,7 @@
-
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
 
-const Slider = () => {
-
-  const { homePage } = useSelector(state => state.page);
-  const { home } = homePage;
+const Slider = ({ page }) => {
 
   const [currentImage, setCurrentImage] = useState(0);
   const [up, setUp] = useState(true);
@@ -18,7 +13,7 @@ const Slider = () => {
   }, [currentImage])
 
   const sliding = () => {
-    const getElement = document.getElementById(home.slideshow[currentImage].image.id);
+    const getElement = document.getElementById(page.slideshow[currentImage].image.id);
 
     if (getElement) {
       getElement.scrollIntoView({
@@ -46,7 +41,7 @@ const Slider = () => {
     <div className={styles._sliderParent}>
       <div className={styles._sliderChild}>
         {
-         home?.slideshow.slice(0, 3).map((item, index) => {
+         page?.slideshow.slice(0, 3).map((item, index) => {
             return (
               <div className={styles._container} key={index} id={item.image.id}>
                 <div style={{backgroundImage: `url(${item.image.sourceUrl})`}} className={styles._divImage}>
