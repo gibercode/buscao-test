@@ -46,8 +46,8 @@ const Search = () => {
         </div>
         <div className={styles._select}>
           <label style={{ display: 'flex' }}>
-            <label htmlFor='state'>UBICACION</label>
-            <div className={styles._dropdown}> <DropDown /> </div>
+            <label style={{color: checkedOne ? '#1652F0' : '#93959A'}} htmlFor='state'>UBICACIÓN</label>
+            <div className={styles._dropdown}> <DropDown color={checkedOne ? '#1652F0' : '#93959A'} /> </div>
           </label>
           <select name='state' onChange={changeState}>
             <option value=''>Todos</option>
@@ -61,8 +61,8 @@ const Search = () => {
         </div>
         <div className={styles._select}>
           <label style={{ display: 'flex' }}>
-            <label htmlFor='category'>CATEGORIAS</label>
-            <div className={styles._dropdown}> <DropDown /> </div>
+            <label style={{color: checkedTwo ? '#1652F0' : '#93959A'}} htmlFor='category'>CATEGORIAS</label>
+            <div className={styles._dropdown}> <DropDown color={checkedTwo ? '#1652F0' : '#93959A'} /> </div>
           </label>
           <select name='category' value={filter.category} onChange={changeCategory} >
             <option value=''>Todos</option>
@@ -71,7 +71,7 @@ const Search = () => {
         </div>
       </div>
       <div className={styles._inputContainer}>
-        <input placeholder='Que estas buscando' value={filter.title} onChange={(event) => setFilter({ ...filter, ...{ title: event.target.value } })} />
+        <input placeholder='Que estás buscando' value={filter.title} onChange={(event) => setFilter({ ...filter, ...{ title: event.target.value } })} />
         <button className={styles._goButton} onClick={changeTitle}>Ir</button>
       </div>
     </div>

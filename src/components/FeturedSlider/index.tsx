@@ -8,9 +8,7 @@ import { paginate } from '../../utils';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-const FeaturedSlider = () => {
-
-  const { posts } = useSelector(state => state.resource);
+const FeaturedSlider = ({ posts }) => {
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 

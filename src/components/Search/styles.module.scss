@@ -10,7 +10,7 @@
     margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 75px;
     z-index: 2;
 }
 
@@ -44,10 +44,11 @@
     align-items: flex-start;
     padding-right: 3rem;
     label {
-      color: $blueRibbon;
+
       font-weight: 600;
-      font-family: $helveticaNowText;
-      font-size: 1rem;
+      font-family: $helveticaNowTextBold;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
     select {
         background: none;
@@ -58,6 +59,8 @@
         font-size: 0.9rem;
         appearance: none;
         width: 100%;
+        line-height: 1.5;
+        font-size: 0.8rem;
     }
 }
 
@@ -76,24 +79,25 @@
         background: none;
         border: none;
         font-family: $helveticaNowText;
-        color: $nepal;
+        color: $bombay;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 0.9rem;
         appearance: none;
         width: 100%;
         height: auto;
         border-bottom: 1px solid $nepal;
         padding-bottom: 0.5rem;
         margin-right: 1rem;
+        margin-top: 5px;
         &::placeholder  {
-            color: $nepal;
+            color: $bombay;
         }
     }
 }
 
 ._goButton {
-    height: 100%;
-    width: 8rem;
+    height: 90%;
+    width: 7.7rem;
     border-radius: 36px;
     border: none;
     color: $aquaHaze;

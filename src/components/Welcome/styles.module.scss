@@ -9,6 +9,7 @@
   display:'flex';
   flex-direction:'column';
   position: relative;
+  background-color: black;
 }
 
 ._container {
@@ -59,7 +60,7 @@
 
 ._searchBuild {
   z-index: 2;
-  transform: translateX(37%);
+  transform: translateX(42%);
   position: absolute;
   bottom: -40px;
 }
@@ -94,6 +95,7 @@
   background-color: transparent;
   font-weight: 600;
   font-family: $helveticaNowText;
+
 }
 
 ._input:focus {
@@ -164,25 +166,25 @@
 ._coin1 {
   width: 30%;
   position: absolute;
-  left:30px
+  left:50px
 }
 
 ._coin2 {
   width: 30%;
   position: absolute;
-  left:230px
+  left:300px
 }
 
 ._coin3 {
   width: 30%;
   position: absolute;
-  left:430px
+  left:550px
 }
 
 ._coin4 {
   width: 30%;
   position: absolute;
-  left:630px
+  left:800px
 }
 
 .coinposition1 {
@@ -200,6 +202,8 @@
 .coinposition4 {
   animation: MoveUpDownCoins 1s alternate infinite
 }
+
+
 
 @include responsive(xxxl) {
 
@@ -225,6 +229,9 @@
     width: 30%;
     position: absolute;
     left:780px
+  }
+  ._searchBuild {
+    transform: translateX(37%);
   }
 }
 
