@@ -6,9 +6,9 @@
   /* background-image: url('../../../public/images/backgrounds/first-section.png'); */
   background-size: cover;
   background-repeat: no-repeat;
-  display:'flex';
-  flex-direction:'column';
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  // position: relative;
   background-color: black;
 }
 
@@ -59,10 +59,13 @@
 }
 
 ._searchBuild {
-  z-index: 2;
-  transform: translateX(42%);
-  position: absolute;
-  bottom: -40px;
+  // z-index: 2;
+  // transform: translateX(42%);
+  // position: absolute;
+  // left: 30%;
+  // bottom: -40px;
+  // position: relative;
+  // background-color: red;
 }
 
 ._searchContent {
@@ -166,25 +169,25 @@
 ._coin1 {
   width: 30%;
   position: absolute;
-  left:50px
+  left:50px;
 }
 
 ._coin2 {
   width: 30%;
   position: absolute;
-  left:300px
+  left: 300px;
 }
 
 ._coin3 {
   width: 30%;
   position: absolute;
-  left:550px
+  left: 550px
 }
 
 ._coin4 {
   width: 30%;
   position: absolute;
-  left:800px
+  left: 800px;
 }
 
 .coinposition1 {

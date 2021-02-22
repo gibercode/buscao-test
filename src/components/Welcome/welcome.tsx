@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from './styles.module.scss'
 import Link from 'next/link';
-import { Search } from '..'
+import Search from '../Search'
 
 const Welcome = () => {
 
@@ -17,13 +17,13 @@ const Welcome = () => {
               <p className={styles._description}>Bienvenido a la nueva era financiera, directorio de comercios activos que aceptan criptomonedas</p>
             </div>
           </div>
-          <div className={styles._searchBuild} >
-            <Search />
-          </div>
+        </div>
+        <div className={styles._searchBuild}>
+          <Search />
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div className={styles._blackfloor}>
           <div className={styles._coins}>
             <div className={styles._coin1}>
@@ -40,7 +40,7 @@ const Welcome = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
