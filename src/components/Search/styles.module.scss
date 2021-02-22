@@ -7,42 +7,34 @@
     padding: 0.4rem 1rem;
     padding-right: 0.5rem;
     background: $aquaHaze;
-    margin: 0 auto;
+    // margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 75px;
+    z-index: 2;
 }
 
 ._selectContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 1rem;
+    padding-right: 1.3rem;
     &::after {
         width: 2px;
-        height: 50px;
-        background: $blueRibbon;
+        height: 35px;
+        background: $nepal;
         content: " ";
         border-radius: 50px;
     }
 }
 
-._point {
-    width: 12px;
-    height: 12px;
-    background: $blueRibbon;
-    border-radius: 100%;
+
+._radioContainer {
+  width: 20px;
+  height: 20px;
 }
 
-._pointContent {
-    width: 24px;
-    height: 24px;
-    border-radius: 100%;
-    border: 1px solid $blueRibbon;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+
 
 ._select {
     display: flex;
@@ -52,9 +44,11 @@
     align-items: flex-start;
     padding-right: 3rem;
     label {
-        font-family: $helveticaNowText;
-        color: $blueRibbon;
-        font-size: 1.1rem;
+
+      font-weight: 600;
+      font-family: $helveticaNowTextBold;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
     select {
         background: none;
@@ -65,8 +59,17 @@
         font-size: 0.9rem;
         appearance: none;
         width: 100%;
+        line-height: 1.5;
+        font-size: 0.8rem;
     }
 }
+
+._dropdown {
+  width:10px;
+  margin-left: 10px;
+}
+
+
 
 ._inputContainer {
     display: flex;
@@ -76,27 +79,31 @@
         background: none;
         border: none;
         font-family: $helveticaNowText;
-        color: $nepal;
+        color: $bombay;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 0.9rem;
         appearance: none;
-        width: 100%;
+        width: 75%;
         height: auto;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $nepal;
         padding-bottom: 0.5rem;
         margin-right: 1rem;
-        &::placeholder{
-            color: $nepal;
+        margin-top: 5px;
+        &::placeholder  {
+            color: $bombay;
         }
     }
 }
 
 ._goButton {
-    height: 100%;
-    width: 8rem;
+    height: 90%;
+    width: 7.7rem;
     border-radius: 36px;
     border: none;
     color: $aquaHaze;
     background: $blueRibbon;
     font-size: 1rem;
+    font-family: $helveticaNowText;
+    cursor: pointer;
+    margin-left: 1rem;
 }
