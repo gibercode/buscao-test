@@ -1,12 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { changeResources } from '../../store/actions'
 import { World } from '../../../public/images/icons'
 import styles from './styles.module.scss'
 
-const Navbar = ({ background = '#1652F0' }: any) => {
-  const dispatch = useDispatch()
-  const resource = useSelector(state => state.resource)
+const Navbar = ({ background = '#1652F0', resource }: any) => {
   const { currentLocation, countries } = resource
+  const dispatch = useDispatch()
 
   const changeCountry = (event) => dispatch(changeResources(event.target.value))
 
