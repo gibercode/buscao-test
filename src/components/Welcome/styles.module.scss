@@ -149,7 +149,7 @@
 
 @keyframes MoveUpDownCoins {
   from { transform: translateY(0px)}
-  to { transform:translateY(-20 px)}
+  to { transform:translateY(-20px)}
 }
 
 @mixin floating ($transformY, $time) {
@@ -168,7 +168,7 @@
 }
 
 .coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition1:hover {
-  @include floating (-20px, 1s);
+  @include floating (-20px, 1.3s);
 }
 
 ._coin1 {
@@ -193,22 +193,6 @@
   width: 30%;
   // position: absolute;
   // left: 800px;
-}
-
-.coinposition1 {
-  animation: MoveUpDownCoins 1s alternate infinite;
-}
-
-.coinposition2 {
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition3 {
-  animation: MoveUpDownCoins 1s alternate infinite
-}
-
-.coinposition4 {
-  animation: MoveUpDownCoins 1s alternate infinite
 }
 
 

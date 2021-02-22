@@ -83,7 +83,7 @@
         font-weight: 500;
         font-size: 0.9rem;
         appearance: none;
-        width: 100%;
+        width: 75%;
         height: auto;
         border-bottom: 1px solid $nepal;
         padding-bottom: 0.5rem;
@@ -105,4 +105,5 @@
     font-size: 1rem;
     font-family: $helveticaNowText;
     cursor: pointer;
+    margin-left: 1rem;
 }
