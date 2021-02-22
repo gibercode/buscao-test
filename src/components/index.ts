@@ -8,4 +8,5 @@ export { default as Pagination } from './Pagination'
 export { default as Currency } from './Currency'
 export { default as Result } from './Result'
 export { default as Banner } from './Banner'
-export { default as Welcome } from './Welcome/welcome';
+export { default as Welcome } from './Welcome'
+export { default as Currency3D } from './Currency3D'

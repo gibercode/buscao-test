@@ -1,24 +1,25 @@
 import { useSelector } from 'react-redux'
 import { wrapper } from '../store'
 import { getResources } from '../store/actions'
-import { Navbar, Footer, Slider, Banner, FeaturedSlider } from '../components'
+import { Navbar, Footer, Slider, Banner, FeaturedSlider, Welcome, Currency3D } from '../components'
 import styles from '../../public/styles/Home.module.scss'
-import Welcome from '../components/Welcome/welcome';
 
 const Home = () => {
   const {
     page: { homePage: { home } },
-    resource
+    resource,
+    post: { filterPosts }
   } = useSelector(state => state)
 
   return (
     <div className={styles._container}>
       <Navbar resource={resource} />
       <Welcome />
-    {/*   <FeaturedSlider posts={resource?.posts} />
+      <Currency3D />
+      <FeaturedSlider posts={resource?.posts} />
       <Banner section={home?.secundaryBanner} />
-      <Slider page={home} />
-      <Footer /> */}
+      {/* <Slider page={home} /> */}
+      <Footer />
     </div>
   )
 }
