@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { Location, Clock } from '../../../public/images/icons';
 import { CardProps } from './type';
 
-const Card: FC<CardProps> =  ({ name, address, longAddr, url, description, phone = ['LLAMAR', '_infoParentBlue'], status, open }) => {
+const Card: FC<CardProps> =  ({ name, address, longAddr, url, description, phone = ['LLAMAR', '_leftCard'], status, open }) => {
 
   return (
     <div>
