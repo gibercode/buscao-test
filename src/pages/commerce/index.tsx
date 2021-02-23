@@ -22,12 +22,9 @@ const day = findDay()
 
 const commerce: NextPage = () => {
 
-  const state = useSelector(state => state)
-  const selectedCommerce = state.selectedCommerce
-  const id = selectedCommerce.id
-  const resource = state.post
+  const { post, selectedCommerce, resource } = useSelector(state => state)
 
-  const [company] = useState<any>(() => resource.filterPosts.find(element => element['id'] == id));
+  const [company] = useState<any>(() => post.filterPosts.find(element => element['id'] == selectedCommerce.id));
   const [subsidiary, setSubsidiary] = useState<any>();
   const [focus, setFocus] = useState(true);
   const [page, setPage] = useState(1)
@@ -45,7 +42,7 @@ const commerce: NextPage = () => {
   return (
     <div>
       <main>
-        {/* <Navbar /> */}
+        <Navbar resource={resource} />
         <section className={styles._moreInfoContainer}>
           <div className={styles._leftInfo}>
             <div className={styles._cardContainer}>
