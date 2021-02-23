@@ -29,13 +29,17 @@ const Navbar = ({ background = '#1652F0', resource }: any) => {
           </div>
           <div className={styles._rightSection} >
             <div className={styles._rightText}>
-              <select name="countries" className={styles._countriesSelect} defaultValue={currentLocation} onChange={changeCountry}>
-                {
-                  countries.map((country, index) => {
-                    return <option value={country.slug} key={index}>{country.name}</option>
-                  })
-                }
-              </select>
+              {
+                currentLocation ? (
+                  <select name="countries" className={styles._countriesSelect} defaultValue={currentLocation} onChange={changeCountry}>
+                    {
+                      countries.map((country, index) => {
+                        return <option value={country.slug} key={index}>{country.name}</option>
+                      })
+                    }
+                  </select>
+                ) : null
+              }
               <div>
                 <World color='#EFF4F6' />
               </div>

@@ -1,0 +1,42 @@
+._container {
+  display: flex;
+  justify-content: center;
+}
+
+._coins {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  bottom: -15%;
+  position: absolute;
+}
+
+._coin1 {
+  width: 30%;
+}
+
+._coin2 {
+  width: 30%;
+}
+
+._coin3 {
+  width: 30%;
+}
+
+._coin4 {
+  width: 30%;
+}
+
+@keyframes MoveUpDownCoins {
+  from { transform: translateY(0px)}
+  to { transform:translateY(-20px)}
+}
+
+@mixin floating ($transformY, $time) {
+  transform: translatey($transformY);
+  animation: MoveUpDownCoins $time alternate infinite;
+}
+
+.coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition1:hover {
+  @include floating (-20px, 1.3s);
+}

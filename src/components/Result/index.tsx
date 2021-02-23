@@ -4,7 +4,7 @@ import Card from '../Card'
 import Pagination from '../Pagination'
 import styles from './styles.module.scss'
 
-const perPage = 1
+const perPage = 6
 
 const Result = ({ posts }) => {
   const [page, setPage] = useState(1)
