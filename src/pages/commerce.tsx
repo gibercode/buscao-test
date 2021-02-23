@@ -1,5 +1,6 @@
-import { Result, Banner } from '../components'
 import { useSelector } from 'react-redux'
+import { Result, Navbar, Welcome } from '../components'
+import styles from '../../public/styles/Commerce.module.scss'
 
 const posts = [
   { title: 'Local A' },
@@ -32,13 +33,25 @@ const posts = [
   // { title: 'Local A' },
 ]
 
-const Testv = () => {
-  const homePage = useSelector(state => state?.page?.homePage?.home)
+const Commerce = () => {
+  const {
+    resource,
+    post: { filterPosts }
+  } = useSelector(state => state)
 
   return (
-    // <Result posts={posts} />
-    <Banner section={homePage?.secundaryBanner} />
+    <>
+      <Navbar resource={resource} />
+      <Welcome />
+      <div className={styles._resultsContainer}>
+        {
+          filterPosts.length ? (
+            <Result posts={filterPosts} />
+          ) : null
+        }
+      </div>
+    </>
   )
 }
 
-export default Testv
+export default Commerce

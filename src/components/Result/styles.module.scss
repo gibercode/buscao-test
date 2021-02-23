@@ -4,8 +4,7 @@
 }
 
 ._fixedArea {
-  height: 700px;
-  // background-color: red;
+  max-height: 100%;
 }
 
 ._cardContainer {
@@ -18,9 +17,9 @@
 
 ._paginationContainer {
   display: flex;
-  height: 10vh;
   justify-content: center;
   align-items: flex-end;
+  margin-top: 3%;
 }
 
 ._cardElement0 {
