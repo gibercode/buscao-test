@@ -2,17 +2,16 @@ import styles from './styles.module.scss'
 import Search from '../Search'
 
 const Welcome = ({ section }) => {
-
   return (
     <>
       <div className={"_main"}>
         <div className={styles._container}>
           <div className={styles._centerContainer}>
             <div className={styles._titleContainer}>
-              <p className={styles._title}>{section.title}</p>
+              <p className={styles._title}>{section?.title}</p>
             </div>
             <div className={styles._descriptionContainer}>
-              <p className={styles._description}>{section.subtitle}</p>
+              <p className={styles._description}>{section?.subtitle}</p>
             </div>
           </div>
         </div>
