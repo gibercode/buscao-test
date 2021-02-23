@@ -43,7 +43,7 @@ const Commerces = () => {
   return (
     <>
       <Navbar resource={resource} />
-      <Welcome section={home?.principalBanner} />
+      <Welcome section={home?.principalBanner} title={title} />
       <div className={styles._resultsContainer}>
         {
           filterPosts.length ? (
