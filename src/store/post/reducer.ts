@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { UPDATE_POSTS } from './action_types'
+import { SET_FILTER, UPDATE_POSTS } from './action_types'
 
 const initialState = {
   countryPosts: [],
@@ -7,12 +7,19 @@ const initialState = {
   statePosts: [],
   categoryPosts: [],
   filterPosts: [],
+  filter: {
+    state: '',
+    category: '',
+    title: ''
+  }
 }
 
 const post = (state = initialState, { type, payload }: AnyAction) => {
-  switch(type) {
+  switch (type) {
     case UPDATE_POSTS:
       return { ...state, ...payload }
+    case SET_FILTER:
+      return { ...state, ...{ filter: {...state.filter, ...payload } } }
     default:
       return state
   }
