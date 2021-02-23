@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { filterPosts } from '../../store/actions';
+import { filterPosts, setFilter } from '../../store/actions';
 import { Checkbox, DropDown } from '../../../public/images/icons'
 import styles from './styles.module.scss'
 
@@ -9,16 +9,11 @@ const Search = () => {
   const [checkedOne, setCheckedOne]: any = useState(false)
   const [checkedTwo, setCheckedTwo]: any = useState(false)
   const { categories, currentStates } = useSelector(state => state.resource);
-  const [filter, setFilter] = useState(
-    {
-      category: '',
-      title: ''
-    }
-  );
+  const { filter } = useSelector(state => state.post);
 
   const changeState = (event) => {
     dispatch(filterPosts(event.target.value, 'state'))
-    setFilter({ ...filter, ...{ category: '', title: '' } })
+    dispatch(setFilter({ state: event.target.value, category: '', title: '' }))
   }
 
   const checkStateOne = () => {
@@ -30,7 +25,7 @@ const Search = () => {
 
   const changeCategory = (event) => {
     dispatch(filterPosts(event.target.value, 'categories'))
-    setFilter({ ...filter, ...{ category: event.target.value, title: '' } })
+    dispatch(setFilter({ category: event.target.value, title: '' }))
   }
 
   const changeTitle = (event) => {
@@ -50,7 +45,7 @@ const Search = () => {
               <label style={{ color: checkedOne ? '#1652F0' : '#93959A' }} htmlFor='state'>UBICACIÓN</label>
               <div className={styles._dropdown}> <DropDown color={checkedOne ? '#1652F0' : '#93959A'} /> </div>
             </label>
-            <select name='state' onChange={changeState}>
+            <select name='state' value={filter.state} onChange={changeState}>
               <option value=''>Todos</option>
               {currentStates.map((state, index) => (<option value={state.slug} key={index}>{state.name}</option>))}
             </select>
@@ -73,7 +68,7 @@ const Search = () => {
         </div>
       </div>
       <div className={styles._inputContainer}>
-        <input placeholder='Que estás buscando' value={filter.title} onChange={(event) => setFilter({ ...filter, ...{ title: event.target.value } })} />
+        <input placeholder='Que estás buscando' value={filter.title} onChange={(event) => dispatch(setFilter({ title: event.target.value }))} />
         <button className={styles._goButton} onClick={changeTitle}>Ir</button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { UPDATE_POSTS } from './action_types'
+import { SET_FILTER, UPDATE_POSTS } from './action_types'
 import { actionObject, Filter } from '../../utils'
 
 const _filterSelection = (posts, filter, select) => {
@@ -43,3 +43,5 @@ export const filterPosts = (filter: string, type) => (dispatch, getState) => {
   const result = _filterSelection(post, filter, type);
   dispatch(actionObject(UPDATE_POSTS, result))
 }
+
+export const setFilter = (filter) => (dispatch) => dispatch(actionObject(SET_FILTER, filter))
