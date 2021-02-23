@@ -7,8 +7,7 @@ import styles from '../../public/styles/Home.module.scss'
 const Home = () => {
   const {
     page: { homePage: { home } },
-    resource,
-    post: { filterPosts }
+    resource
   } = useSelector(state => state)
 
   return (

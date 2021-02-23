@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 
 const Currency3D = () => (
-  <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div className={styles._container}>
     <div className={styles._coins}>
       <div className={styles._coin1}>
         <img className={styles.coinposition1} src='../../images/lying-coins/lying-btc.svg' width='100%'></img>
