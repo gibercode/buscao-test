@@ -30,7 +30,7 @@ const commerce: NextPage = () => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    var first_subsidiary = company.commerce.subsidiary;
+    var first_subsidiary = company ? company.commerce.subsidiary : [];
     setSubsidiary(first_subsidiary[0]);
   }, []);
 
@@ -89,7 +89,9 @@ const commerce: NextPage = () => {
             }
           </div>
           <div className={styles._paginationContainer}>
-            <Pagination color='white' activeColor='white' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/>
+            {
+              company ? <Pagination color='white' activeColor='white' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/> : ''
+            }
           </div>
         </section>
       </main>
