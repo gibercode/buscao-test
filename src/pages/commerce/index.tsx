@@ -8,10 +8,6 @@ import { useEffect, useState } from 'react';
 import { paginate } from '../../utils';
 import Pagination from '../../components/Pagination';
 
-interface Props {
-  id?: string;
-}
-
 const findDay = () => {
   const options = { weekday: 'long' };
   let date = new Date()
@@ -23,7 +19,7 @@ const findDay = () => {
 
 const perPage = 12
 
-const commerce: NextPage<Props> = () => {
+const commerce: NextPage = () => {
 
   const selectedCommerce = useSelector(state => state.selectedCommerce)
   const id = selectedCommerce.id
