@@ -1,0 +1,78 @@
+@import '../../../public/styles/index.scss';
+
+._cardsContainer {
+  background-color: $mineShaft;
+  padding: 5% 10% 0 10%;
+}
+
+._cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+._cardContent {
+  background-color: $gallery;
+  cursor: pointer;
+  margin: 0 2% 3%;
+  height: max-content;
+  padding: 1.5%;
+  border-radius: 15px;
+  width: 29%;
+  border: none;
+  text-align: left;
+  height: 7rem;
+
+  ._text {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
+  p:not(:last-child) {
+    font-family: $helveticaNowText;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+._cardContent:focus {
+  background: $blueRibbon;
+}
+
+// ._cardContent:first-of-type {
+//   background-color: $blueRibbon;
+// }
+
+._searchContainer {
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+._moreInfoContainer {
+  padding: 3% 10%;
+  margin: 0 2%;
+  display: flex;
+  justify-content: space-between;
+
+  iframe {
+    border: initial;
+    border-radius: 15px;
+    width: 400px;
+    height: 400px;
+  }
+}
+
+._leftInfo {
+  width: 50%;
+}
+
+._cardContainer {
+  margin-bottom: 1rem;
+}
+
+._paginationContainer {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+}
