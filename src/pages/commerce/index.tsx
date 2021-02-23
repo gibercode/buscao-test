@@ -21,9 +21,10 @@ const perPage = 12
 
 const commerce: NextPage = () => {
 
-  const selectedCommerce = useSelector(state => state.selectedCommerce)
+  const state = useSelector(state => state)
+  const selectedCommerce = state.selectedCommerce
   const id = selectedCommerce.id
-  const resource = useSelector(state => state.post)
+  const resource = state.post
   const day = findDay()
 
   const [company, setCompany] = useState<any>();
