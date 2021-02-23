@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import Search from '../Search'
 
-const Welcome = ({ section }) => {
+const Welcome = ({ section, title = '' }) => {
   return (
     <>
       <div className={"_main"}>
@@ -26,7 +26,19 @@ const Welcome = ({ section }) => {
 
       <div>
         <div className={styles._blackfloor}>
-
+          {
+            title ? (
+              <div className={styles._content}>
+                <div className={styles._yourResultContainer}>
+                  <p>Tus resultados: </p>
+                  <div></div>
+                </div>
+                <div className={styles._keywordContainer}>
+                  <p>{title}</p>
+                </div>
+              </div>
+            ) : null
+          }
         </div>
       </div>
 
@@ -44,4 +56,4 @@ const Welcome = ({ section }) => {
   )
 }
 
-export default Welcome;
+export default Welcome

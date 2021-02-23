@@ -142,5 +142,48 @@
   height: 20vh;
   background-color: $mineShaft;
   display: flex;
+}
+
+._content {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  & * {
+    font-family: $helveticaNowText;
+    color: $white;
+  }
+
+  & p {
+    font-size: 20px;
+  }
+}
+
+._yourResultContainer {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+  width: 50%;
+  height: 100%;
+  padding-right: 8px;
+
+  & > div {
+    background-color: $white;
+    width: 140px;
+    height: 5px;
+    margin-top: 10px;
+  }
+}
+
+._keywordContainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  & > p {
+    margin-bottom: 14px;
+  }
 }
