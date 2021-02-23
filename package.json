@@ -20,7 +20,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.32.6"
+    "sass": "^1.32.6",
+    "use-dynamic-refs": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.21",

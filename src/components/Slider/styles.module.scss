@@ -30,7 +30,7 @@
 ._stepper {
   width: 100%;
   position: absolute;
-  bottom: 3rem;
+  bottom: 1.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -47,7 +47,6 @@
 ._steps {
   display: flex;
   flex-direction: row;
-  position: fixed;
 }
 
 ._container {
@@ -84,4 +83,10 @@
   & p {
     font-size: 1.3rem;
   }
+}
+
+
+._parent {
+   position: relative;
+   height: auto;
 }
