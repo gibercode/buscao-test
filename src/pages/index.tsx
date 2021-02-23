@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className={styles._container}>
       <Navbar resource={resource} />
-      <Welcome />
+      <Welcome section={home?.principalBanner}/>
       <Currency3D />
       <FeaturedSlider posts={resource?.posts} />
       <Banner section={home?.secundaryBanner} />

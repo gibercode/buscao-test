@@ -2,6 +2,7 @@ import { memo, useState } from 'react'
 import { paginate } from '../../utils'
 import Card from '../Card'
 import Pagination from '../Pagination'
+import Currency from '../Currency'
 import styles from './styles.module.scss'
 
 const perPage = 6
@@ -17,7 +18,9 @@ const Result = ({ posts }) => {
             paginate(posts, page, perPage).map((post, index) => {
               return (
                 <div key={index} className={styles[`_cardElement${index}`]}>
-                  <Card name={post.title} />
+                  {/* <Currency currenciesData={{ currencies: post.commerce.paymentmethods }}> */}
+                    <Card name={post.title} />
+                  {/* </Currency> */}
                 </div>
               )
             })
