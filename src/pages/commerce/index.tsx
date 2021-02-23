@@ -90,7 +90,7 @@ const commerce: NextPage = () => {
           </div>
           <div className={styles._paginationContainer}>
             {
-              company ? <Pagination color='white' activeColor='white' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/> : ''
+              company ? <Pagination color='white' activeColor='#1652F0' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/> : ''
             }
           </div>
         </section>
