@@ -18,6 +18,7 @@ const findDay = () => {
 }
 
 const perPage = 12
+const day = findDay()
 
 const commerce: NextPage = () => {
 
@@ -25,17 +26,14 @@ const commerce: NextPage = () => {
   const selectedCommerce = state.selectedCommerce
   const id = selectedCommerce.id
   const resource = state.post
-  const day = findDay()
 
-  const [company, setCompany] = useState<any>();
+  const [company] = useState<any>(() => resource.filterPosts.find(element => element['id'] == id));
   const [subsidiary, setSubsidiary] = useState<any>();
   const [focus, setFocus] = useState(true);
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    var result: any = resource.filterPosts.find(element => element['id'] == id);
-    setCompany(result);
-    var first_subsidiary = result? result.commerce.subsidiary : '';
+    var first_subsidiary = company.commerce.subsidiary;
     setSubsidiary(first_subsidiary[0]);
   }, []);
 
@@ -94,7 +92,7 @@ const commerce: NextPage = () => {
             }
           </div>
           <div className={styles._paginationContainer}>
-            <Pagination color='white' activeColor='white' currentPage={page} items={company ? company.commerce.subsidiary : [1]} perPage={perPage} changePage={setPage}/>
+            <Pagination color='white' activeColor='white' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/>
           </div>
         </section>
       </main>
