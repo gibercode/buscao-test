@@ -5,8 +5,7 @@ const initialState = {
 	id: null
 }
 
-export default (state = initialState, { type, payload }: AnyAction) => {
-
+ const selectedCommerceReducer = (state = initialState, { type, payload }: AnyAction) => {
   switch(type) {
     case SELECTED_COMMERCE:
     return { ...state, id: payload }
@@ -15,3 +14,5 @@ export default (state = initialState, { type, payload }: AnyAction) => {
     return state;
   }
 }
+
+export default selectedCommerceReducer
