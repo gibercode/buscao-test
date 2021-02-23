@@ -27,7 +27,8 @@ const FeaturedSlider = ({ posts }) => {
     if (getElement) {
       getElement.scrollIntoView({
         behavior: 'smooth',
-        block: 'end'
+        block: 'nearest',
+        inline: 'nearest'
       });
     }
 
