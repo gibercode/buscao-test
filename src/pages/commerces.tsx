@@ -17,7 +17,14 @@ const Commerces = () => {
         {
           filterPosts.length ? (
             <Result posts={filterPosts} />
-          ) : null
+          ) : (
+            <div className={styles._notFoundContainer}>
+              <div>
+                <p>¡Lo siento! No hay servicios que coincida con tu búsqueda.</p>
+                <p>Intente cambiar sus filtros de búsqueda</p>
+              </div>
+            </div>
+          )
         }
       </div>
     </>
