@@ -3,18 +3,23 @@ import styles from './styles.module.scss';
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
-import { useSelector } from 'react-redux';
 import { paginate } from '../../utils';
+import { setSelectedCommerce } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const FeaturedSlider = ({ posts }) => {
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     calculateWidth();
   }, [])
+
 
   const nextOrPrevious = (param) => {
     let pagination = page;
@@ -73,6 +78,12 @@ const FeaturedSlider = ({ posts }) => {
     return lengthRounded;
   }
 
+  const redirect = (commerce) => {
+    const id = commerce.id;
+    dispatch(setSelectedCommerce(id));
+    router.push('/commerce');
+  }
+
   return (
     <>
       <div className={styles._itemsParent}>
@@ -92,7 +103,7 @@ const FeaturedSlider = ({ posts }) => {
 
                       {
                         paginate(posts, page, 2).map((item, index) => {
-                          const { commerce } = item
+                          const { commerce } = item;
 
                           const chechSchedule = () => {
                             const day = new Date().getDay();
@@ -133,13 +144,13 @@ const FeaturedSlider = ({ posts }) => {
                           }
 
                           return (
-                            <div className={styles._cardsParent} key={index}>
+                            <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
                               <Card
                                 name={item.title}
                                 address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
                                 url={commerce?.image}
                                 description={commerce?.description}
-                                phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+                                phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
                                 status={chechSchedule()}
                               />
                             </div>

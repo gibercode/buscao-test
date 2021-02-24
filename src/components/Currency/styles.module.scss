@@ -29,7 +29,7 @@
     position: relative;
     top: 0px;
     right: 0px;
-    width: 480px;
+    width: 100%;
     background: $gallery;
     box-shadow: none;
   }
@@ -67,7 +67,7 @@
   }
 
   ._coinBox {
-    width: 160px;
+    width: 30%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
