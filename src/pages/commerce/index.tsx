@@ -39,6 +39,8 @@ const commerce: NextPage = () => {
     setFocus(false);
   }
 
+  console.log(company)
+
   return (
     <div>
       <main>
@@ -68,11 +70,11 @@ const commerce: NextPage = () => {
           <Search />
         </section>
 
-        <section className={styles._cardsContainer}>
-          <div className={styles._cards}>
-            {
-            company ?
-              paginate(company.commerce.subsidiary, page, perPage).map((card, index) => {
+        {
+          company ?
+          <section className={styles._cardsContainer}>
+            <div className={styles._cards}>
+              { paginate(company.commerce.subsidiary, page, perPage).map((card, index) => {
                 return (
                   <button autoFocus={(index==0) ? focus : false} className={styles._cardContent} id={index.toString()} key={index} onClick={() => changeCompany(card)}>
                   <p className={styles._text}> {card.name}</p>
@@ -83,17 +85,16 @@ const commerce: NextPage = () => {
                     <p> - </p>
                   }
                 </button>
-                )
+                ) })
               }
-            ) : ''
-            }
-          </div>
-          <div className={styles._paginationContainer}>
-            {
-              company ? <Pagination color='white' activeColor='#1652F0' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/> : ''
-            }
-          </div>
-        </section>
+              </div>
+            <div className={styles._paginationContainer}>
+              {
+                company ? <Pagination color='white' activeColor='#1652F0' currentPage={page} items={company?.commerce.subsidiary} perPage={perPage} changePage={setPage}/> : ''
+              }
+            </div>
+          </section> : ''
+        }
       </main>
     </div>
   );
