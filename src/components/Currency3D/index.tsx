@@ -54,19 +54,18 @@ const Currency3D = () => {
   }
 
   return (
-    <>
-      <div className={styles._container}>
-        <div className={styles._coins}>
-          {
-            coins.map((res, index) => {
-              return (
-                <div key={index} className={res.class}>
-                  <img id={res.id} className={res.animation} onMouseOver={() => res.enter(index)} onMouseOut={() => res.out()} src={res.source} width='100%'></img>
-                </div>
-              )
-            })
-          }
-        </div>
+
+    <div className={styles._container}>
+      <div className={styles._coins}>
+        {
+          coins.map((res, index) => {
+            return (
+              <div key={index} className={res.class}>
+                <img id={res.id} className={res.animation} onMouseOver={() => res.enter(index)} onMouseOut={() => res.out()} src={res.source} width='100%'></img>
+              </div>
+            )
+          })
+        }
       </div>
 
 
@@ -89,7 +88,7 @@ const Currency3D = () => {
         to { transform:translateY(0px)}
       }
     `}</style>
-    </>
+    </div>
   )
 }
 export default Currency3D
