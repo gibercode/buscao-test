@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 const Currency = ({ children = null, currenciesData = null }) => {
 
     const { currencies } = (currenciesData && currenciesData.length) ? currenciesData : useSelector(state => state.resource);
-
+    
     return (
         <div className={styles._currenciesContent}>
             <div className={(children) ? styles._currenciesCard : styles._currenciesCard + ' ' + styles._visible}>

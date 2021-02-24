@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 const Blog: NextPage = () => {
 
-  const { filterPosts } = useSelector(state => state.post)
+  const { post: {filterPosts}, resource } = useSelector(state => state)
 
   return (
     <div className='blogSpot'>
@@ -17,7 +17,7 @@ const Blog: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={styles.mainSpot}>
-        <Navbar />
+        <Navbar resource={resource} />
         <Currency />
         <Search />
         <h1 className=''>Latest blog articles</h1>
