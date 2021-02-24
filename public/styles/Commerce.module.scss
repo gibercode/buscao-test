@@ -1,4 +1,4 @@
-@import '../../../public/styles/index.scss';
+@import '../styles/';
 
 ._cardsContainer {
   background-color: $mineShaft;
@@ -33,14 +33,6 @@
     margin-bottom: 0.5rem;
   }
 }
-
-._cardContent:focus {
-  background: $blueRibbon;
-}
-
-// ._cardContent:first-of-type {
-//   background-color: $blueRibbon;
-// }
 
 ._searchContainer {
   margin: 2%;

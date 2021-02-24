@@ -21,7 +21,9 @@ const Navbar = ({ background = '#1652F0', resource }: any) => {
               </Link>
             </div>
             <div className={styles._links}>
-              <p className={styles._textLink}> Comercios </p>
+              <Link href="/commerces">
+                <p className={styles._textLink}> Comercios </p>
+              </Link>
               <p className={styles._textLink}> Nosotros </p>
               <div className={styles._btnParent}>
                 <a href='https://cryptobuyer.io' target='_blank'>

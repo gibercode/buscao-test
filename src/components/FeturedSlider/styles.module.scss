@@ -10,10 +10,10 @@
   align-items: center;
   cursor: pointer;
   @if $direction == 'left' {
-    margin-right: 2.5rem;
+    margin-right: 2rem;
   }
   @else {
-    margin-left: 2.5rem;
+    margin-left: 2rem;
   }
 }
 
@@ -21,12 +21,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5rem 0rem;
-  overflow-y: hidden;
 }
 
 ._itemsChild {
-  width: 70%;
+  width: 80%;
+  height: 420px;
+  padding: 95px 0px;
+  overflow-y: visible;
+  overflow-x: hidden;
   overflow-y: hidden;
   scrollbar-width: none;
 
@@ -73,7 +75,7 @@
 
 ._cardsParent {
   width: calc(50% - 0.2rem);
-  padding: 1rem;
+  padding: 1rem 2.5rem;
   cursor: pointer;
 }
 

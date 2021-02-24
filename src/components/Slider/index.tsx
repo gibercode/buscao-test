@@ -18,11 +18,11 @@ const Slider = ({ page }) => {
   }, [currentImage])
 
   const sliding = (value) => {
-    let offset = page.slideshow[value].image.id.current.getBoundingClientRect().left;
-    let offsetString = offset.toString();
+    let offset = page?.slideshow[value]?.image?.id?.current?.getBoundingClientRect()?.left;
+    let offsetString = offset?.toString();
 
-    if (offsetString.includes('-')) {
-      const newOffset = offsetString.replace('-', '');
+    if (offsetString?.includes('-')) {
+      const newOffset = offsetString?.replace('-', '');
       offset = Number(newOffset);
     }
 

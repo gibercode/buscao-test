@@ -1,12 +1,12 @@
-import { wrapper } from '../../store';
-import { getResources } from '../../store/actions';
+import { wrapper } from '../store';
+import { getResources } from '../store/actions';
 import { useSelector } from 'react-redux';
-import { Navbar, Search, Card, Currency } from '../../components';
+import { Navbar, Search, Card, Currency } from '../components';
 import { NextPage } from 'next';
-import styles from './styles.module.scss';
+import styles from '../../public/styles/Commerce.module.scss';
 import { useEffect, useState } from 'react';
-import { paginate } from '../../utils';
-import Pagination from '../../components/Pagination';
+import { paginate } from '../utils';
+import Pagination from '../components/Pagination';
 
 const findDay = () => {
   const options = { weekday: 'long' };
@@ -26,17 +26,22 @@ const commerce: NextPage = () => {
 
   const [company] = useState<any>(() => post.filterPosts.find(element => element['id'] == selectedCommerce.id));
   const [subsidiary, setSubsidiary] = useState<any>();
-  const [focus, setFocus] = useState(true);
+  const [focus, setFocus] = useState(1);
   const [page, setPage] = useState(1)
 
   useEffect(() => {
     var first_subsidiary = company ? company.commerce.subsidiary : [];
     setSubsidiary(first_subsidiary[0]);
+    changeCompany(first_subsidiary[0], 0)
   }, []);
 
-  const changeCompany = (node) => {
+  const changeCompany = (node, element) => {
     setSubsidiary(node);
-    setFocus(false);
+    setFocus(element);
+    var x = document.getElementById(element)
+    var y = document.getElementById(focus.toString())
+    x?.setAttribute("style", "color: white; background-color: #1652F0;")
+    y?.removeAttribute("style")
   }
 
   return (
@@ -74,7 +79,7 @@ const commerce: NextPage = () => {
             <div className={styles._cards}>
               { paginate(company.commerce.subsidiary, page, perPage).map((card, index) => {
                 return (
-                  <button autoFocus={(index==0) ? focus : false} className={styles._cardContent} id={index.toString()} key={index} onClick={() => changeCompany(card)}>
+                  <button className={styles._cardContent} id={index.toString()} key={index} onClick={(e) => changeCompany(card, index)}>
                   <p className={styles._text}> {card.name}</p>
                   <p>{card.phoneNumber}</p>
                   {
