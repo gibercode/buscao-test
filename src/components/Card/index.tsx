@@ -3,7 +3,8 @@ import styles from './styles.module.scss';
 import { Location, Clock } from '../../../public/images/icons';
 import { CardProps } from './type';
 
-const Card: FC<CardProps> =  ({ name, address, url, description, phone, status }) => {
+const Card: FC<CardProps> =  ({ name, address, longAddr, url, description, phone = ['LLAMAR', '_leftCard'], status, open }) => {
+
   return (
     <div>
       <div className={styles._card}>
@@ -17,22 +18,44 @@ const Card: FC<CardProps> =  ({ name, address, url, description, phone, status }
             <span className={styles._text}> { description || 'Supermercados, Alimentos, Charcuteria' } </span>
           </div>
 
-          <div className={styles._rightText}>
-            <p className={status ? styles._statusText : styles._closedText}> { status ? 'ABIERTO' : 'CERRADO '} </p>
-            <Clock color={status ? '#4A973C' : '#EC3333'} />
-          </div>
+          {
+            status ?
+            <div className={styles._rightText}>
+              <p className={status ? styles._statusText : styles._closedText}> { status ? 'ABIERTO' : 'CERRADO '} </p>
+              <Clock color={status ? '#4A973C' : '#EC3333'} />
+            </div> : ''
+          }
+
+          {
+            open ?
+            <div className={styles._rightText}>
+              <p className={styles._statusText} >ABIERTO</p>
+              <Clock color='#4A973C' />
+            </div> : ''
+          }
         </div>
       </div>
 
-      <div className={styles._infoParent}>
+      <div className={styles[phone[1]]}>
+
+        {
+         longAddr ?
+         <div className={styles._longAddress}>
+            <p> { longAddr } </p>
+          </div> : ''
+        }
+
         <div className={styles._call}>
-          <p> { phone || '+58 424 1872382' } </p>
+          <p> { phone[0] } </p>
         </div>
 
-        <div className={styles._location}>
-          <p> { address || 'Caracas' } </p>
-          <Location color='#828282' />
-        </div>
+        {
+          address ?
+          <div className={styles._location}>
+            <p> { address } </p>
+            <Location color='#828282' />
+          </div> : ''
+        }
       </div>
     </div>
   )

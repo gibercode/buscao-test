@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { changeResources } from '../../store/actions'
 import { World } from '../../../public/images/icons'
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 const Navbar = ({ background = '#1652F0', resource }: any) => {
   const { currentLocation, countries } = resource
@@ -11,11 +12,13 @@ const Navbar = ({ background = '#1652F0', resource }: any) => {
 
   return (
     <>
-      <div className='_main' >
+      <div className='_main'>
         <div className={styles._container}>
           <div className={styles._leftSection} >
             <div className={styles._logo}>
-              <img src='images/logos/logo.svg' />
+              <Link href="/">
+                <img src='images/logos/logo.svg' />
+              </Link>
             </div>
             <div className={styles._links}>
               <p className={styles._textLink}> Comercios </p>
