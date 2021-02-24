@@ -39,8 +39,6 @@ const commerce: NextPage = () => {
     setFocus(false);
   }
 
-  console.log(company)
-
   return (
     <div>
       <main>
