@@ -1,3 +1,19 @@
+@import '../styles';
+
 ._resultsContainer {
   padding: 100px;
+}
+
+._notFoundContainer {
+  display: flex;
+  justify-content: center;
+
+  & * {
+    font-family: $helveticaNowText;
+  }
+
+  & p {
+    font-size: 20px;
+    text-align: center;
+  }
 }
