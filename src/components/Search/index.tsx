@@ -15,7 +15,7 @@ const Search = () => {
 
   const changeState = (event) => {
     dispatch(filterPosts(event.target.value, 'state'))
-    setSelect({ state: event.target.value, category: '', title: '' })
+    setSelect({ ...select, ...{ state: event.target.value, category: '', title: '' } })
   }
 
   const checkStateOne = () => {
@@ -27,7 +27,7 @@ const Search = () => {
 
   const changeCategory = (event) => {
     dispatch(filterPosts(event.target.value, 'categories'))
-    setSelect({ category: event.target.value, title: '' })
+    setSelect({ ...select, ...{ category: event.target.value, title: '' } })
   }
 
   const changeTitle = (event) => {
@@ -71,7 +71,7 @@ const Search = () => {
         </div>
       </div>
       <div className={styles._inputContainer}>
-        <input placeholder='Que estás buscando' value={select.title} onChange={(event) => dispatch(setFilter({ title: event.target.value }))} />
+        <input placeholder='Que estás buscando' value={select.title} onChange={(event) => setSelect({ ...select, ...{ title: event.target.value } })} />
         <button className={styles._goButton} onClick={changeTitle}>Ir</button>
       </div>
     </div>
