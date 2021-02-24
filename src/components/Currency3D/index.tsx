@@ -2,8 +2,9 @@ import styles from './styles.module.scss'
 import { useState, useRef } from 'react';
 const Currency3D = () => {
 
-  const [reference, setReference]: any = useState({one:'1', two:'2', three:'3',four:'4'})
-  const [coin, setCoin]: any = useState({one:'_coinStaticOne', two:'_coinStaticOne', three: '_coinStaticOne', four: '_coinStaticOne'})
+  const [reference, setReference]: any = useState({ one: 0, two: 0, three: 0, four: 0 })
+  const [currentId, setcurrentId]: any = useState(false)
+  const [coin, setCoin]: any = useState({ one: '_coinStaticOne', two: '_coinStaticOne', three: '_coinStaticOne', four: '_coinStaticOne' })
   const coins = [
     {
       id: '1',
@@ -40,16 +41,16 @@ const Currency3D = () => {
   ]
 
   const mouseEnter = (number) => {
-    setCoin({...coin, [number]:'_coinPositionOne'})
+    setCoin({ ...coin, [number]: '_coinPositionOne' })
   }
 
   const mouseOut = (id, number) => {
-    const reference = document.getElementById(id)
-    const getCoinPosition = new DOMMatrix(window.getComputedStyle(reference).transform)
+    setcurrentId(id)
+    const referenceCoin = document.getElementById(id)
+    const getCoinPosition = new DOMMatrix(window.getComputedStyle(referenceCoin).transform)
     const coinPosition = getCoinPosition.m42
-    setReference(`${coinPosition}px`)
-    setCoin({...coin, [number]:'_coinPositionTwo'})
-    console.log(reference);
+    setReference({ ...reference, ['one']: `${coinPosition}px` })
+    setCoin({ ...coin, [number]: `_coinPositionTwo${id}` })
   }
 
   return (
@@ -57,11 +58,12 @@ const Currency3D = () => {
       <div className={styles._container}>
         <div className={styles._coins}>
           {
-            coins.map((res, index) => { return(
-              <div className={res.class}>
-                <img id={res.id} className={res.animation} onMouseEnter={() => res.enter(index)} onMouseOut={() => res.out()} src={res.source} width='100%'></img>
-              </div>
-            )
+            coins.map((res, index) => {
+              return (
+                <div key={index} className={res.class}>
+                  <img id={res.id} className={res.animation} onMouseEnter={() => res.enter(index)} onMouseOut={() => res.out()} src={res.source} width='100%'></img>
+                </div>
+              )
             })
           }
         </div>
@@ -71,12 +73,11 @@ const Currency3D = () => {
       <style jsx>{`
       ._coinStaticOne {
         display:block;
-        background: red
       }
       ._coinPositionOne{
         animation: MoveUpDownCoins 1s alternate infinite
       }
-      ._coinPositionTwo{
+      ._coinPositionTwo${currentId}{
         animation: DownCoins 1s
       }
       @keyframes MoveUpDownCoins {
@@ -84,7 +85,7 @@ const Currency3D = () => {
         to { transform:translateY(-20px)}
       }
       @keyframes DownCoins {
-        from { transform: translateY(${reference})}
+        from { transform: translateY(${reference['one']})}
         to { transform:translateY(0px)}
       }
     `}</style>
