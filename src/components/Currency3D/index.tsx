@@ -14,6 +14,7 @@ const Currency3D = () => {
       out: () => mouseOut('1', 'one'),
       animation: coin.one
     },
+
     {
       id: '2',
       source: '../../images/lying-coins/lying-lite.svg',
@@ -43,12 +44,12 @@ const Currency3D = () => {
   const mouseEnter = (number) => setCoin({ ...coin, [number]: '_coinPositionOne' })
 
   const mouseOut = (id, number) => {
-    setcurrentId(id)
-    const referenceCoin = document.getElementById(id)
-    const getCoinPosition = new DOMMatrix(window.getComputedStyle(referenceCoin).transform)
-    const coinPosition = getCoinPosition.m42
-    setReference(`${coinPosition}px`)
-    setCoin({ ...coin, [number]: `_coinPositionTwo${id}` })
+    setcurrentId(id);
+    const referenceCoin = document.getElementById(id);
+    const getCoinPosition = new DOMMatrix(window.getComputedStyle(referenceCoin).transform);
+    const coinPosition = getCoinPosition.m42;
+    setReference(`${coinPosition}px`);
+    setCoin({ ...coin, [number]: `_coinPositionTwo${id}` });
   }
 
   return (
