@@ -72,7 +72,7 @@ const Currency3D = () => {
 
       <style jsx>{`
       ._coinStaticOne {
-        display:block;
+        display:flex;
       }
       ._coinPositionOne{
         animation: MoveUpDownCoins 1s alternate infinite
