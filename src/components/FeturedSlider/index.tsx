@@ -104,7 +104,8 @@ const FeaturedSlider = ({ posts }) => {
                             const currentMinutes = new Date().getMinutes();
 
                             if (minutesClosed == 0) {
-                              if (hourClosed <= currentHour) return false;
+                              if (hourClosed < currentHour) return false;
+                              if (hourClosed == currentHour) return true;
                             }
 
                             if (minutesClosed > 0) {
@@ -120,14 +121,15 @@ const FeaturedSlider = ({ posts }) => {
                             const minutesOpen = processMinutes(openHour);
 
                             if (minutesOpen == 0) {
-                              if (hourOpen >= currentHour) return false
-
-                              if (minutesOpen > 0) {
-                                if (currentMinutes < minutesOpen) return false;
-                              }
-
-                              return true;
+                              if (hourOpen > currentHour) return false;
+                              if (hourOpen == currentHour) return true;
                             }
+
+                            if (minutesOpen > 0) {
+                              if (currentMinutes < minutesOpen && hourOpen <= currentHour) return false;
+                            }
+
+                            return true;
                           }
 
                           return (

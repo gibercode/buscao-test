@@ -11,7 +11,7 @@ const Navbar = ({ background = '#1652F0', resource }: any) => {
 
   return (
     <>
-      <div className='_main' >
+      <div className='_main'>
         <div className={styles._container}>
           <div className={styles._leftSection} >
             <div className={styles._logo}>
