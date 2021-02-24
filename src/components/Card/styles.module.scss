@@ -65,10 +65,25 @@
   align-items: center;
 }
 
-._infoParent {
+._leftCard {
   display: flex;
   margin-top: 1rem;
   align-items: center;
+  justify-content: flex-start;
+}
+
+._infoParentBlack {
+  display: flex;
+  margin: 1.5rem 1rem 0 1rem;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+
+  ._call {
+    background-color: $mineShaft;
+    width: 35%;
+    text-align: center;
+  }
 }
 
 ._call {
@@ -80,6 +95,13 @@
   border-radius: 5px;
   font-size: 0.9rem;
   color: $white;
+}
+
+._longAddress {
+  color: $blueRibbon;
+  font-family: 'Helvetica-Now-Text';
+  font-size: 14px;
+  width: 60%;
 }
 
 ._location {

@@ -146,7 +146,7 @@ const FeaturedSlider = ({ posts }) => {
                                 address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
                                 url={commerce?.image}
                                 description={commerce?.description}
-                                phone={item?.commerce?.subsidiary[0]?.phoneNumber}
+                                phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
                                 status={chechSchedule()}
                               />
                             </div>
