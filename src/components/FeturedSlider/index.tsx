@@ -7,6 +7,7 @@ import { paginate } from '../../utils';
 import { setSelectedCommerce } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Currency from '../Currency';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
@@ -145,14 +146,16 @@ const FeaturedSlider = ({ posts }) => {
 
                           return (
                             <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
-                              <Card
-                                name={item.title}
-                                address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
-                                url={commerce?.image}
-                                description={commerce?.description}
-                                phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
-                                status={chechSchedule()}
-                              />
+                              <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
+                                <Card
+                                  name={item.title}
+                                  address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+                                  url={commerce?.image}
+                                  description={commerce?.description}
+                                  phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
+                                  status={chechSchedule()}
+                                />
+                              </Currency>
                             </div>
                           )
                         })
