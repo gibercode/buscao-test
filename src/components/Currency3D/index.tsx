@@ -49,7 +49,7 @@ const Currency3D = () => {
     const getCoinPosition = new DOMMatrix(window.getComputedStyle(referenceCoin).transform);
     const coinPosition = getCoinPosition.m42;
     setReference(`${coinPosition}px`);
-    setCoin({ ...coin, [number]: `_coinPositionTwo${id}` });
+    setCoin({ ...coin, [number]: `_coinPositionTwo${id}` })
   }
 
   return (
