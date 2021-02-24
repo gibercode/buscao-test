@@ -1,12 +1,12 @@
-import { wrapper } from '../../store';
-import { getResources } from '../../store/actions';
+import { wrapper } from '../store';
+import { getResources } from '../store/actions';
 import { useSelector } from 'react-redux';
-import { Navbar, Search, Card, Currency } from '../../components';
+import { Navbar, Search, Card, Currency } from '../components';
 import { NextPage } from 'next';
-import styles from './styles.module.scss';
+import styles from '../../public/styles/Commerce.module.scss';
 import { useEffect, useState } from 'react';
-import { paginate } from '../../utils';
-import Pagination from '../../components/Pagination';
+import { paginate } from '../utils';
+import Pagination from '../components/Pagination';
 
 const findDay = () => {
   const options = { weekday: 'long' };
