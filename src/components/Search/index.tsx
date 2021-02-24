@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux'
 import { filterPosts, setFilter } from '../../store/actions';
 import { Checkbox, DropDown } from '../../../public/images/icons'
@@ -6,6 +7,8 @@ import styles from './styles.module.scss'
 
 const Search = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
+
   const [checkedOne, setCheckedOne]: any = useState(false)
   const [checkedTwo, setCheckedTwo]: any = useState(false)
 
@@ -33,6 +36,9 @@ const Search = () => {
   const changeTitle = (event) => {
     dispatch(filterPosts(select.title, 'title'))
     dispatch(setFilter(select))
+    console.log(router);
+
+    // router.push('/commerces')
   }
 
 

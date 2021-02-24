@@ -23,7 +23,7 @@ const resources = async () => {
     countries: normalizedArray(data?.countries?.nodes),
     posts: normalizedArray(data?.posts?.nodes),
     homePage: normalized(data?.page),
-    currencies: normalized(data?.currencies.nodes)
+    currencies: normalized(data?.currencies?.nodes)
   }
 
   return resources

@@ -7,9 +7,9 @@ const Slider = ({ page }) => {
   const [up, setUp] = useState(true);
   const parent = useRef(null);
 
-  page.slideshow[0].image.id = useRef(null);
-  page.slideshow[1].image.id = useRef(null);
-  page.slideshow[2].image.id = useRef(null);
+  // page.slideshow[0].image.id = useRef(null);
+  // page.slideshow[1].image.id = useRef(null);
+  // page.slideshow[2].image.id = useRef(null);
 
   useEffect(() => {
     sliding(currentImage);
@@ -18,11 +18,11 @@ const Slider = ({ page }) => {
   }, [currentImage])
 
   const sliding = (value) => {
-    let offset = page.slideshow[value].image.id.current.getBoundingClientRect().left;
-    let offsetString = offset.toString();
+    let offset = page?.slideshow[value]?.image?.id?.current?.getBoundingClientRect()?.left;
+    let offsetString = offset?.toString();
 
-    if (offsetString.includes('-')) {
-      const newOffset = offsetString.replace('-', '');
+    if (offsetString?.includes('-')) {
+      const newOffset = offsetString?.replace('-', '');
       offset = Number(newOffset);
     }
 
