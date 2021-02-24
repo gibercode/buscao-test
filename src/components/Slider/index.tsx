@@ -7,9 +7,9 @@ const Slider = ({ page }) => {
   const [up, setUp] = useState(true);
   const parent = useRef(null);
 
-  // page.slideshow[0].image.id = useRef(null);
-  // page.slideshow[1].image.id = useRef(null);
-  // page.slideshow[2].image.id = useRef(null);
+  page.slideshow[0].image.id = useRef(null);
+  page.slideshow[1].image.id = useRef(null);
+  page.slideshow[2].image.id = useRef(null);
 
   useEffect(() => {
     sliding(currentImage);
