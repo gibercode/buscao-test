@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 const Currency3D = () => {
 
   const [reference, setReference]: any = useState({ one: 0, two: 0, three: 0, four: 0 })
