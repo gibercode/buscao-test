@@ -1,6 +1,7 @@
 ._container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 ._coins {
@@ -25,18 +26,4 @@
 
 ._coin4 {
   width: 30%;
-}
-
-@keyframes MoveUpDownCoins {
-  from { transform: translateY(0px)}
-  to { transform:translateY(-20px)}
-}
-
-@mixin floating ($transformY, $time) {
-  transform: translatey($transformY);
-  animation: MoveUpDownCoins $time alternate infinite;
-}
-
-.coinposition2:hover, .coinposition3:hover, .coinposition4:hover , .coinposition1:hover {
-  @include floating (-20px, 1.3s);
 }
