@@ -2,14 +2,14 @@ import styles from './styles.module.scss'
 import { useState } from 'react';
 const Currency3D = () => {
 
-  const [reference, setReference]: any = useState('')
-  const [currentId, setcurrentId]: any = useState(false)
+  const [reference, setReference]: any = useState('0px')
+  const [currentId, setcurrentId]: any = useState(null)
   const [coin, setCoin]: any = useState({ one: '_coinStaticOne', two: '_coinStaticOne', three: '_coinStaticOne', four: '_coinStaticOne' })
   const coins = [
     {
       id: '1',
       source: '../../images/lying-coins/lying-btc.svg',
-      class: '._coin1',
+      class: '_coin1',
       enter: (index) => mouseEnter('one'),
       out: () => mouseOut('1', 'one'),
       animation: coin.one
@@ -17,7 +17,7 @@ const Currency3D = () => {
     {
       id: '2',
       source: '../../images/lying-coins/lying-lite.svg',
-      class: '._coin2',
+      class: '_coin2',
       enter: (index) => mouseEnter('two'),
       out: () => mouseOut('2', 'two'),
       animation: coin.two
@@ -25,7 +25,7 @@ const Currency3D = () => {
     {
       id: '3',
       source: '../../images/lying-coins/lying-ether.svg',
-      class: '._coin3',
+      class: '_coin3',
       enter: (index) => mouseEnter('three'),
       out: () => mouseOut('3', 'three'),
       animation: coin.three
@@ -33,7 +33,7 @@ const Currency3D = () => {
     {
       id: '4',
       source: '../../images/lying-coins/lying-xpt.svg',
-      class: '._coin4',
+      class: '_coin4',
       enter: (index) => mouseEnter('four'),
       out: () => mouseOut('4', 'four'),
       animation: coin.four
@@ -58,7 +58,7 @@ const Currency3D = () => {
           {
             coins.map((res, index) => {
               return (
-                <div key={index} className={res.class}>
+                <div key={index} className={styles[res.class]}>
                   <img id={res.id} className={res.animation} onMouseOver={() => res.enter(index)} onMouseOut={() => res.out()} src={res.source} width='100%'></img>
                 </div>
               )
@@ -67,10 +67,9 @@ const Currency3D = () => {
         </div>
       </div>
 
-
       <style jsx>{`
       ._coinStaticOne {
-        display:flex;
+        transform: translateY(0px)
       }
       ._coinPositionOne{
         animation: MoveUpDownCoins 1s alternate infinite
