@@ -13,6 +13,7 @@ posts {
     }
     commerce {
       image
+      outstanding
       country {
         id
         name

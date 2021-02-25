@@ -21,12 +21,12 @@ export const getResources: any = () => async dispatch => {
   const outstanding = Filter(countryPosts, true, 'outstanding');
 
   dispatch(actionObject(GET_RESOURCES, allResources))
-  dispatch(actionObject(UPDATE_POSTS, { 
-    countryPosts: countryPosts, 
-    statePosts: countryPosts, 
-    categoryPosts: countryPosts, 
-    filterPosts: countryPosts, 
-    outstandingPosts: outstanding 
+  dispatch(actionObject(UPDATE_POSTS, {
+    countryPosts: countryPosts,
+    statePosts: countryPosts,
+    categoryPosts: countryPosts,
+    filterPosts: countryPosts,
+    outstandingPosts: outstanding
   }))
 }
 

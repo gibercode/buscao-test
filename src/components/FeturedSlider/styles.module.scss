@@ -159,3 +159,15 @@
 ._rightArrow {
   @include arrow('right');
 }
+
+._messageParent {
+  height: 26.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & p {
+    font-family: $helveticaNowText;
+    font-size: 1.2rem;
+  }
+}

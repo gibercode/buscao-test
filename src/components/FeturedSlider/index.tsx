@@ -12,6 +12,7 @@ import Currency from '../Currency';
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const FeaturedSlider = ({ posts }) => {
+
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
@@ -68,13 +69,13 @@ const FeaturedSlider = ({ posts }) => {
       return;
     }
 
-    setSliderWidth(`${width}%`);
+    const percentWidth = width * 100;
+    setSliderWidth(`${percentWidth}%`);
   }
 
   const pagesArray = () => {
     const length = posts.length / 2;
     const lengthRounded = Math.round(length);
-
     return lengthRounded;
   }
 
@@ -86,91 +87,97 @@ const FeaturedSlider = ({ posts }) => {
 
   return (
     <>
-      <div className={styles._itemsParent}>
-        <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
-          <ArrowLeft color='#FFFFFF' />
-        </div>
-        <div className={styles._itemsChild}>
-          <div className={styles._slider} style={{ width: sliderWidth }}>
+      {
+        posts.length ?
+          <div className={styles._itemsParent}>
+            <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
+              <ArrowLeft color='#FFFFFF' />
+            </div>
+            <div className={styles._itemsChild}>
+              <div className={styles._slider} style={{ width: sliderWidth }}>
 
-            {
-              Array(pagesArray()).fill(1).map((res, index) => {
-                const page = index + 1;
+                {
+                  Array(pagesArray()).fill(1).map((res, index) => {
+                    const page = index + 1;
 
-                return (
-                  <div className={styles._itemOne} id={page.toString()} key={index}>
-                    <div className={styles._cards}>
+                    return (
+                      <div className={styles._itemOne} id={page.toString()} key={index}>
+                        <div className={styles._cards}>
 
-                      {
-                        paginate(posts, page, 2).map((item, index) => {
-                          const { commerce } = item;
+                          {
+                            paginate(posts, page, 2).map((item, index) => {
+                              const { commerce } = item;
 
-                          const checkSchedule = () => {
-                            const day = new Date().getDay();
-                            const actualDay = days[day];
-                            const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
-                            const hourClosed = processHour(hourClose);
-                            const minutesClosed = processMinutes(hourClose);
-                            const currentHour = new Date().getHours();
-                            const currentMinutes = new Date().getMinutes();
+                              const checkSchedule = () => {
+                                const day = new Date().getDay();
+                                const actualDay = days[day];
+                                const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
+                                const hourClosed = processHour(hourClose);
+                                const minutesClosed = processMinutes(hourClose);
+                                const currentHour = new Date().getHours();
+                                const currentMinutes = new Date().getMinutes();
 
-                            if (minutesClosed == 0) {
-                              if (hourClosed < currentHour) return false;
-                              if (hourClosed == currentHour) return true;
-                            }
+                                if (minutesClosed == 0) {
+                                  if (hourClosed < currentHour) return false;
+                                  if (hourClosed == currentHour) return true;
+                                }
 
-                            if (minutesClosed > 0) {
-                              if (currentMinutes > minutesClosed && hourClosed <= currentHour) return false;
-                            }
+                                if (minutesClosed > 0) {
+                                  if (currentMinutes > minutesClosed && hourClosed <= currentHour) return false;
+                                }
 
-                            return checkOpen(currentHour, currentMinutes, actualDay) ? true : false;
+                                return checkOpen(currentHour, currentMinutes, actualDay) ? true : false;
+                              }
+
+                              const checkOpen = (currentHour, currentMinutes, actualDay) => {
+                                const openHour = commerce.subsidiary[0].schedule[actualDay].apertura;
+                                const hourOpen = processHour(openHour);
+                                const minutesOpen = processMinutes(openHour);
+
+                                if (minutesOpen == 0) {
+                                  if (hourOpen > currentHour) return false;
+                                  if (hourOpen == currentHour) return true;
+                                }
+
+                                if (minutesOpen > 0) {
+                                  if (currentMinutes < minutesOpen && hourOpen <= currentHour) return false;
+                                }
+
+                                return true;
+                              }
+
+                              return (
+                                <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
+                                  <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
+                                    <Card
+                                      name={item.title}
+                                      address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
+                                      url={commerce?.image}
+                                      description={commerce?.description}
+                                      phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
+                                      status={checkSchedule()}
+                                    />
+                                  </Currency>
+                                </div>
+                              )
+                            })
                           }
-
-                          const checkOpen = (currentHour, currentMinutes, actualDay) => {
-                            const openHour = commerce.subsidiary[0].schedule[actualDay].apertura;
-                            const hourOpen = processHour(openHour);
-                            const minutesOpen = processMinutes(openHour);
-
-                            if (minutesOpen == 0) {
-                              if (hourOpen > currentHour) return false;
-                              if (hourOpen == currentHour) return true;
-                            }
-
-                            if (minutesOpen > 0) {
-                              if (currentMinutes < minutesOpen && hourOpen <= currentHour) return false;
-                            }
-
-                            return true;
-                          }
-
-                          return (
-                            <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
-                              <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
-                                <Card
-                                  name={item.title}
-                                  address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
-                                  url={commerce?.image}
-                                  description={commerce?.description}
-                                  phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
-                                  status={checkSchedule()}
-                                />
-                              </Currency>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-                  </div>
-                )
-              })
-            }
-
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+            <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
+              <ArrowRight color='#FFFFFF' />
+            </div>
           </div>
-        </div>
-        <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
-          <ArrowRight color='#FFFFFF' />
-        </div>
-      </div>
+          :
+           (<div className={styles._messageParent}>
+            <p> No existen comercios destacados </p>
+          </div> )
+      }
     </>
   )
 };
