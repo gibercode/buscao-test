@@ -21,12 +21,11 @@ const FeaturedSlider = ({ posts }) => {
     calculateWidth();
   }, [])
 
-
   const nextOrPrevious = (param) => {
     let pagination = page;
 
-    if (param == 'left' && page >= 1) pagination = pagination - 1;
-    if (param == 'right' && page <= pagesArray()) pagination = pagination + 1;
+    if (param == 'left' && page >= 2) pagination = pagination - 1;
+    if (param == 'right' && page <= pagesArray() - 1) pagination = pagination + 1;
 
     const getElement = document.getElementById(pagination.toString());
 
@@ -106,7 +105,7 @@ const FeaturedSlider = ({ posts }) => {
                         paginate(posts, page, 2).map((item, index) => {
                           const { commerce } = item;
 
-                          const chechSchedule = () => {
+                          const checkSchedule = () => {
                             const day = new Date().getDay();
                             const actualDay = days[day];
                             const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
@@ -153,7 +152,7 @@ const FeaturedSlider = ({ posts }) => {
                                   url={commerce?.image}
                                   description={commerce?.description}
                                   phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
-                                  status={chechSchedule()}
+                                  status={checkSchedule()}
                                 />
                               </Currency>
                             </div>

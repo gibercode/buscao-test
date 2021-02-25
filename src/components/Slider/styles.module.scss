@@ -5,6 +5,7 @@
   height: 1rem;
   border-radius: 50%;
   background-color: $background;
+  cursor: pointer;
 
   &:nth-child(1), &:nth-child(2)  {
     margin-right: 1rem;
@@ -36,6 +37,7 @@
 
 ._circle {
   @include points($dustyGray);
+
 }
 
 ._currentCircle {
