@@ -7,36 +7,36 @@ const Currency3D = () => {
   const [coin, setCoin]: any = useState({ one: '_coinStaticOne', two: '_coinStaticOne', three: '_coinStaticOne', four: '_coinStaticOne' })
   const coins = [
     {
-      id: '1',
+      id: 'btc',
       source: '../../images/lying-coins/lying-btc.svg',
       class: '_coin1',
       enter: (index) => mouseEnter('one'),
-      out: () => mouseOut('1', 'one'),
+      out: () => mouseOut('btc', 'one'),
       animation: coin.one
     },
 
     {
-      id: '2',
+      id: 'ltc',
       source: '../../images/lying-coins/lying-lite.svg',
       class: '_coin2',
       enter: (index) => mouseEnter('two'),
-      out: () => mouseOut('2', 'two'),
+      out: () => mouseOut('ltc', 'two'),
       animation: coin.two
     },
     {
-      id: '3',
+      id: 'eth',
       source: '../../images/lying-coins/lying-ether.svg',
       class: '_coin3',
       enter: (index) => mouseEnter('three'),
-      out: () => mouseOut('3', 'three'),
+      out: () => mouseOut('eth', 'three'),
       animation: coin.three
     },
     {
-      id: '4',
+      id: 'xpt',
       source: '../../images/lying-coins/lying-xpt.svg',
       class: '_coin4',
       enter: (index) => mouseEnter('four'),
-      out: () => mouseOut('4', 'four'),
+      out: () => mouseOut('xpt', 'four'),
       animation: coin.four
     }
   ]
