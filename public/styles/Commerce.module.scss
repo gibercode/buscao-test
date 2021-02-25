@@ -72,3 +72,15 @@
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (min-width: 1200px) {
+  ._leftInfo {
+    height: 60vh;
+  }
+
+  ._moreInfoContainer {
+    iframe {
+      height: 60vh;
+    }
+  }
+}
