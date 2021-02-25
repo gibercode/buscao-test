@@ -84,7 +84,7 @@ const commerce: NextPage = () => {
                   <p className={styles._text}> {card.name}</p>
                   <p>{card.phoneNumber}</p>
                   {
-                    card.schedule[day].apertura ?
+                    card.schedule[day]?.apertura ?
                     <p>{card.schedule[day].apertura} / {card.schedule[day].cierre}</p> :
                     <p> - </p>
                   }
