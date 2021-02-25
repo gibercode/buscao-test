@@ -104,8 +104,4 @@ const commerce: NextPage = () => {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getResources())
-)
-
 export default commerce
