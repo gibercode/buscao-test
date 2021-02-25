@@ -41,7 +41,7 @@
 }
 
 ._moreInfoContainer {
-  padding: 3% 10%;
+  padding: 3% 10% 0 10%;
   margin: 0 2%;
   display: flex;
   justify-content: space-between;
@@ -49,13 +49,17 @@
   iframe {
     border: initial;
     border-radius: 15px;
-    width: 400px;
-    height: 400px;
+    width: 35vw;
+    height: 68vh;
   }
 }
 
 ._leftInfo {
-  width: 50%;
+  width: 35vw;
+  height: 68vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ._cardContainer {
@@ -67,4 +71,16 @@
   height: 10vh;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (min-width: 1400px) {
+  ._leftInfo {
+    height: 60vh;
+  }
+
+  ._moreInfoContainer {
+    iframe {
+      height: 60vh;
+    }
+  }
 }
