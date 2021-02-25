@@ -15,7 +15,7 @@ const Slider = ({ page }) => {
 
   const sliding = (value) => {
     const getElement = document.getElementById(page.slideshow[currentImage].image.id);
-    let offset = getElement.getBoundingClientRect().left;
+    let offset = getElement.getBoundingClientRect()?.left;
     let offsetString = offset?.toString();
 
     if (offsetString?.includes('-')) {

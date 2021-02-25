@@ -2,18 +2,19 @@
 
 @mixin arrow($direction) {
   background-color: $mineShaft;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 2rem;
   @if $direction == 'left' {
-    margin-right: 2rem;
+    margin-right: 0.5rem;
   }
   @else {
-    margin-left: 2rem;
+    margin-left: 0.5rem;
   }
 }
 
@@ -25,11 +26,8 @@
 
 ._itemsChild {
   width: 80%;
-  height: 420px;
   padding: 95px 0px;
-  overflow-y: visible;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
