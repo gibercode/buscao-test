@@ -7,10 +7,6 @@ const Slider = ({ page }) => {
   const [up, setUp] = useState(true);
   const parent = useRef(null);
 
-  page.slideshow[0].image.id = useRef(null);
-  page.slideshow[1].image.id = useRef(null);
-  page.slideshow[2].image.id = useRef(null);
-
   useEffect(() => {
     sliding(currentImage);
     if (currentImage == 2) setUp(false);
@@ -18,7 +14,8 @@ const Slider = ({ page }) => {
   }, [currentImage])
 
   const sliding = (value) => {
-    let offset = page?.slideshow[value]?.image?.id?.current?.getBoundingClientRect()?.left;
+    const getElement = document.getElementById(page.slideshow[currentImage].image.id);
+    let offset = getElement.getBoundingClientRect().left;
     let offsetString = offset?.toString();
 
     if (offsetString?.includes('-')) {
@@ -35,9 +32,8 @@ const Slider = ({ page }) => {
     });
   }
 
-  const slide = (page) => {
-    setCurrentImage(page);
-  }
+  const slide = (page) => setCurrentImage(page);
+
   const checkStep = (step) => {
     if (currentImage == step) return styles._currentCircle;
     return styles._circle;

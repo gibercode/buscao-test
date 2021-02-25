@@ -22,7 +22,7 @@ const Home = () => {
       <Currency3D />
       <FeaturedSlider posts={resource?.posts} />
       <Banner section={home?.secundaryBanner} />
-      {/* <Slider page={home} /> */}
+      <Slider page={home} />
       <Footer />
     </div>
   )
