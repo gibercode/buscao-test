@@ -19,7 +19,7 @@ const resources = async () => {
   const data: any = await GraphQlClient(query)
 
   const resources = {
-    categories:  normalizedArray(data?.categories?.nodes),
+    categories: normalizedArray(data?.categories?.nodes),
     countries: normalizedArray(data?.countries?.nodes),
     posts: normalizedArray(data?.posts?.nodes),
     homePage: normalized(data?.page),

@@ -34,13 +34,17 @@ const Search = () => {
   }
 
   const changeTitle = (event) => {
-    dispatch(filterPosts(select.title, 'title'))
+    const title  = select.title
+    dispatch(filterPosts(title, 'title'))
     dispatch(setFilter(select))
-    console.log(router);
 
-    // router.push('/commerces')
+    if(title) redirectToResults()
   }
 
+  const redirectToResults = () => {
+    const pathname = router.pathname
+    if(pathname == '/' || pathname == '/commerce') router.push('/commerces')
+  }
 
   return (
     <div className={styles._searchContent}>
