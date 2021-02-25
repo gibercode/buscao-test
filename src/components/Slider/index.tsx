@@ -14,10 +14,8 @@ const Slider = ({ page }) => {
   }, [currentImage])
 
   const sliding = (value) => {
-
     const getElement = document.getElementById(page.slideshow[currentImage].image.id);
     let offset = getElement.getBoundingClientRect()?.left;
-
     let offsetString = offset?.toString();
 
     if (offsetString?.includes('-')) {
@@ -32,17 +30,9 @@ const Slider = ({ page }) => {
       left: value == 0 ? 0 : offset,
       behavior: 'smooth'
     });
-
-    setTimeout(() => {
-      if (currentImage >= 0 && currentImage < 2 && up) {
-        return setCurrentImage(currentImage + 1);
-      }
-      if (currentImage <= 2) {
-        if (currentImage >= 1) setCurrentImage(currentImage - 1);
-        return;
-      }
-    }, 5000);
   }
+
+  const slide = (page) => setCurrentImage(page);
 
   const checkStep = (step) => {
     if (currentImage == step) return styles._currentCircle;
@@ -74,9 +64,9 @@ const Slider = ({ page }) => {
 
         <div className={styles._stepper}>
           <div className={styles._steps}>
-            <div className={checkStep(0)}></div>
-            <div className={checkStep(1)}></div>
-            <div className={checkStep(2)}></div>
+            <div className={checkStep(0)} onClick={() => slide(0)}></div>
+            <div className={checkStep(1)} onClick={() => slide(1)}></div>
+            <div className={checkStep(2)} onClick={() => slide(2)}></div>
           </div>
         </div>
       </div>
