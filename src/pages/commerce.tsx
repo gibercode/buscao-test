@@ -1,5 +1,3 @@
-import { wrapper } from '../store';
-import { getResources } from '../store/actions';
 import { useSelector } from 'react-redux';
 import { Navbar, Search, Card, Currency } from '../components';
 import { NextPage } from 'next';
