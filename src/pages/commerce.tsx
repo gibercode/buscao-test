@@ -39,7 +39,7 @@ const commerce: NextPage = () => {
     var x = document.getElementById(element)
     var y = document.getElementById(focus.toString())
     x?.setAttribute("style", "color: white; background-color: #1652F0;")
-    y?.removeAttribute("style")
+    if(element != focus) y?.removeAttribute("style")
   }
 
   return (
@@ -78,7 +78,7 @@ const commerce: NextPage = () => {
             <div className={styles._cards}>
               { paginate(company.commerce.subsidiary, page, perPage).map((card, index) => {
                 return (
-                  <button className={styles._cardContent} id={index.toString()} key={index} onClick={(e) => changeCompany(card, index)}>
+                  <button className={styles._cardContent} id={index.toString()} key={index} onClick={() => changeCompany(card, index)}>
                   <p className={styles._text}> {card.name}</p>
                   <p>{card.phoneNumber}</p>
                   {
