@@ -1,5 +1,3 @@
-import { wrapper } from '../store';
-import { getResources } from '../store/actions';
 import { useSelector } from 'react-redux';
 import { Navbar, Search, Card, Currency } from '../components';
 import { NextPage } from 'next';
@@ -103,9 +101,5 @@ const commerce: NextPage = () => {
     </div>
   );
 }
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getResources())
-)
 
 export default commerce
