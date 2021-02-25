@@ -49,13 +49,17 @@
   iframe {
     border: initial;
     border-radius: 15px;
-    width: 400px;
-    height: 400px;
+    width: 35vw;
+    height: 63vh;
   }
 }
 
 ._leftInfo {
-  width: 50%;
+  width: 35vw;
+  height: 63vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ._cardContainer {
