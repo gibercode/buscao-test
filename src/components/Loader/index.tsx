@@ -24,8 +24,8 @@ const Loader = () => {
     <>
       <div className={styles._main}>
         <div>
-          <div>
-            <img className={styles._logoParent} src='images/logos/logo-loader.svg' width='300px'></img>
+          <div className={styles._imgParent}>
+            <img className={styles._logoParent} src='images/logos/logo-loader.svg' width='100%'></img>
           </div>
 
           <div className={styles._squareParent}>
