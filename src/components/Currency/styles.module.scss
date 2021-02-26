@@ -2,9 +2,10 @@
 
 ._currenciesContent {
   position: relative;
+  width: 100%;
 
   ._currenciesCard {
-    width: 270px;
+    max-width: 270px;
     justify-content: flex-start;
     background: $mineShaft;
     border-radius: 20px;
@@ -23,6 +24,7 @@
   }
 
   ._visible {
+    max-width: 100%;
     visibility: visible;
     opacity: 1;
     position: relative;

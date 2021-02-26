@@ -1,5 +1,3 @@
-import { wrapper } from '../store';
-import { getResources } from '../store/actions';
 import { useSelector } from 'react-redux';
 import { Navbar, Search, Card, Currency } from '../components';
 import { NextPage } from 'next';
@@ -41,7 +39,7 @@ const commerce: NextPage = () => {
     var x = document.getElementById(element)
     var y = document.getElementById(focus.toString())
     x?.setAttribute("style", "color: white; background-color: #1652F0;")
-    y?.removeAttribute("style")
+    if(element != focus) y?.removeAttribute("style")
   }
 
   return (
@@ -64,7 +62,8 @@ const commerce: NextPage = () => {
             </section>
           </div>
           <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12329023.712065306!2d-91.10433262499994!3d41.0249156380248!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1613662529659!5m2!1ses!2sve">
             </iframe>
           </div>
         </section>
@@ -79,11 +78,11 @@ const commerce: NextPage = () => {
             <div className={styles._cards}>
               { paginate(company.commerce.subsidiary, page, perPage).map((card, index) => {
                 return (
-                  <button className={styles._cardContent} id={index.toString()} key={index} onClick={(e) => changeCompany(card, index)}>
+                  <button className={styles._cardContent} id={index.toString()} key={index} onClick={() => changeCompany(card, index)}>
                   <p className={styles._text}> {card.name}</p>
                   <p>{card.phoneNumber}</p>
                   {
-                    card.schedule[day].apertura ?
+                    card.schedule[day] ?
                     <p>{card.schedule[day].apertura} / {card.schedule[day].cierre}</p> :
                     <p> - </p>
                   }
@@ -102,9 +101,5 @@ const commerce: NextPage = () => {
     </div>
   );
 }
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  ({ store }) => store.dispatch(getResources())
-)
 
 export default commerce
