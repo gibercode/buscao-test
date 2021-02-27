@@ -2,6 +2,7 @@ import styles from './styles.module.scss'
 import Search from '../Search'
 
 const Welcome = ({ section, title = '' }) => {
+  const sourceUrl = section?.background?.sourceUrl
   return (
     <>
       <div className={"_main"}>
@@ -44,7 +45,7 @@ const Welcome = ({ section, title = '' }) => {
 
       <style jsx>{`
         ._main {
-          background-image: url(${section?.background?.sourceUrl});
+          background-image: url(${sourceUrl});
           background-size: 100% 100%;
           background-repeat: no-repeat;
           background-position: center;
