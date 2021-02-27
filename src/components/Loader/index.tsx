@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
+import { useSelector } from 'react-redux';
 
 const Loader = () => {
+
+  const { loader: { show } } = useSelector(state => state);
   const [currentSquare, setCurrentSquare] = useState(0);
 
   useEffect(() => {
@@ -22,12 +25,8 @@ const Loader = () => {
 
   return (
     <>
-      <div className={styles._main}>
+      <div className={show ? styles._main : styles._hide}>
         <div>
-          <div className={styles._imgParent}>
-            <img className={styles._logoParent} src='images/logos/logo-loader.svg' width='100%'></img>
-          </div>
-
           <div className={styles._squareParent}>
             <div className={currentClass(0)} />
             <div className={currentClass(1)} />
@@ -42,7 +41,7 @@ const Loader = () => {
         height: 1.2rem;
         background-color: #FFF;
         margin: 0.7rem;
-        animation: fadeIn 0.6s forwards;
+        animation: fadeIn 0.4s forwards;
       }
 
       ._squareOut {
@@ -50,7 +49,7 @@ const Loader = () => {
         height: 1.2rem;
         background-color: #FFF;
         margin: 0.7rem;
-        animation: fadeOut 0.6s forwards;
+        animation: fadeOut 0.4s forwards;
       }
 
       @keyframes fadeIn {

@@ -3,6 +3,7 @@ import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { useStore } from 'react-redux'
 import { wrapper } from '../store'
+import { Loader } from '../components';
 import '../../public/styles/globals.scss'
 
 const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
@@ -15,7 +16,10 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
   }, [])
 
   return (
+    <>
     <Component {...pageProps} />
+    <Loader />
+    </>
   )
 }
 
