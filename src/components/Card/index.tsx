@@ -2,6 +2,9 @@ import { FC, memo, useEffect, useState } from 'react'
 import { Location, Clock } from '../../../public/images/icons'
 import { CardProps } from './type'
 import styles from './styles.module.scss'
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { setSelectedCommerce, setLoader} from '../../store/actions';
 
 const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
@@ -23,8 +26,17 @@ const processMinutes = (time) => {
   }
 }
 
-const Card: FC<CardProps> =  ({ content, phoneClass, longAddr, showClock = true, showAddress = true }) => {
+const Card: FC<CardProps> =  ({ content, phoneClass, longAddr, showClock = true, showAddress = true, id }) => {
   const [status, setStatus] = useState(false)
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const redirect = () => {
+    const id = content.id;
+    dispatch(setLoader(true));
+    dispatch(setSelectedCommerce(id));
+    router.push('/commerce');
+  }
 
   useEffect(() => {
     const checkSchedule = () => {
@@ -70,7 +82,7 @@ const Card: FC<CardProps> =  ({ content, phoneClass, longAddr, showClock = true,
 
   return (
     <div>
-      <div className={styles._card}>
+      <div className={styles._card} onClick={redirect}>
         <div className={styles._imageParent}>
           <img src={content?.commerce?.image} width='40%' height="100%"></img>
         </div>
