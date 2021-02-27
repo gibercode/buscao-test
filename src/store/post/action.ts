@@ -1,5 +1,6 @@
 import { SET_FILTER, UPDATE_POSTS } from './action_types'
 import { actionObject, Filter } from '../../utils'
+import { SHOW_LOADER } from '../loader/action-types';
 
 const _filterSelection = (posts, filter, select) => {
   const post = {
@@ -44,4 +45,8 @@ export const filterPosts = (filter: string, type) => (dispatch, getState) => {
   dispatch(actionObject(UPDATE_POSTS, result))
 }
 
-export const setFilter = (filter) => (dispatch) => dispatch(actionObject(SET_FILTER, filter))
+export const setFilter = (filter) => (dispatch) =>  {
+  dispatch(actionObject(SHOW_LOADER, true))
+  dispatch(actionObject(SET_FILTER, filter))
+  dispatch(actionObject(SHOW_LOADER, false))
+}

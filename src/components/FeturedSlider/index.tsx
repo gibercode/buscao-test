@@ -8,13 +8,12 @@ import { setSelectedCommerce } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Currency from '../Currency';
+import commerce from '../../pages/commerce';
 
 const FeaturedSlider = ({ posts }) => {
 
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
-  const router = useRouter();
 
   useEffect(() => {
     calculateWidth();
@@ -59,12 +58,6 @@ const FeaturedSlider = ({ posts }) => {
     return lengthRounded;
   }
 
-  const redirect = (commerce) => {
-    const id = commerce.id;
-    dispatch(setSelectedCommerce(id));
-    router.push('/commerce');
-  }
-
   return (
     <>
       {
@@ -87,7 +80,7 @@ const FeaturedSlider = ({ posts }) => {
                           {
                             paginate(posts, page, 2).map((item, index) => {
                               return (
-                                <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
+                                <div className={styles._cardsParent} key={index}>
                                   <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
                                     <Card
                                       content={item}

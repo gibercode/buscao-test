@@ -5,6 +5,8 @@ import styles from '../../public/styles/Commerce.module.scss';
 import { useEffect, useState } from 'react';
 import { paginate } from '../utils';
 import Pagination from '../components/Pagination';
+import { useDispatch } from 'react-redux';
+import { setLoader } from '../store/actions';
 
 const findDay = () => {
   const options = { weekday: 'long' };
@@ -18,8 +20,10 @@ const findDay = () => {
 const perPage = 12
 const day = findDay()
 
+
 const commerce: NextPage = () => {
 
+  const dispatch = useDispatch()
   const { post, selectedCommerce, resource } = useSelector(state => state)
 
   const [company] = useState<any>(() => post.filterPosts.find(element => element['id'] == selectedCommerce.id));
@@ -31,6 +35,7 @@ const commerce: NextPage = () => {
     var first_subsidiary = company ? company.commerce.subsidiary : [];
     setSubsidiary(first_subsidiary[0]);
     changeCompany(first_subsidiary[0], 0)
+    dispatch(setLoader(false));
   }, []);
 
   const changeCompany = (node, element) => {

@@ -4,4 +4,5 @@ export type CardProps = {
   content: any
   showClock?: boolean
   showAddress?: boolean
+  id?: string
 }

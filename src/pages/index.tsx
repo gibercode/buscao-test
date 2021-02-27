@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { wrapper } from '../store'
 import { getResources } from '../store/actions'
-import { Navbar, Footer, Slider, Banner, FeaturedSlider, Welcome, Currency3D } from '../components'
+import { Navbar, Footer, Slider, Banner, FeaturedSlider, Welcome, Currency3D, Loader} from '../components'
 import styles from '../../public/styles/Home.module.scss'
 import Head from 'next/head'
 
@@ -19,6 +19,7 @@ const Home = () => {
       </Head>
 
       <Navbar resource={resource} />
+      <Loader />
       <Welcome section={home?.principalBanner}/>
       <Currency3D />
       <FeaturedSlider posts={post?.outstandingPosts} />

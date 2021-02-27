@@ -1,9 +1,10 @@
-import { CHANGE_RESOURCES, GET_RESOURCES } from './action-types'
+import { CHANGE_RESOURCES, GET_RESOURCES, } from './action-types'
 import { actionObject, Filter } from '../../utils'
 import { GET_HOME_PAGE } from '../page/action-types'
 import { resources } from '../../graphql/querys'
 import axios from 'axios'
 import { UPDATE_POSTS } from '../post/action_types'
+import { SHOW_LOADER } from '../loader/action-types'
 
 export const getResources: any = () => async dispatch => {
   const allResources = await resources()
