@@ -4,8 +4,15 @@ import styles from './styles.module.scss'
 const Banner = ({ section }) => (
   <>
     <div className="_container">
-      <div className={styles._textContainer}>
-        <div dangerouslySetInnerHTML={{__html: section?.content}} className={styles._content} />
+      <div className={styles._leftColumn}>
+        <div className={styles._leftColumn__resize}>
+          <div className={styles._imageContainer}>
+            <img src="images/logos/buscao-big-logo.svg" alt="buscao" width="45%"/>
+          </div>
+          <div className={styles._textContainer}>
+            <div dangerouslySetInnerHTML={{__html: section?.content}} className={styles._content} />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -16,7 +23,7 @@ const Banner = ({ section }) => (
         background-repeat: no-repeat;
         background-position: center;
         width: 100%;
-        height: 490px;
+        height: 570px;
       }
     `}</style>
   </>
