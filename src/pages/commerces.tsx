@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Result, Navbar, Welcome } from '../components'
 import styles from '../../public/styles/Commerces.module.scss'
@@ -9,6 +10,19 @@ const Commerces = () => {
     post: { filterPosts, filter: { title } },
     page: { homePage: { home } }
   } = useSelector(state => state)
+
+  const resultRef: any = useRef()
+
+  useEffect(() => {
+    const scrollToResults = () => {
+      resultRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+
+    scrollToResults()
+  }, [])
 
   return (
     <>
@@ -32,6 +46,7 @@ const Commerces = () => {
           )
         }
       </div>
+      <div ref={resultRef}></div>
     </>
   )
 }

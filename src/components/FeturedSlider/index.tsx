@@ -5,11 +5,9 @@ import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { paginate } from '../../utils';
 import { setSelectedCommerce } from '../../store/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Currency from '../Currency';
-
-const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const FeaturedSlider = ({ posts }) => {
 
@@ -39,24 +37,6 @@ const FeaturedSlider = ({ posts }) => {
     }
 
     setPage(pagination);
-  }
-
-  const processHour = (time) => {
-    let newHour;
-
-    if (time) {
-      newHour = time.split(':')[0];
-      return parseInt(newHour);
-    }
-  }
-
-  const processMinutes = (time) => {
-    let newMinutes;
-
-    if (time) {
-      newMinutes = time.split(':')[1];
-      return Number(newMinutes);
-    }
   }
 
   const calculateWidth = () => {
@@ -106,56 +86,12 @@ const FeaturedSlider = ({ posts }) => {
 
                           {
                             paginate(posts, page, 2).map((item, index) => {
-                              const { commerce } = item;
-
-                              const checkSchedule = () => {
-                                const day = new Date().getDay();
-                                const actualDay = days[day];
-                                const hourClose = commerce.subsidiary[0].schedule[actualDay].cierre;
-                                const hourClosed = processHour(hourClose);
-                                const minutesClosed = processMinutes(hourClose);
-                                const currentHour = new Date().getHours();
-                                const currentMinutes = new Date().getMinutes();
-
-                                if (minutesClosed == 0) {
-                                  if (hourClosed < currentHour) return false;
-                                  if (hourClosed == currentHour) return true;
-                                }
-
-                                if (minutesClosed > 0) {
-                                  if (currentMinutes > minutesClosed && hourClosed <= currentHour) return false;
-                                }
-
-                                return checkOpen(currentHour, currentMinutes, actualDay) ? true : false;
-                              }
-
-                              const checkOpen = (currentHour, currentMinutes, actualDay) => {
-                                const openHour = commerce.subsidiary[0].schedule[actualDay].apertura;
-                                const hourOpen = processHour(openHour);
-                                const minutesOpen = processMinutes(openHour);
-
-                                if (minutesOpen == 0) {
-                                  if (hourOpen > currentHour) return false;
-                                  if (hourOpen == currentHour) return true;
-                                }
-
-                                if (minutesOpen > 0) {
-                                  if (currentMinutes < minutesOpen && hourOpen <= currentHour) return false;
-                                }
-
-                                return true;
-                              }
-
                               return (
                                 <div className={styles._cardsParent} key={index} onClick={() => redirect(item)}>
                                   <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
                                     <Card
-                                      name={item.title}
-                                      address={commerce.subsidiary ? item?.commerce?.subsidiary[0]?.address : null}
-                                      url={commerce?.image}
-                                      description={commerce?.description}
-                                      phone={[item?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
-                                      status={checkSchedule()}
+                                      content={item}
+                                      phoneClass="_leftCard"
                                     />
                                   </Currency>
                                 </div>
@@ -167,16 +103,14 @@ const FeaturedSlider = ({ posts }) => {
                     )
                   })
                 }
+
               </div>
-            </div>
-            <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
-              <ArrowRight color='#FFFFFF' />
             </div>
           </div>
           :
-           (<div className={styles._messageParent}>
+          (<div className={styles._messageParent}>
             <p> No existen comercios destacados </p>
-          </div> )
+          </div>)
       }
     </>
   )

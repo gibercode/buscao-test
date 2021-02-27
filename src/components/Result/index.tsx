@@ -20,11 +20,8 @@ const Result = ({ posts }) => {
                 <div key={index} className={styles[`_cardElement${index}`]}>
                   <Currency currenciesData={{ currencies: post.commerce.paymentmethods }}>
                     <Card
-                      name={post.title}
-                      address={post.commerce.subsidiary ? post?.commerce?.subsidiary[0]?.address : null}
-                      url={post.commerce?.image}
-                      description={post.commerce?.description}
-                      phone={[post?.commerce?.subsidiary[0]?.phoneNumber, '_leftCard']}
+                      content={post}
+                      phoneClass="_leftCard"
                     />
                   </Currency>
                 </div>
