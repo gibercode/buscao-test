@@ -91,7 +91,7 @@ const FeaturedSlider = ({ posts }) => {
                                   <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
                                     <Card
                                       content={item}
-                                      phoneClass="_leftCard"
+                                      phoneClass='_leftCard'
                                     />
                                   </Currency>
                                 </div>
@@ -105,6 +105,9 @@ const FeaturedSlider = ({ posts }) => {
                 }
 
               </div>
+            </div>
+            <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
+              <ArrowRight color='#FFFFFF' />
             </div>
           </div>
           :
