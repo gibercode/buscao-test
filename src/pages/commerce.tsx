@@ -50,11 +50,11 @@ const commerce: NextPage = () => {
           <div className={styles._leftInfo}>
             <div className={styles._cardContainer}>
               <Card
-                name={company ? company['title'] : []}
-                url={company ? company['commerce'].image : []}
-                description={company ? company['commerce'].description : []}
-                phone={['LLAMAR', '_infoParentBlack']}
+                content={company}
+                phoneClass="_infoParentBlack"
                 longAddr={subsidiary ? subsidiary.address : '-' }
+                showClock={false}
+                showAddress={false}
               />
             </div>
             <section style={{ display: 'flex', flexWrap: "wrap", justifyContent: "space-around" }}>
