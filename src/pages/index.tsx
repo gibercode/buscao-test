@@ -8,7 +8,8 @@ import Head from 'next/head'
 const Home = () => {
   const {
     page: { homePage: { home } },
-    resource
+    resource,
+    post
   } = useSelector(state => state)
 
   return (
@@ -21,7 +22,7 @@ const Home = () => {
       <Loader />
       <Welcome section={home?.principalBanner}/>
       <Currency3D />
-      <FeaturedSlider posts={resource?.posts} />
+      <FeaturedSlider posts={post?.outstandingPosts} />
       <Banner section={home?.secundaryBanner} />
       <Slider page={home} />
       <Footer />

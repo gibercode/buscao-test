@@ -11,6 +11,7 @@ import Currency from '../Currency';
 import commerce from '../../pages/commerce';
 
 const FeaturedSlider = ({ posts }) => {
+
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 
@@ -47,59 +48,66 @@ const FeaturedSlider = ({ posts }) => {
       return;
     }
 
-    setSliderWidth(`${width}%`);
+    const percentWidth = width * 100;
+    setSliderWidth(`${percentWidth}%`);
   }
 
   const pagesArray = () => {
     const length = posts.length / 2;
     const lengthRounded = Math.round(length);
-
     return lengthRounded;
   }
 
   return (
     <>
-      <div className={styles._itemsParent}>
-        <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
-          <ArrowLeft color='#FFFFFF' />
-        </div>
-        <div className={styles._itemsChild}>
-          <div className={styles._slider} style={{ width: sliderWidth }}>
+      {
+        posts.length ?
+          <div className={styles._itemsParent}>
+            <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
+              <ArrowLeft color='#FFFFFF' />
+            </div>
+            <div className={styles._itemsChild}>
+              <div className={styles._slider} style={{ width: sliderWidth }}>
 
-            {
-              Array(pagesArray()).fill(1).map((res, index) => {
-                const page = index + 1;
+                {
+                  Array(pagesArray()).fill(1).map((res, index) => {
+                    const page = index + 1;
 
-                return (
-                  <div className={styles._itemOne} id={page.toString()} key={index}>
-                    <div className={styles._cards}>
+                    return (
+                      <div className={styles._itemOne} id={page.toString()} key={index}>
+                        <div className={styles._cards}>
 
-                      {
-                        paginate(posts, page, 2).map((item, index) => {
-                          return (
-                            <div className={styles._cardsParent} key={index} >
-                              <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
-                                <Card
-                                  content={item}
-                                  phoneClass="_leftCard"
-                                />
-                              </Currency>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-                  </div>
-                )
-              })
-            }
+                          {
+                            paginate(posts, page, 2).map((item, index) => {
+                              return (
+                                <div className={styles._cardsParent} key={index}>
+                                  <Currency currenciesData={{ currencies: item?.commerce?.paymentmethods }}>
+                                    <Card
+                                      content={item}
+                                      phoneClass='_leftCard'
+                                    />
+                                  </Currency>
+                                </div>
+                              )
+                            })
+                          }
+                        </div>
+                      </div>
+                    )
+                  })
+                }
 
+              </div>
+            </div>
+            <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
+              <ArrowRight color='#FFFFFF' />
+            </div>
           </div>
-        </div>
-        <div className={styles._rightArrow} onClick={() => nextOrPrevious('right')}>
-          <ArrowRight color='#FFFFFF' />
-        </div>
-      </div>
+          :
+          (<div className={styles._messageParent}>
+            <p> No existen comercios destacados </p>
+          </div>)
+      }
     </>
   )
 };
