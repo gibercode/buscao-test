@@ -61,7 +61,7 @@ const FeaturedSlider = ({ posts }) => {
   return (
     <>
       {
-        posts.length ?
+        posts.length && sliderWidth != '0%' ?
           <div className={styles._itemsParent}>
             <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
               <ArrowLeft color='#FFFFFF' />
