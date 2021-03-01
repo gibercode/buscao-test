@@ -12,6 +12,8 @@ import post from '../../store/post/reducer';
 
 const FeaturedSlider = ({ posts }) => {
 
+  console.log(posts);
+
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 
@@ -71,8 +73,6 @@ const FeaturedSlider = ({ posts }) => {
               <div className='_slider'>
 
                 {
-
-                  posts.length ?
                   Array(pagesArray()).fill(1).map((res, index) => {
                     const page = index + 1;
 
@@ -97,7 +97,7 @@ const FeaturedSlider = ({ posts }) => {
                         </div>
                       </div>
                     )
-                  }) : null
+                  })
                 }
 
               </div>
