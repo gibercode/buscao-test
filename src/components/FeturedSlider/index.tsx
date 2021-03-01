@@ -5,8 +5,7 @@ import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { paginate } from '../../utils';
 import { setSelectedCommerce } from '../../store/actions';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import { useDispatch, useSelector} from 'react-redux';
 import Currency from '../Currency';
 import commerce from '../../pages/commerce';
 import post from '../../store/post/reducer';
@@ -17,7 +16,7 @@ const FeaturedSlider = ({ posts }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if(post.length) calculateWidth();
+    if (posts.length) calculateWidth();
   }, [posts])
 
   const nextOrPrevious = (param) => {
@@ -51,10 +50,6 @@ const FeaturedSlider = ({ posts }) => {
 
     const percentWidth = width * 100;
     setSliderWidth(`${percentWidth}%`);
-
-    console.log(percentWidth);
-    console.log(width);
-    console.log(posts);
   }
 
   const pagesArray = () => {
@@ -65,13 +60,7 @@ const FeaturedSlider = ({ posts }) => {
 
   return (
     <>
-      <style jsx>{`
-        ._slider {
-          display: inline-flex;
-          justify-content: center;
-          width: ${sliderWidth}
-        }
-      `}</style>
+
       {
         posts.length ?
           <div className={styles._itemsParent}>
@@ -120,6 +109,14 @@ const FeaturedSlider = ({ posts }) => {
             <p> No existen comercios destacados </p>
           </div>)
       }
+
+      <style jsx>{`
+        ._slider {
+          display: inline-flex;
+          justify-content: center;
+          width: ${sliderWidth}
+        }
+      `}</style>
     </>
   )
 };
