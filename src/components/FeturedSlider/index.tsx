@@ -14,7 +14,6 @@ const FeaturedSlider = ({ posts }) => {
 
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (posts.length) calculateWidth();
@@ -42,7 +41,6 @@ const FeaturedSlider = ({ posts }) => {
   const calculateWidth = () => {
     const width = posts.length / 2;
     const stringWidth = width.toString();
-    setShow(true);
 
     if (stringWidth.includes('.')) {
       const newWidth = (width + 0.5) * 100;
@@ -64,7 +62,7 @@ const FeaturedSlider = ({ posts }) => {
     <>
 
       {
-        show ?
+        posts.length ?
           <div className={styles._itemsParent}>
             <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
               <ArrowLeft color='#FFFFFF' />
@@ -73,6 +71,8 @@ const FeaturedSlider = ({ posts }) => {
               <div className='_slider'>
 
                 {
+
+                  posts.length ?
                   Array(pagesArray()).fill(1).map((res, index) => {
                     const page = index + 1;
 
@@ -97,7 +97,7 @@ const FeaturedSlider = ({ posts }) => {
                         </div>
                       </div>
                     )
-                  })
+                  }) : null
                 }
 
               </div>
