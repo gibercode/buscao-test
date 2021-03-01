@@ -51,10 +51,6 @@ const FeaturedSlider = ({ posts }) => {
 
     const percentWidth = width * 100;
     setSliderWidth(`${percentWidth}%`);
-
-    console.log(percentWidth);
-    console.log(width);
-    console.log(posts);
   }
 
   const pagesArray = () => {
@@ -65,9 +61,8 @@ const FeaturedSlider = ({ posts }) => {
 
   return (
     <>
-
       {
-        posts.length ?
+        sliderWidth != '0%' ?
           <div className={styles._itemsParent}>
             <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
               <ArrowLeft color='#FFFFFF' />
