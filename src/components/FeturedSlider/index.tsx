@@ -52,6 +52,8 @@ const FeaturedSlider = ({ posts }) => {
     setSliderWidth(`${percentWidth}%`);
 
     console.log(percentWidth);
+    console.log(width);
+    console.log(posts);
   }
 
   const pagesArray = () => {
