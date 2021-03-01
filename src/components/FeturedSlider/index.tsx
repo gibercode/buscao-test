@@ -17,7 +17,7 @@ const FeaturedSlider = ({ posts }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if(posts.length) calculateWidth();
+    if (posts.length) calculateWidth();
   }, [posts])
 
   const nextOrPrevious = (param) => {
@@ -65,13 +65,7 @@ const FeaturedSlider = ({ posts }) => {
 
   return (
     <>
-      <style jsx>{`
-        ._slider {
-          display: inline-flex;
-          justify-content: center;
-          width: ${sliderWidth}
-        }
-      `}</style>
+
       {
         posts.length ?
           <div className={styles._itemsParent}>
@@ -120,6 +114,14 @@ const FeaturedSlider = ({ posts }) => {
             <p> No existen comercios destacados </p>
           </div>)
       }
+
+      <style jsx>{`
+        ._slider {
+          display: inline-flex;
+          justify-content: center;
+          width: ${sliderWidth}
+        }
+      `}</style>
     </>
   )
 };
