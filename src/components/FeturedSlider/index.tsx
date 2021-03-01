@@ -51,7 +51,7 @@ const FeaturedSlider = ({ posts }) => {
     const percentWidth = width * 100;
     setSliderWidth(`${percentWidth}%`);
 
-    console.log('enter')
+    console.log(percentWidth);
   }
 
   const pagesArray = () => {
@@ -62,6 +62,13 @@ const FeaturedSlider = ({ posts }) => {
 
   return (
     <>
+      <style jsx>{`
+        ._slider {
+          display: inline-flex;
+          justify-content: center;
+          width: 100%
+        }
+      `}</style>
       {
         posts.length ?
           <div className={styles._itemsParent}>
@@ -110,14 +117,6 @@ const FeaturedSlider = ({ posts }) => {
             <p> No existen comercios destacados </p>
           </div>)
       }
-
-      <style jsx>{`
-      ._slider {
-        display: inline-flex;
-        justify-content: center;
-        width: ${sliderWidth}
-      }
-    `}</style>
     </>
   )
 };
