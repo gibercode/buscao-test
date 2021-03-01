@@ -12,7 +12,7 @@ import commerce from '../../pages/commerce';
 
 const FeaturedSlider = ({ posts }) => {
 
-  const [sliderWidth, setSliderWidth] = useState('0%');
+  const [sliderWidth, setSliderWidth] = useState('100%');
   const [page, setPage] = useState(1);
 
   useEffect(() => {
