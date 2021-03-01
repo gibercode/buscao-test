@@ -9,14 +9,15 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Currency from '../Currency';
 import commerce from '../../pages/commerce';
+import post from '../../store/post/reducer';
 
 const FeaturedSlider = ({ posts }) => {
 
-  const [sliderWidth, setSliderWidth] = useState('100%');
+  const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    calculateWidth();
+    if(post.length) calculateWidth();
   }, [posts])
 
   const nextOrPrevious = (param) => {
@@ -68,7 +69,7 @@ const FeaturedSlider = ({ posts }) => {
         ._slider {
           display: inline-flex;
           justify-content: center;
-          width: 100%
+          width: ${sliderWidth}
         }
       `}</style>
       {
