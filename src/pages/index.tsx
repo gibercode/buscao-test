@@ -22,7 +22,7 @@ const Home = () => {
       <Loader />
       <Welcome section={home?.principalBanner}/>
       <Currency3D />
-      <FeaturedSlider posts={post?.outstandingPosts.length ? post?.outstandingPosts : []} />
+      <FeaturedSlider posts={post?.outstandingPosts} />
       <Banner section={home?.secundaryBanner} />
       <Slider page={home} />
       <Footer />
