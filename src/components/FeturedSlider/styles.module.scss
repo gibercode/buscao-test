@@ -33,21 +33,12 @@
   &::-webkit-scrollbar {
     display: none;
   }
-
-
-}
-
-._slider {
-  display: inline-flex;
-  justify-content: center;
-  // white-space: nowrap;
 }
 
 ._itemOne {
   width: 100%;
   align-self: center;
   scroll-behavior: smooth;
-  // background-color: blue;
 }
 
 ._itemTwo {
