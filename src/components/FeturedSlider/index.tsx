@@ -5,8 +5,7 @@ import { ArrowLeft, ArrowRight } from '../../../public/images/icons';
 import { Card } from '../';
 import { paginate } from '../../utils';
 import { setSelectedCommerce } from '../../store/actions';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import Currency from '../Currency';
 import commerce from '../../pages/commerce';
 import post from '../../store/post/reducer';
@@ -15,6 +14,10 @@ const FeaturedSlider = ({ posts }) => {
 
   const [sliderWidth, setSliderWidth] = useState('0%');
   const [page, setPage] = useState(1);
+
+  const { post } = useSelector(state => state);
+
+  console.log(post.outstandingPosts);
 
   useEffect(() => {
     if (posts.length) calculateWidth();
@@ -62,7 +65,7 @@ const FeaturedSlider = ({ posts }) => {
   return (
     <>
       {
-        sliderWidth != '0%' ?
+        post.outstandingPosts.length ?
           <div className={styles._itemsParent}>
             <div className={styles._leftArrow} onClick={() => nextOrPrevious('left')}>
               <ArrowLeft color='#FFFFFF' />
