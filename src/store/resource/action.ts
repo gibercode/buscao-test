@@ -51,7 +51,7 @@ const _getCurrentLocation = async () => {
   try {
     const response = await axios.get('https://extreme-ip-lookup.com/json/')
     const country = response.data.countryCode.toLowerCase()
-
+    console.log(country)
     return country
 
   } catch {
